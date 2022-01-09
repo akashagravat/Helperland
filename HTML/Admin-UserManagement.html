@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin-UserManagement</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylsheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="css/Admin-UserManagement.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="#">helperland</a>
+
+      
+        <div class="navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown users">
+              <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+              <img src="image/admin-user.png" class="userimg">James Smith
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">User Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Setting</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#">
+      <img src="image/logout.png" class="logout">
+      </a>
+      </li>
+          </ul>
+        
+        </div>
+      </nav>
+    </header>
+    <section class="main-item">
+     <nav class="vertical-nav " id="sidebar"> 
+      <button class="  navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContents"
+        aria-controls="navbarSupportedContents" aria-expanded="false" aria-label="Toggle navigation" id="toggles">
+        <span class="navbar-toggler-icon"><i class="fa fa-bars bars"></i></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContents">
+        <ul class=" nav flex-column  mb-0">
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+              Service Management            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+          Role Management   </a>
+          </li>
+    
+          <li class="nav-item dropdown " id="drop1">
+            <a href="#" class="nav-link ">
+              Coupon Code Management <span class="angel"><i class="fa fa-angle-right"></i></span>
+       </a>
+<ul class="dropdowns"id="drops1">
+  <li class="nav-item"><a href="#" class="nav-link">All Transactions</a></li>
+  <li class="nav-item"><a href="#" class="nav-link">Generate Payment</a></li>
+  <li class="nav-item"><a href="#" class="nav-link">Customer Invoices</a></li>
+</ul>
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+              Escalation Management          </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+              Service Requests          </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+            Service Providers</a>
+          </li>
+    
+          <li class="nav-item active">
+            <a href="#" class="nav-link ">
+User Management          </a>
+          </li>
+          <li class="nav-item dropdown " id="drop2">
+            <a href="#" class="nav-link ">
+Finance Module <span class="angels"><i class="fa fa-angle-right"></i></span>
+       </a>
+<ul class="dropdowns"id="drops2">
+  <li class="nav-item"><a href="#" class="nav-link">All Transactions</a></li>
+  <li class="nav-item"><a href="#" class="nav-link">Generate Payment</a></li>
+  <li class="nav-item"><a href="#" class="nav-link">Customer Invoices</a></li>
+</ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+              Zip Code Management            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+           Rating Management  </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+            Inquiry Management            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link ">
+              Newsletter Management        </a>
+          </li>
+          <li class="nav-item dropdown" id="drop3">
+            <a href="#" class="nav-link ">
+            Content Management        <span class="angels"><i class="fa fa-angle-right"></i></span>
+          </a> <ul class="dropdowns" id="drops3">
+             <li class="nav-item"><a href="#" class="nav-link">Coupon Codes</a></li>
+             <li class="nav-item"><a href="#" class="nav-link">Usage History</a></li>
+           </ul>
+          </li>
+        </ul>
+      </div>
+    </nav> 
+    <div class="blocks">
+      <div class="headings">
+        <h2>User Management</h2>
+        <div class="adduser">
+          <button class="btn adduserbtn"><i class="fa fa-plus-circle plus" aria-hidden="true"></i>Add New User</button>
+        </div>
+      </div>
+    </div>
+    <form>
+      <div class="form-row">
+        <select id='selUser' class="">
+          <option  selected="true" disabled="disabled"  >User name</option> 
+          <option value='1'>John Smith</option> 
+          <option value='2'>Lyum watson</option> 
+          <option value='3'>John Smith</option> 
+          <option value='4'>Lyum watson</option> 
+          <option value='5'>John Smith</option> 
+          <option value='6'>Vijay Mourya</option> 
+          <option value='7'>Lyum watson</option> 
+        </select>
+   
+        <select id='selUserRole' class=" ">
+          <option  selected="true" disabled="disabled" >User role</option> 
+          <option value='1'>Call Center</option> 
+          <option value='2'>Service provider</option> 
+          <option value='3'>Customer </option> 
+        </select>
+        <div class="input-group mobiles ">
+            <div class="input-group-prepend" id="mobilenum">
+              <div class="input-group-text" >+49</div>
+            </div>
+            <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+          </div> 
+          <div class="form-group zips ">
+           
+            <input type="number" class="form-control  zips" id="zipcode" placeholder="Zip Code">
+          </div> 
+          
+           
+          
+         
+         <button type="submit" class="btn  search "  >Search</button>
+         <button class="btn  reset " type="reset" id="reset">Clear</button>
+</div>
+        </form>
+
+        
+<div class="table_usermanagement">
+  <table class="table table-hover" id="tblusermanagement">
+
+              <thead id="headings">
+                  <tr>
+                      <th scope="col">User Name <img src="image/sort.png" class="sort"></th>
+                      <th scope="col">User Type </th>
+                      <th scope="col">Role </th>
+                      <th scope="col">Postal Code <img src="image/sort.png" class="sort"></th>
+                      <th scope="col">City </th>
+                      <th scope="col">Radius <img src="image/sort.png" class="sort"> </th>
+                      <th scope="col" class="action">User Status <img src="image/sort.png" class="sort"> </th>
+                      <th scope="col " class="action" >Actions </th>
+
+                  </tr>
+              </thead>
+        <tbody>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>10 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+              <a class="dropdown-toggle  Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                <a class="dropdown-item" href="#">Edit </a>
+                <a class="dropdown-item" href="#">Deactivate</a>
+       
+        
+          </td>
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Content Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn inactive">Inactive</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>20 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Finance Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>10 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+              <a class="dropdown-toggle  Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                <a class="dropdown-item" href="#">Edit </a>
+                <a class="dropdown-item" href="#">Deactivate</a>
+       
+        
+          </td>
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Content Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn inactive">Inactive</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>20 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Finance Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>10 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+              <a class="dropdown-toggle  Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                <a class="dropdown-item" href="#">Edit </a>
+                <a class="dropdown-item" href="#">Deactivate</a>
+       
+        
+          </td>
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Content Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn inactive">Inactive</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>20 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Finance Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>10 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+              <a class="dropdown-toggle  Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                <a class="dropdown-item" href="#">Edit </a>
+                <a class="dropdown-item" href="#">Deactivate</a>
+       
+        
+          </td>
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Content Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn inactive">Inactive</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>20 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Finance Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>10 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+              <a class="dropdown-toggle  Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                <a class="dropdown-item" href="#">Edit </a>
+                <a class="dropdown-item" href="#">Deactivate</a>
+       
+        
+          </td>
+          </tr>
+          <tr>
+            <td>Lyum watson </td>
+          <td>Call Center</td>
+          <td>Inquiry Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Content Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith  </td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn inactive">Inactive</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Service provider</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td>20 km</td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Call Center</td>
+          <td>Finance Manager</td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+              <a class="dropdown-item" href="#">Service History</a>
+
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+          <tr>
+            <td>John Smith</td>
+          <td>Customer</td>
+          <td></td>
+          <td>123456</td>
+          <td>Berlin</td>
+          <td></td>
+          <td class="action"><button class="btn active">Active</button></td>
+          <td class="action">
+            
+            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              
+              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+              <a class="dropdown-item" href="#">Edit </a>
+              <a class="dropdown-item" href="#">Deactivate</a>
+     
+      
+        </td>          
+          </tr>
+        </tbody>
+          </table>
+          <section class="table-view-card table-card">
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">Lyum watson </td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Call Center </td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title">Inquiry Manager </td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title"></td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                         
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith </td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Service provider </td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title">10 km</td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                         
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+         
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith  </td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Call Center</td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title">Inquiry Manager </td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                         
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith </td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Customer</td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title"></td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                                  <a class="dropdown-item" href="#">Service History</a>
+
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith</td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Call Center</td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title">Content Manager</td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                             
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith  </td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Customer</td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title"></td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn inactive">Inactive</button></td>
+                        </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                                  <a class="dropdown-item" href="#">Service History</a>
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith</td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Service provider </td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title">20 km</td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                         
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith</td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Call Center</td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title">Finance Manager</td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                             
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith </td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Customer</td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title"></td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                                  <a class="dropdown-item" href="#">Service History</a>
+
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card table-card mt-4">
+                <div class="card-body">
+                    <table class="cardview" id="cardview">
+
+                        <tbody>
+
+                            <tr class="username">
+                                <td class="card-title">John Smith </td>
+                            </tr>
+                          <tr class="usertype">
+                              <td class="card-title">Customer</td>
+                          </tr>
+                          <tr class="role">
+                              <td class="card-title"></td>
+                          </tr>
+                          <tr class="postal-code">
+                              <td class="card-title">123456 </td>
+                          </tr>
+                          <tr class="city">
+                              <td class="card-title">Berlin</td>
+                          </tr>
+                          <tr class="radius">
+                              <td class="card-title"> </td>
+                          </tr>
+                          <tr class="user-status"> 
+                            <td class="action card-title"><button class="btn active">Active</button></td>
+                          </tr>
+                          <tr class="user-action">
+                            <td class="action card-title">
+            
+                                <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  
+                                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                  <a class="dropdown-item" href="#">Edit </a>
+                                  <a class="dropdown-item" href="#">Deactivate</a>
+                                  <a class="dropdown-item" href="#">Service History</a>
+
+                          
+                            </td>      
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+           <div class="selects">
+               <p>shows
+               <select>
+                   <option value="10">10</option>
+                   <option value="20">20</option>
+                   <option value="30">30</option>
+                   <option value="40">40</option>
+                   <option value="50">50</option>
+
+                </select>
+                Entries
+                </p>
+           </div>
+            <ul id="pagination-demo" class="pagination-sm"></ul>
+        </section>
+</div>
+
+
+<p class="allright">©2018 Helperland. All rights reserved.</p>
+</section>
+    
+  </div>
+
+
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
+  <script src="js/AdminUserManagement.js"></script>
+  
+</body>
+
+</html>
