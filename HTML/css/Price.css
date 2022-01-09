@@ -1,0 +1,1412 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto';
+}
+
+.navbar {
+    max-width: 1560px;
+    height: 64px;
+    background: #525252 0% 0% no-repeat padding-box;
+}
+.navbar-nav {
+    position: absolute;
+    right: 15px;
+}
+a {
+    color: #FFFFFF;
+}
+
+a:hover {
+    color: #FFFFFF;
+}
+
+.nav-item {
+    color: #FFFFFF;
+}
+
+.navbar .navbar-toggler-icon {
+    /* visibility: hidden; */
+    background-image: none;
+}
+
+.navbar .navbar-brand .logo {
+    max-height: 54px;
+    max-width: 73px;
+    position: absolute;
+    left: 15px;
+    top: 6px;
+}
+
+.fa-bars {
+    color: #007bff;
+    font-size: 30px;
+}
+
+.booknow {
+    width: 111px;
+    height: 40px;
+    background: #29626D 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.book-now {
+    font-size: 17px;
+    max-height: 20px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+
+}
+
+.ps {
+    width: 161px;
+    height: 40px;
+    background: #00607200 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 27px;
+
+}
+
+.ps1 {
+    font-size: 17px;
+    max-height: 20px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.wbg {
+    max-width: 258px;
+    max-height: 20px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 35px;
+}
+
+.login {
+    width: 83px;
+    height: 40px;
+    background: #29626D 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.log-in {
+    font-size: 16px;
+
+}
+
+.helper {
+
+    display: inline-flex;
+    justify-content: center;
+    width: 161px;
+    height: 40px;
+    background: #29626D 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+}
+
+.helper1 {
+    font-size: 16px;
+}
+
+/*-----------------------
+------ PRICE Banner--------
+------------------------- */
+
+.price-banner {
+    max-height: 370px;
+}
+
+
+.pricetext {
+    /* width: 84px; */
+    height: 43px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+    font-size: 36px;
+    font-family: Roboto;
+    font-weight: bold;
+    margin-top: 32px;
+}
+
+.sepimg{
+    position: relative;
+    margin-left: 470px;
+    margin-right: 470px;
+}
+
+
+.sepimg::after,.sepimg::before{
+    content: '';
+    position: absolute;
+    margin: auto;
+    height: 1px;
+    width: 39%;
+height: 1px;
+background:#CCCCCC ;
+    top:45%;
+}
+.sepimg::before{
+    left: 0;
+}
+
+.sepimg::after{
+    right: 0;
+}
+
+.sepretor {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    width: 24px;
+    height: 25px;
+    position: relative;
+    margin-top: 9px;
+}
+
+
+/* ----------------------------------------
+-----------NewsLetter----------------------
+------------------------------------------- */
+.newsletter{
+    position: relative;
+    color: #353548;
+    width: 100%;
+    padding-bottom: 53px;
+    }
+    .newsletter .up_arrow{
+        position: absolute;
+        left: 70px;
+        top: 15px;
+        background-color:#525252;
+         width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+    .newsletter .up_arrow .arrow-up{
+       
+            position: absolute;
+            top: 17px;
+            left: 13px;
+    
+    }
+    .newsletter #email::placeholder{
+        font-size: 14px;
+        color: #525252;
+    }
+    .newsletter .chats{
+        position: absolute;
+        right: 70px;
+        top: 0px;
+    }
+    .newsletter #email{
+        border: 1px solid #565656;
+    border-radius: 20px;
+    background-color: #F4F5F8;
+    }
+    .newsletter .submit{
+    background-color: #FF7B6D;
+    color: #FFFFFF;
+    border-radius: 20px;
+    width: 88px;
+    height: 40px;
+    margin-left: 11px;
+    }
+    
+    .newsletter .news{
+        margin-top: 16px;
+    }
+    
+    /* ----------------------------------
+    -----------Footer--------------------
+    ------------------------------------- */
+    .footers{
+        background-color: #111111;
+    }
+    .footer{
+        width: 100%;
+        padding-top: 20px;
+        padding-left: 8%;
+        padding-bottom: 20px;
+    }
+    .footer .logos{
+        max-width: 120px;
+        max-height: 92px;
+    }
+    .footer .links {
+        padding-top: 2%;
+    }
+    .footer .links .menus{
+    justify-content: center;
+    }
+    .footer .links .menus .btn3{
+        color: #F1F1F1;
+        font-size: 14px;
+    }
+    .footer .links .menus .btn3:hover,.footer .social .icons .facebook:hover, .footer .social .icons .instagram:hover{
+        background-color: #006072;
+    }
+    
+    .footer .social {
+        padding-top: 2%;
+    }
+    .footer .social .icons{
+    justify-content: center;
+    }
+    .footer .social .icons .fb, .footer .social .icons .insta{
+        font-size: 18px;
+        color: #F1F1F1;
+    }
+    .footers .privacy-policy {
+        padding-top: 23px;
+        padding-bottom: 5px;
+        text-align: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #9BA0A3;
+        width: 100%;
+        background-color: #111111;
+        margin: 0px;
+    }
+    h4{
+        padding-top:100px;
+    }
+    .footer .logo1{
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+ 
+
+   .footers .privacy-policy {
+    padding-top: 23px;
+    padding-bottom: 5px;
+    text-align: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #9BA0A3;
+    border-top: 1px solid;
+    width: 100%;
+    background-color: #111111;
+    margin: 0px;
+}
+    .footers .privacy-policy p span{
+        color: #9BA0A3;
+    }
+    .footers .privacy-policy p span a{
+        text-decoration: none;
+    }
+
+    
+
+/* -------------------------------------
+-----------------------Prices------------
+------------------------------------------- */
+
+.price {
+    margin-left: auto;
+    margin-right: auto;
+    height: 304px;
+    width: 553px;
+    margin-top: 42px;
+
+}
+hr{
+    margin-top: 51px;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 1140px;
+    color: #DCDCDC;
+}
+.pricebtn {
+    width: 553px;
+    height: 304px;
+    border: 1px solid #B0C9CE;
+}
+
+.pricebtn .btn1 {
+    width: 553px;
+    height: 59px;
+    background: #1D7A8C 0% 0% no-repeat padding-box;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: bold;
+
+}
+
+.price .hr {
+    margin-top: 18px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 94px;
+    height: 58px;
+    text-align: center;
+    letter-spacing: NaNpx;
+    color: #646464;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.price .hr sub {
+    position: absolute;
+    font-size: 30px;
+    font-weight: normal;
+    bottom: 20px;
+}
+
+.euro {
+    position: absolute;
+    width: 31px;
+    height: 36px;
+    right: 92px;
+}
+
+.box1 {
+    position: relative;
+}
+
+.box1img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 151px;
+    top: 30px;
+}
+
+.box1 p {
+    position: absolute;
+    width: 91px;
+    height: 19px;
+    letter-spacing: 0px;
+    color: #646464;
+    right: 277px;
+    top: 30px;
+}
+
+.box2 {
+    position: relative;
+    /* margin-top: 21px; */
+}
+
+.box2img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 151px;
+    top: 71px;
+}
+
+.box2 p {
+    position: absolute;
+    width: 216px;
+    height: 19px;
+    letter-spacing: 0px;
+    color: #646464;
+    right: 153px;
+    top: 70px;
+
+}
+
+.box3 {
+    position: relative;
+    /* margin-top: 21px; */
+}
+
+.box3img {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 151px;
+    top: 116px;
+}
+
+.box3 p {
+    position: absolute;
+    width: 123px;
+    height: 19px;
+    letter-spacing: 0px;
+    color: #646464;
+    right: 245px;
+    top: 116px;
+}
+.nav-link:hover{
+    color: yellow;
+}
+
+@media screen and (max-width:400px) {
+    .newsletter .news {
+        flex-direction: column;
+        margin-top: 16px;
+        width: 203px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* ------------------------------------------
+-------------What We include in cleaning-----
+------------------------------------------ */
+.wwic {
+    background-color: #F6F6F6;
+    height: 720px;
+    width: auto;
+    margin-top: 36px;
+}
+
+.wwic .sepretor{
+    margin-top: 60px;
+}
+
+.includetext {
+    /* width: 84px; */
+    height: 43px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+    font-size: 36px;
+    font-family: Roboto;
+    font-weight: bold;
+    padding-top: 73px;
+}
+
+
+.card {
+    width: 362px;
+    border: none;
+    background-color: #F6F6F6;
+}
+
+.wrapper {
+    background-color: #F6F6F6;
+
+}
+
+.img1, .img2, .img3 {
+    height: 24px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+
+    position: absolute;
+    left: 0px;
+
+    font-family: Roboto;
+
+}
+
+
+.wrapper {
+    margin-top: 42px;
+}
+
+.card-body {
+    text-align: left;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.card-img-top {
+    width: 360px;
+    height: 210px;
+}
+
+
+.vector1 {
+    position: absolute;
+    top: 265px;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.vector-1 p {
+    position: absolute;
+    top: 264px;
+    left: 35px;
+}
+
+.vector2 {
+    position: absolute;
+    top: 300px;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.vector-2 p {
+    position: absolute;
+    top: 299px;
+    left: 35px;
+}
+
+.vector3 {
+    position: absolute;
+    top: 338px;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.vector-3 p {
+    position: absolute;
+    top: 337px;
+    left: 35px;
+}
+
+.vector4 {
+    position: absolute;
+    top: 377px;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.vector-4 p {
+    position: absolute;
+    top: 376px;
+    left: 35px;
+}
+
+.vector5 {
+    position: absolute;
+    top: 415px;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.vector-5 p {
+    position: absolute;
+    top: 414px;
+    left: 35px;
+}
+
+.mx-30 {
+    margin-left: 15px;
+}
+
+
+
+
+/* -----------------------------------------
+---------------WHY HYPERLAND----------------
+--------------------------------------------- */
+.hyperland{
+    max-width: 1054px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    position: relative;
+    margin-top: 71px;
+}
+.includetext1 {
+    /* width: 84px; */
+    height: 43px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+    font-size: 36px;
+    font-family: Roboto;
+    font-weight: bold;
+    margin-top: 73px;
+}
+
+
+.best{
+    position: relative;
+    margin-top: 42px;
+}
+
+.thebest{
+    width: 375px;
+height: 241px;
+position: absolute;
+left: 360px;
+}
+
+
+.exp{
+    position: absolute;
+    left: 0;
+    /* width: 337px; */
+height: 24px;
+letter-spacing: 0px;
+color: #646464;
+font-size: 20px;
+font-weight: bold;
+}
+.exp1{
+    position: absolute;
+    left: 51px;
+    top:34px;
+    width: 286px;
+height: 85px;
+text-align: right;
+letter-spacing: 0px;
+color: #646464;
+font-size: 14px;
+}
+
+.exp2{
+    position:absolute;
+    left: 86px;
+    top:132px;
+    /* width: 251px; */
+height: 24px;
+text-align: right;
+letter-spacing: 0px;
+color: #646464;
+font-size: 20px;
+font-weight: bold;
+}
+
+.exp3{
+    position: absolute;
+    left: 61px;
+    top:162px;
+    width: 286px;
+height: 85px;
+text-align: right;
+letter-spacing: 0px;
+color: #646464;
+font-size: 14px;
+}
+
+.exp4{
+    position: absolute;
+    right: 63px;
+    /* left: 1022px; */
+    /* width: 223px; */
+height: 24px;
+text-align: left;
+letter-spacing: 0px;
+color: #646464;
+font-size: 20px;
+font-weight: bold;
+}
+
+.exp5{
+    position: absolute;
+    width: 286px;
+    height: 85px;
+    text-align: left;
+    letter-spacing: 0px;
+    color: #646464;
+    top:150px;
+    right: 0px;
+    font-size: 14px;
+
+}
+
+.exp6{
+    position: absolute;
+    top:249px;
+    right: 80px;  
+    color: #646464;
+font-size: 20px;
+font-weight: bold;
+}
+
+.exp7{
+    position: absolute;
+    top:283px;
+    right: 10px;
+    width: 276px;
+height: 85px;
+text-align: left;
+letter-spacing: 0px;
+color: #646464;
+font-size: 14px;
+
+}
+
+
+/* ----------------------------------------
+-------------------Extra Services----------
+-------------------------------------------- */
+
+.box {
+    /* margin-top: 51px; */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1140px;
+    display: block;
+
+}
+
+.box .row {
+    margin-top: 39px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    
+}
+
+
+.includetext2 {
+    /* width: 84px; */
+    height: 43px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+    font-size: 36px;
+    font-family: Roboto;
+    font-weight: bold;
+    margin-top: 41px;
+}
+
+
+
+.box .img11, .box .img12, .box .img13, .box .img14, .box .img15 {
+    width: 108px;
+    height: 108px;
+    border: 1px solid #B0C9CE;
+    border-radius: 50%;
+    position: relative;
+}
+
+.imgs1 {
+    position: absolute;
+    top: 30px;
+    left: 36px;
+    width: 37px;
+    height: 48px;
+}
+
+.box .heading {
+    width: 108px;
+    height: 19px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #646464;
+    font-size: 16px;
+    margin-left: 1px;
+    margin-top: 14px;
+    margin-top: 5px;
+}
+
+.box .duration {
+    /* width: 90px; */
+    height: 22px;
+    /* text-align: center; */
+    letter-spacing: 0px;
+    color: #1D7A8C;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 1px;
+}
+
+.imgs2 {
+    width: 28px;
+    height: 56px;
+    position: absolute;
+    left: 40px;
+    top: 24px;
+}
+
+.imgs3 {
+    width: 52px;
+    height: 32px;
+    position: absolute;
+    top: 38px;
+    left: 28px;
+}
+
+.imgs4 {
+    position: absolute;
+    top: 31px;
+    left: 35px;
+    width: 39px;
+    height: 46px;
+}
+
+.imgs5 {
+    position: absolute;
+    top: 31px;
+    left: 31px;
+    width: 47px;
+    height: 47px;
+}
+
+@media screen and (max-width:900px) {
+    .box {
+        width: auto;
+    }
+
+    .col-md-2 {
+        margin-left: 100px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width:1000px) {
+    .includetext1,.includetext2{
+        font-size: 20px;
+    }
+   
+    .hyperland{
+        margin-top: 370px;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .exp{
+        left: 10;
+    
+    font-size: 18px;
+    }
+    .exp1{
+        left: 10px;
+        top:34px;
+      font-size: 12px;
+    }
+    
+    .exp2{
+        left: 10px;
+        top:132px;
+    font-size: 18px;
+    }
+    
+    .exp3{
+        left: 10px;
+        top:162px;
+     
+    font-size: 12px;
+    }
+    
+    .exp4{
+        position: absolute;
+        left: 150px;
+        top: 491px;
+    font-size: 18px;
+    }
+    
+    .exp5{
+     
+        top:520px;
+        left: 120px;
+        font-size: 12px;
+    
+    }
+    
+    .exp6{
+        top:600px;
+        left: 120px;  
+    font-size: 18px;
+    }
+    
+    .exp7{
+       
+        top:640px;
+        left: 140px;
+    font-size: 12px;
+    
+    }
+        
+}
+
+@media screen and (max-width:700px) {
+    .includetext1{
+        margin-top: 820px;
+    }
+    
+}
+
+
+@media screen and (max-width:780px) {
+    .includetext1{
+        font-size: 18px;
+    }
+    .hyperland{
+        margin-top: 800px;
+        height: 900px;
+    }
+    .thebest{
+        width: 300px;
+    height: 200px;
+    position: absolute;
+    left: 10px;
+    top: 258px;
+    }
+   
+    .hyperland{
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .exp{
+        left: 10;
+    
+    font-size: 18px;
+    }
+    .exp1{
+        left: 10px;
+        top:34px;
+      font-size: 12px;
+    }
+    
+    .exp2{
+        left: 10px;
+        top:132px;
+    font-size: 18px;
+    }
+    
+    .exp3{
+        left: 10px;
+        top:162px;
+     
+    font-size: 12px;
+    }
+    
+    .exp4{
+        position: absolute;
+        left: 10px;
+        top: 691px;
+    font-size: 18px;
+    }
+    
+    .exp5{
+     
+        top:720px;
+        left: 10px;
+        font-size: 12px;
+    
+    }
+    
+    .exp6{
+        top:800px;
+        left: 10px;  
+    font-size: 18px;
+    }
+    
+    .exp7{
+       
+        top:840px;
+        left: 10px;
+    font-size: 12px;
+    
+    }
+        
+}
+
+
+
+@media screen and (max-width:400px) {
+    .includetext1{
+        font-size: 16px;
+    }
+    .thebest{
+        width: 250px;
+    height: 150px;
+   
+
+    }
+   
+    .exp{
+    font-size: 14px;
+    }
+    .exp1{
+      font-size: 10px;
+    }
+    
+    .exp2{
+    font-size: 14px;
+    }
+    
+    .exp3{
+    font-size: 10px;
+    }
+    
+    .exp4{
+    font-size: 14px;
+    }
+    
+    .exp5{
+        font-size: 10px;
+    
+    }
+    
+    .exp6{
+    font-size: 14px;
+    }
+    
+    .exp7{
+    font-size: 10px;
+    
+    }
+        
+}
+@media screen and (max-width:1000px) {
+    .sepimg{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .sepimg::after,.sepimg::before{
+        content: '';
+        position: absolute;
+        margin: auto;
+        height: 1px;
+        width: 39%;
+    height: 1px;
+    background:#CCCCCC ;
+        top:45%;
+    }   
+}
+
+@media (max-width: 1000px) {
+    .mx-30 {
+        margin-bottom: 195px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mx-30 {
+        font-size: 12px;
+    }
+
+    .includetext {
+        font-size: 20px;
+    }
+
+    .card-img-top {
+        width: 300px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 400px) {
+    .mx-30 {
+        margin-bottom: 188px;
+    }
+
+    .includetext {
+        font-size: 18px;
+    }
+
+    .card-img-top {
+        width: 200px;
+        height: 120px;
+    }
+
+    .vector1 {
+        top: 186px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .vector-1 p {
+        top: 185px;
+    }
+
+    .vector2 {
+        top: 210px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .vector-2 p {
+        top: 209px;
+    }
+
+    .vector3 {
+        top: 238px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .vector-3 p {
+        top: 237px;
+    }
+
+    .vector4 {
+        top: 264px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .vector-4 p {
+        top: 263px;
+    }
+
+    .vector5 {
+        top: 290px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .vector-5 p {
+        top: 289px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .price {
+        margin-left: auto;
+        margin-right: auto;
+        height: 304px;
+        width: 300px;
+
+    }
+
+    .pricebtn {
+
+        width: 300px;
+        height: 304px;
+        border: 1px solid #B0C9CE;
+    }
+
+    .pricebtn::after {
+        clear: both;
+    }
+
+    .pricebtn .btn1 {
+        width: 300px;
+        height: 59px;
+
+        font-size: 20px;
+
+
+    }
+
+    .price .hr {
+
+
+        font-size: 24px;
+    }
+
+    .price .hr sub {
+
+        bottom: 35px;
+    }
+
+    .euro {
+
+        right: 63px;
+    }
+
+
+    .box1img {
+        width: 18px;
+        height: 18px;
+        left: 33px;
+        top: 12px;
+    }
+
+    .box1 p {
+        right: 138px;
+        top: 10px;
+    }
+
+
+    .box2img {
+        width: 18px;
+        height: 18px;
+
+        left: 33px;
+        top: 55px;
+    }
+
+    .box2 p {
+        right: 13px;
+        top: 51px;
+    }
+
+
+    .box3img {
+        width: 18px;
+        height: 18px;
+        left: 33px;
+        top: 100px;
+    }
+
+    .box3 p {
+        right: 105px;
+        top: 96px;
+    }
+
+}
+
+
+
+@media screen and (max-width:400px) {
+    .price {
+        margin-left: auto;
+        margin-right: auto;
+        height: 304px;
+        width: 200px;
+
+    }
+
+    .pricebtn {
+
+        width: 200px;
+        height: 200px;
+        border: 1px solid #B0C9CE;
+    }
+
+    .pricebtn::after {
+        clear: both;
+    }
+
+    .pricebtn .btn1 {
+        width: 200px;
+        height: 59px;
+
+        font-size: 16px;
+
+
+    }
+
+    .price .hr {
+
+
+        font-size: 18px;
+    }
+
+    .price .hr sub {
+        font-size: 12px;
+        bottom: 42px;
+    }
+
+    .euro {
+
+        right: 63px;
+    }
+
+
+    .box1img {
+        width: 12px;
+        height: 12px;
+        left: 11px;
+        top: 0px;
+    }
+
+    .box1 p {
+        right: 72px;
+        top: -4px;
+        font-size: 13px;
+    }
+
+
+    .box2img {
+        width: 12px;
+        height: 12px;
+        left: 11px;
+        top: 15px;
+    }
+
+    .box2 p {
+        right: -53px;
+        top: 12px;
+        font-size: 12px;
+    }
+
+
+    .box3img {
+        width: 12px;
+        height: 12px;
+        left: 11px;
+        top: 30px;
+    }
+
+    .box3 p {
+        right: 40px;
+        top: 27px;
+        font-size: 13px;
+    }
+}
+@media screen and (max-width:992px) {
+    .navbar .collapse.show {
+        display: block;
+        position: fixed;
+        right: 0px;
+        top: 63px;
+        background-color: #FFFFFF;
+        overflow: scroll;
+        width: 300px;
+        height: 100vh;
+    }
+    .login {
+        width: auto;
+        height: 40px;
+        background: none;
+        border: none;
+        border-radius: 0px;
+      
+        justify-content: center;
+        margin-right: 0px;
+    }
+    .navbar {
+        width: 100%;
+     
+        position: fixed;
+        background: #525252 0% 0% no-repeat padding-box;
+    }
+    .helper {
+        display: inline-flex;
+        justify-content: center;
+        width: auto;
+        background: none;
+        border: none;
+        border-radius: 0px;
+    }
+    .navbar-nav .nav-link {
+        padding-right: 0;
+        color: #4F4F4F;
+        padding-left: 0;
+    }
+    .navbar-nav .nav-link:hover{
+        color:blueviolet;
+    }
+    .ps {
+        width: auto;
+       background: none;
+        border: none;
+        border-radius: 0px;
+
+        margin-right: 0px;
+    }
+   .navbar .navbar-nav {
+        position: initial;
+        right: 0px;
+    }
+    .wbg {
+        display: contents;
+        text-align: center;
+    }
+    .booknow {
+        width: auto;
+      
+        background: none;
+        border: none;
+        border-radius: 0px;
+        display: inline-flex;
+        justify-content: center;
+        margin-right: 0px;
+    }
+}
