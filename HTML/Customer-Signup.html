@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="css/Customer-Signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Customer SignUp</title>
+</head>
+
+<body>
+
+    <nav class="navbar  navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="Image/white-logo-transparent-background.png" class="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav  w-100 justify-content-end">
+                    <li class="nav-item  booknow">
+                        <a class="nav-link book-now" href="BookService.html">Book Now</a>
+                    </li>
+                    <li class="nav-item ps">
+                        <a class="nav-link ps1" href="Price.html">Prices & services</a>
+                    </li>
+                    <li class="nav-item wbg">
+                        <a class="nav-link warrenty" href="#">Warranty</a>
+                        <a class="nav-link blog" href="#">Blog</a>
+                        <a class="nav-link Contact" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item  login">
+                        <a class="nav-link log-in" href="HomePage.html#LoginModal">Login</a>
+                    </li>
+                    <li class="nav-item  helper">
+                        <a class="nav-link helper1" href="#">Become a Helper</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+   <section class="customer-signup-form">
+    <h1 class="Customer-Signup text-center">Create an account</h1>
+    <div class="container">
+        <div class="sepimg">
+            <img src="Image/separator.png" class="sepretor">
+
+        </div>
+    </div>
+    <div class="container mt-5 customerform">
+    <form class="userregistration">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="firstname" placeholder="First Name">
+          </div>
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="email" class="form-control" id="useremail" placeholder="E-mail address">
+            </div>
+            <div class="form-group col-md-6">
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">+49</div>
+                  </div>
+                  <input type="tel" class="form-control" id="mobilenum" placeholder="Mobile number">
+                </div>
+              </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="form-group col-md-6">
+          <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password">
+        </div>
+      </div>
+      <div class="form-row form-check mb-2">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="inlineFormCheck"
+            />
+            <label class="form-check-label" for="inlineFormCheck">
+              I have read the <a href="#" class="privacy-policy">privacy policy</a>
+            </label>
+      </div>
+   
+    <div class="form-row register-submit mt-3">
+        <button type="submit" class="btn registration">Register</button>
+    </div>
+
+    </form>
+    <div class="already-registered mt-3">
+        <p>Already registered?  <a href="HomePage.html#LoginModal" id="login-btn" class="login-btn">Login Now</a></p>
+    </div>
+    </div>
+</section>
+
+
+      
+
+<section class="footers">
+<footer>
+    <div class="row footer">
+        <div class="col-lg-2 logo1">
+            <a href="#" >
+                <img src="image/white-logo-transparent-background.png" alt="helperland" class="logos">
+            </a>
+        </div>
+        <div class="col-lg-8 links">
+            <nav >
+                <div class="nav menus">
+                    <a href="#" class="btn btn3">HOME</a>
+                    <a href="#" class="btn btn3">ABOUT</a>
+                    <a href="#" class="btn btn3">TESTIMONIALS</a>
+                    <a href="#" class="btn btn3">FAQS</a>
+                    <a href="#" class="btn btn3">INSURANCE POLICY</a>
+                    <a href="#" class="btn btn3">IMPRESSUM</a>
+
+                </div>
+            </nav>
+        </div>
+        <div class="col-lg-2 social">
+            <nav>
+                <div class="nav icons">
+                    <a href="#" class="btn facebook" ><i class="fa fa-facebook fb"></i></a>
+                    <a href="#" class="btn instagram" ><i class="fa fa-instagram insta"></i></a>
+                </div>
+            </nav>
+        </div>
+    </div>
+  
+    <div class="row privacy-policy">
+    <p>©2018 Helperland. All rights reserved. <span>Terms and Conditions | Privacy Policy</span></p>
+    </div>
+</footer>
+</section>
+
+    <!--Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

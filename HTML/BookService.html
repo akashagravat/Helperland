@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="css/BookService.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Book Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg ">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="Image/white-logo-transparent-background.png" class="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav  w-100 justify-content-end">
+                    <li class="nav-item  booknow">
+                        <a class="nav-link book-now" href="BookService.html">Book Now</a>
+                    </li>
+                    <li class="nav-item ps">
+                        <a class="nav-link ps1" href="Price.html">Prices & services</a>
+                    </li>
+                    <li class="nav-item wbg">
+                        <a class="nav-link warrenty" href="#">Warranty</a>
+                        <a class="nav-link blog" href="#">Blog</a>
+                        <a class="nav-link Contact" href="Contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item  login">
+                        <a class="nav-link log-in" href="HomePage.html#LoginModal">Login</a>
+                    </li>
+                    <li class="nav-item  helper">
+                        <a class="nav-link helper1" href="#">Become a Helper</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header>
+
+        <img src="Image/book-service-banner.jpg" class="img-fluid book-service-banners" alt="Responsive image">
+
+    </header>
+
+
+    <section>
+        <h1 class="h1 text-center">Set up your cleaning service</h1>
+        <div class="container">
+            <div class="sepimg">
+                <img src="Image/separator.png" class="sepretor">
+
+            </div>
+        </div>
+        
+        <!-- All Services -->
+        <div class="setup-paymemt-service">
+        <div class="setup-service">
+            <ul class="nav nav-tabs" id="bookTab" role="tablist">
+                <li class="nav-item setup-services">
+                    <a class="nav-link " id="Setup-Serviceq" data-toggle="tab" href="#Setup-Service" role="tab"
+                        aria-controls="Setup-Service" aria-selected="true">
+                        <img class="mr-2 setupimgs"   src="image/setup-service.png">
+                        <img class="active setupimg mr-2" src="image/setup-service-white.png"><span>Setup Service</span></a>
+                </li>
+                <li class="nav-item schedule">
+                    <a class="nav-link scheduleplan active" id="Schedule-Plans" data-toggle="tab" href="#Schedule-Plan" role="tab"
+                        aria-controls="Schedule-Plan" aria-selected="false"><img class="mr-2 schedules"
+                            src="image/schedule.png">
+                        <img class="active schedule mr-2" src="image/schedule-white.png"><span>Schedule & Plan</span></a>
+    
+                </li>
+                <li class="nav-item servicedetails">
+                    <a class="nav-link" id="Your-Detailse" data-toggle="tab" href="#Your-Details" role="tab"
+                        aria-controls="Your-Details" aria-selected="false">
+                        <img class="mr-2 detailq" src="image/details.png">
+                        <img class="active detailqs mr-2" src="image/details-white.png"><span>Your  Details</span></a>
+                </li>
+                <li class="nav-item paymentdetails">
+                    <a class="nav-link" id="Make-Paymentq" data-toggle="tab" href="#Make-Payment" role="tab"
+                        aria-controls="Make-Payment" aria-selected="false"><img class="mr-2 payments-card" src="image/payment.png">
+                        <img class="active payment-card mr-2" src="image/payment-white.png"><span>Make
+                        Payment</span></a>
+                </li>
+            </ul>
+            <div class="tab-content" id="bookTabContent">
+                <div class="tab-pane fade " id="Setup-Service" role="tabpanel" aria-labelledby="Setup-Serviceq">
+                    <form>
+                        <label class="selects">Enter Your Postal Code</label>
+                        <div class="checkpostal">
+                        <input type="number" class="form-control postalcode" id="postalcode" placeholder="Postal Code">
+                        <button type="submit" class="btn btn-checkavailability">Check Availability</button>
+                    </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade show active" id="Schedule-Plan" role="tabpanel" aria-labelledby="Schedule-Plans">
+    <div class="scheduledetail">
+    <form>
+        <div class="select-bad-bath">
+    <label class="selects">Select number of rooms and bath</label>
+    <select id='selectbed' class="selectbed form-control">
+        <option value='1'>1 bed</option> 
+        <option value='2'>2 bed</option> 
+        <option value='3'>3 bed</option> 
+        <option value='4'>4 bed</option> 
+        <option value='5'>5 bed</option> 
+        <option value='6'>6 bed</option> 
+        <option value='7'>7 bed</option> 
+      </select>
+      <select id='selectbath' class="selectbath form-control">
+        <option value='1'>1 bath</option> 
+        <option value='2'>2 bath</option> 
+        <option value='3'>3 bath</option> 
+        <option value='4'>4 bath</option> 
+        <option value='5'>5 bath</option> 
+        <option value='6'>6 bath</option> 
+        <option value='7'>7 bath</option> 
+      </select>
+      </div>
+      <div class="selectsalldatetime">
+      <div class="select-time">
+          <label class="when-need">When do you need the cleaner?</label>
+        <div class="form-group selectdate">
+            <input type="text" id="selectdate" class="form-control" placeholder="01/01/2018" />
+            <select id='selectime' class="selectime">
+                <option value='1'>2:00 PM</option> 
+                <option value='2'>3:00 PM</option> 
+                <option value='3'>4:00 PM</option> 
+                <option value='4'>5:00 PM</option> 
+                <option value='5'>6:00 PM</option> 
+                <option value='6'>7:00 PM</option> 
+                <option value='7'>8:00 PM</option> 
+              </select>
+          </div>
+         
+      </div>
+      <div class="select-hour">
+          <label class="when-need">How long do you need your cleaner to stay?</label>
+          <select id='selecthour' class="selecthour">
+            <option value='1'>3.0 Hrs</option> 
+            <option value='2'>4.0 Hrs</option> 
+            <option value='3'>5.0 Hrs</option> 
+            <option value='4'>6.0 Hrs</option> 
+            <option value='5'>7.0 Hrs</option> 
+            <option value='6'>8.0 Hrs</option> 
+            <option value='7'>9.0 Hrs</option> 
+          </select>
+        </div>
+      </div>
+      <div class="extra-service">
+          <label class="label-extra">Extra Services</label>
+        <div class="extra-all-service">
+            <div class="row ">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div  class="all-services first">
+    
+                        <img class="firsstservice serviceimages" id="firstservice" src="image/3.png">
+    
+            </div>        
+                    <p class="heading-service firsttext">Inside cabinets</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div  class="all-services second">
+    
+                        <img class="secondservice serviceimages" id="secondimg" src="image/5.png">
+                    </div>
+                    <p class="heading-service">Inside fridge</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div  class="all-services third">
+    
+                        <img class="thirdservice serviceimages" id="thirdimg" src="image/4.png">
+                    </div>
+                    <p class="heading-service">Inside oven</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div  class="all-services fourth">
+    
+                        <img class="fourthservice serviceimages" id="fourthimg" src="image/2.png">
+                    </div>
+                    <p class="heading-service laundry">Laundry wash & dry</p>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div  class="all-services fifth">
+    
+                        <img class="fifthservice serviceimages" id="fifthimg" src="image/1.png">
+                    </div>
+                    <p class="heading-service">Interior windows</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    
+      <div class="comments">
+        <label class="comment-label">Comments</label>
+        <textarea class="form-control comment" id="comments" ></textarea>
+        <div class="form-check comment-check">
+            <input class="form-check-input checked" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label comment_label" for="defaultCheck1">
+                I have pets at home
+                    </label>
+          </div>
+          
+      </div>
+    
+      <button type="submit" class="btn continuebtn">Continue</button>
+    </form>
+    </div>
+               
+                </div>
+                <div class="tab-pane fade" id="Your-Details" role="tabpanel" aria-labelledby="Your-Detailse">
+                    <label class="selects">Address Details</label>
+
+
+                </div>
+                <div class="tab-pane fade" id="Make-Payment" role="tabpanel" aria-labelledby="Make-Paymentq">
+                    <label class="selects">Payment Details</label>
+
+                </div>
+    
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar-menu">
+            
+            <div class="card payment">
+                <div class="card-body">
+                    <h5 class="card-title">Payment Summary</h5>
+                    <div class="date-time-bed-bath">
+                        <p class="date-time">01/01/2018 @ 4:00 pm </p>
+                        <p class="bed-bath">1 bed, 1 bath.</p>
+                    </div>
+                    <div class="total-summmary">
+                        <div class="time-duration">
+                            <p class="durations">Duration</p>
+                            <div class="summary">
+                                <div class="basic-summary">
+                                    <p class="basics">Basic <span> 3 Hrs</span></p>
+                                    <p class="basics">Basic Inside cabinets (extra) <span> 30 Mins</span></p>
+
+                                </div>
+                                <div class="total-servicetime">
+                                    <p class="totaltime">Total Service Time<span>3.5 Hrs</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="money">
+                        <div class="basic-payment">
+                            <p class="payments">Per cleaning <span>$87</span></p>
+                            <p class="payments">Discount<span> - $27</span></p>
+
+                        </div>
+                        <div class="total-payment">
+                            <p class="total">Total Payment<span>$63</span></p>
+                        </div>
+                        <p class="effective-price">Effective Price <span>$50.4</span></p>
+                        <p class="saving"><span>*</span>You will save 20% according to §35a EStG.</p>
+                    </div>
+                    <div class="smily">
+                        <img src="image/smiley.png">
+                        <span>See what is always included</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <h4 class="question-title">Questions?</h4>
+                <div class="questions">
+                    <p class="questions-titles btn" data-toggle="collapse" data-target="#collapseOne"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                        Helperland professional will come to my place?
+                    </p>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                            obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                            sapiente libero voluptate est molestias.
+                        </div>
+                    </div>
+                    <p class="questions-titles btn" data-toggle="collapse" data-target="#collapsetwo"
+                    aria-expanded="false" aria-controls="collapsetwo">
+                        <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                        Helperland professional will come to my place?
+                    </p>
+                    <div id="collapsetwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                            obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                            sapiente libero voluptate est molestias.
+                        </div>
+                    </div>
+                    <p class="questions-titles btn" data-toggle="collapse" data-target="#collapsethree"
+                    aria-expanded="false" aria-controls="collapsethree">
+                        <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                        Helperland professional will come to my place?
+                    </p>
+                    <div id="collapsethree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                            obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                            sapiente libero voluptate est molestias.
+                        </div>
+                    </div>
+                    <p class="questions-titles btn" data-toggle="collapse" data-target="#collapsefour"
+                    aria-expanded="false" aria-controls="collapsefour">
+                        <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                        Helperland professional will come to my place?
+                    </p>
+                    <div id="collapsefour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                            obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                            sapiente libero voluptate est molestias.
+                        </div>
+                    </div>
+                    <p class="questions-titles btn" data-toggle="collapse" data-target="#collapsefive"
+                    aria-expanded="false" aria-controls="collapsefive">
+                        <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                        Helperland professional will come to my place?
+                    </p>
+                    <div id="collapsefive" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                            obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                            sapiente libero voluptate est molestias.
+                        </div>
+                    </div>
+                    <p class="questions-titles btn" data-toggle="collapse" data-target="#collapsesix"
+                    aria-expanded="false" aria-controls="collapsesix">
+                        <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                        Helperland professional will come to my place?
+                    </p>
+                    <div id="collapsesix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                            obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                            sapiente libero voluptate est molestias.
+                        </div>
+                    </div>
+                    <p class="questions-titles btn" data-toggle="collapse" data-target="#collapseseven"
+                    aria-expanded="false" aria-controls="collapseseven">
+                        <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                        Helperland professional will come to my place?
+                    </p>
+
+                    <div id="collapseseven" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                            obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                            sapiente libero voluptate est molestias.
+                        </div>
+                    </div>
+
+                    <a class="morehelp" href="#">
+                        For more help
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+       
+            <button class="btn payment-check fixed-bottom" data-toggle="modal" data-target="#PaymentModal">Payment Overview $63</button>
+ 
+<!-- Payment Modal -->
+        <div class="modal fade" id="PaymentModal" tabindex="-1" role="dialog" aria-labelledby="PaymentDetails" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Payment Summary</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-close"> </i></span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="sidebar-menu payment" style="display: block;">
+            
+                                <div class="date-time-bed-bath">
+                                    <p class="date-time">01/01/2018 @ 4:00 pm </p>
+                                    <p class="bed-bath">1 bed, 1 bath.</p>
+                                </div>
+                                <div class="total-summmary">
+                                    <div class="time-duration">
+                                        <p class="durations">Duration</p>
+                                        <div class="summary">
+                                            <div class="basic-summary">
+                                                <p class="basics">Basic <span> 3 Hrs</span></p>
+                                                <p class="basics">Basic Inside cabinets (extra) <span> 30 Mins</span></p>
+            
+                                            </div>
+                                            <div class="total-servicetime">
+                                                <p class="totaltime">Total Service Time<span>3.5 Hrs</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="money">
+                                    <div class="basic-payment">
+                                        <p class="payments">Per cleaning <span>$87</span></p>
+                                        <p class="payments">Discount<span> - $27</span></p>
+            
+                                    </div>
+                                    <div class="total-payment">
+                                        <p class="total">Total Payment<span>$63</span></p>
+                                    </div>
+                                    <p class="effective-price">Effective Price <span>$50.4</span></p>
+                                    <p class="saving"><span>*</span>You will save 20% according to §35a EStG.</p>
+                                </div>
+                                <div class="smily">
+                                    <img src="image/smiley.png">
+                                    <span>See what is always included</span>
+                                </div>
+            
+                        <div class="question mt-4">
+                            <h4 class="question-title">Questions?</h4>
+                            <div class="questions">
+                                <p class="questions-titles btn" data-toggle="collapse" data-target="#questionOne"
+                                aria-expanded="false" aria-controls="questionOne">
+                                    <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                                    Helperland professional will come to my place?
+                                </p>
+                                <div id="questionOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                                        obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                                        sapiente libero voluptate est molestias.
+                                    </div>
+                                </div>
+                                <p class="questions-titles btn" data-toggle="collapse" data-target="#questiontwo"
+                                aria-expanded="false" aria-controlsquestionsetwo">
+                                    <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                                    Helperland professional will come to my place?
+                                </p>
+                                <div id="questiontwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                                        obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                                        sapiente libero voluptate est molestias.
+                                    </div>
+                                </div>
+                                <p class="questions-titles btn" data-toggle="collapse" data-target="#questionthree"
+                                aria-expanded="false" aria-controls="questionthree">
+                                    <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                                    Helperland professional will come to my place?
+                                </p>
+                                <div id="questionthree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                                        obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                                        sapiente libero voluptate est molestias.
+                                    </div>
+                                </div>
+                                <p class="questions-titles btn" data-toggle="collapse" data-target="#questionfour"
+                                aria-expanded="false" aria-controls="questionfour">
+                                    <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                                    Helperland professional will come to my place?
+                                </p>
+                                <div id="questionfour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                                        obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                                        sapiente libero voluptate est molestias.
+                                    </div>
+                                </div>
+                                <p class="questions-titles btn" data-toggle="collapse" data-target="#questionfive"
+                                aria-expanded="false" aria-controls="questionfive">
+                                    <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                                    Helperland professional will come to my place?
+                                </p>
+                                <div id="questionfive" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                                        obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                                        sapiente libero voluptate est molestias.
+                                    </div>
+                                </div>
+                                <p class="questions-titles btn" data-toggle="collapse" data-target="#questionsix"
+                                aria-expanded="false" aria-controls="questionsix">
+                                    <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                                    Helperland professional will come to my place?
+                                </p>
+                                <div id="questionsix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                                        obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                                        sapiente libero voluptate est molestias.
+                                    </div>
+                                </div>
+                                <p class="questions-titles btn" data-toggle="collapse" data-target="#questionseven"
+                                aria-expanded="false" aria-controls="questionseven">
+                                    <span class="let-arrow-direction"><i class="fa fa-angle-right arrowright"></i></span> Which
+                                    Helperland professional will come to my place?
+                                </p>
+            
+                                <div id="questionseven" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, minima vero ea fuga
+                                        obcaecati maxime incidunt facere dolorum aspernatur labore dolor aperiam commodi, optio quis
+                                        sapiente libero voluptate est molestias.
+                                    </div>
+                                </div>
+            
+                                <a class="morehelp" href="#">
+                                    For more help
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+    </section>
+
+  
+
+    <section class="newsletter text-center ">
+        <div class="container">
+            <h3 class="ournews ">GET OUR NEWSLETTER</h3>
+            <form action="#" method="Post">
+                <input type="text" name="text" placeholder="YOUR EMAIL">
+                <button type="button" class="btn btn5">
+                    <p>Subscribe</p>
+                </button>
+            </form>
+        </div>
+    </section>
+    <section class="footers">
+        <footer>
+            <div class="row footer">
+                <div class="col-lg-2 logo1">
+                    <a href="#">
+                        <img src="image/white-logo-transparent-background.png" alt="helperland" class="logos">
+                    </a>
+                </div>
+                <div class="col-lg-8 links">
+                    <nav>
+                        <div class="nav menus">
+                            <a href="#" class="btn btn3">HOME</a>
+                            <a href="#" class="btn btn3">ABOUT</a>
+                            <a href="#" class="btn btn3">TESTIMONIALS</a>
+                            <a href="#" class="btn btn3">FAQS</a>
+                            <a href="#" class="btn btn3">INSURANCE POLICY</a>
+                            <a href="#" class="btn btn3">IMPRESSUM</a>
+
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-lg-2 social">
+                    <nav>
+                        <div class="nav icons">
+                            <a href="#" class="btn facebook"><i class="fa fa-facebook fb"></i></a>
+                            <a href="#" class="btn instagram"><i class="fa fa-instagram insta"></i></a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row privacy-policy">
+                <p>©2018 Helperland. All rights reserved. <span>Terms and Conditions | Privacy Policy</span></p>
+            </div>
+        </footer>
+    </section>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/BookService.js"></script>
+    
+</body>
+
+</html>
