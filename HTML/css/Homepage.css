@@ -565,6 +565,7 @@ a#navbarDropdownMenuLink {
 position: relative;
 color: #353548;
 width: 100%;
+padding-top: 53px;
 padding-bottom: 53px;
 }
 .newsletter .up_arrow{
@@ -638,6 +639,7 @@ justify-content: center;
 }
 .footer .links .menus .btn3:hover,.footer .social .icons .facebook:hover, .footer .social .icons .instagram:hover{
     background-color: #006072;
+    transition: 0.3s all;
 }
 
 .footer .social {
@@ -837,3 +839,87 @@ margin-bottom: 20px;
     }
     
 }
+
+#loginemail,#loginpassword{
+    position: relative;
+}
+
+.email .mail {
+        top: 24px;
+        content: '';
+        position: absolute;
+        right: 40px;
+    }
+
+    .password .locks {
+        top: 80px;
+        content: '';
+        position: absolute;
+        right: 40px;
+    }
+
+    .btn-login ,.btn-login:focus{
+        height: 50px;
+        font-size: 20px;
+        font-weight: medium;
+        background-color: #006072;
+        border-radius: 30px;
+        color: #ffffff;
+        border: solid 1px rgba(255, 255, 255, 0.5);
+    }
+  
+    .forgot-password,.create-account,.login-now{
+        color: #1d7a8c;
+        font-size: 18px;
+        text-decoration: none;
+    }
+    .modal-footer {
+        justify-content: center;
+        display: grid;
+        text-align: center;
+        max-width: 277px;
+        margin: auto;
+        border-top: none;
+    }
+    .forgot-password:hover,.login-now:hover,.create-account:hover{
+        transition: 0.3s all;
+        text-decoration: none;
+        font-weight: 500;
+        color: #006072;
+
+    }
+
+    
+
+    .modal-header {
+        border-bottom: none;
+    }
+  #ForgotModal{
+      max-width: 360px;
+      margin: auto;
+  }
+  #LoginModal .modal-body{
+      max-height: 220px;
+  }
+  #ForgotModal .modal-body{
+max-height: 130px;
+  }
+  #ForgotModal h4,#LoginModal h4{
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: bold;
+    color:#646464;
+  }
+    #inlineFormCheck {
+        position: absolute;
+        content: "";
+        
+        top: -4px;
+        border: solid 1px #c7c7c7;
+        border-radius: 4px;
+        width: 20px;
+        height: 20px;
+    }
+    .form-check-label {
+        margin-left: 4px;
+    }
