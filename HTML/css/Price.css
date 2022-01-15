@@ -133,6 +133,7 @@ a:hover {
 
 .price-banner {
     max-height: 370px;
+    margin-top:64px;
 }
 
 
@@ -331,7 +332,7 @@ background:#CCCCCC ;
     margin-top: 42px;
 
 }
-hr{
+#hr{
     margin-top: 51px;
         margin-right: auto;
         margin-left: auto;
@@ -355,103 +356,58 @@ hr{
     font-weight: bold;
 
 }
-
-.price .hr {
+.price .hr{
     margin-top: 18px;
-    position: relative;
-    margin-left: auto;
     margin-right: auto;
-    width: 94px;
-    height: 58px;
+    margin-left: auto;
+    min-width: 94px;
+    min-height: 58px;
     text-align: center;
-    letter-spacing: NaNpx;
     color: #646464;
     font-size: 48px;
     font-weight: bold;
 }
 
-.price .hr sub {
-    position: absolute;
+.price .hr span {
     font-size: 30px;
     font-weight: normal;
-    bottom: 20px;
+    
+}
+.price .money{
+    display: inline-block;
 }
 
 .euro {
-    position: absolute;
+    font-weight: normal;
     width: 31px;
     height: 36px;
-    right: 92px;
+    display: inline-block;
+}
+.box1{
+    margin-top: 5px;
+}
+.box1,.box2,.box3 {
+    margin-left: 30%;
+    margin-right: auto;
+    height: 45px;
+   
 }
 
-.box1 {
-    position: relative;
-}
-
-.box1img {
+.box1img,.box-2img,.box3img {
     width: 24px;
     height: 24px;
-    position: absolute;
-    left: 151px;
-    top: 30px;
+    
 }
 
-.box1 p {
-    position: absolute;
-    width: 91px;
+.box1 span,.box2 span,.box3 span {
+    padding-left: 7px;
     height: 19px;
     letter-spacing: 0px;
     color: #646464;
-    right: 277px;
-    top: 30px;
+  
 }
 
-.box2 {
-    position: relative;
-    /* margin-top: 21px; */
-}
 
-.box2img {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    left: 151px;
-    top: 71px;
-}
-
-.box2 p {
-    position: absolute;
-    width: 216px;
-    height: 19px;
-    letter-spacing: 0px;
-    color: #646464;
-    right: 153px;
-    top: 70px;
-
-}
-
-.box3 {
-    position: relative;
-    /* margin-top: 21px; */
-}
-
-.box3img {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    left: 151px;
-    top: 116px;
-}
-
-.box3 p {
-    position: absolute;
-    width: 123px;
-    height: 19px;
-    letter-spacing: 0px;
-    color: #646464;
-    right: 245px;
-    top: 116px;
-}
 .nav-link:hover{
     color: yellow;
 }
@@ -534,75 +490,13 @@ hr{
     height: 210px;
 }
 
-
-.vector1 {
-    position: absolute;
-    top: 265px;
-    left: 0px;
-    width: 22px;
-    height: 22px;
+.vector-1 p{
+    display: block;
+    margin-top: 20px;
 }
 
-.vector-1 p {
-    position: absolute;
-    top: 264px;
-    left: 35px;
-}
-
-.vector2 {
-    position: absolute;
-    top: 300px;
-    left: 0px;
-    width: 22px;
-    height: 22px;
-}
-
-.vector-2 p {
-    position: absolute;
-    top: 299px;
-    left: 35px;
-}
-
-.vector3 {
-    position: absolute;
-    top: 338px;
-    left: 0px;
-    width: 22px;
-    height: 22px;
-}
-
-.vector-3 p {
-    position: absolute;
-    top: 337px;
-    left: 35px;
-}
-
-.vector4 {
-    position: absolute;
-    top: 377px;
-    left: 0px;
-    width: 22px;
-    height: 22px;
-}
-
-.vector-4 p {
-    position: absolute;
-    top: 376px;
-    left: 35px;
-}
-
-.vector5 {
-    position: absolute;
-    top: 415px;
-    left: 0px;
-    width: 22px;
-    height: 22px;
-}
-
-.vector-5 p {
-    position: absolute;
-    top: 414px;
-    left: 35px;
+.vector-2 p,.vector-3 p,.vector-4 p .vector-5 p{
+    display: block;
 }
 
 .mx-30 {
@@ -619,8 +513,7 @@ hr{
     max-width: 1054px;
     margin-left: auto;
     margin-right: auto;
-    height: 400px;
-    position: relative;
+    height: auto;
     margin-top: 71px;
 }
 .includetext1 {
@@ -629,29 +522,23 @@ hr{
     letter-spacing: 0px;
     color: #4F4F4F;
     font-size: 36px;
-    font-family: Roboto;
     font-weight: bold;
-    margin-top: 73px;
 }
 
 
 .best{
-    position: relative;
     margin-top: 42px;
 }
 
 .thebest{
     width: 375px;
 height: 241px;
-position: absolute;
 left: 360px;
 }
 
 
 .exp{
-    position: absolute;
-    left: 0;
-    /* width: 337px; */
+    width: 342px;
 height: 24px;
 letter-spacing: 0px;
 color: #646464;
@@ -659,10 +546,7 @@ font-size: 20px;
 font-weight: bold;
 }
 .exp1{
-    position: absolute;
-    left: 51px;
-    top:34px;
-    width: 286px;
+ 
 height: 85px;
 text-align: right;
 letter-spacing: 0px;
@@ -671,10 +555,7 @@ font-size: 14px;
 }
 
 .exp2{
-    position:absolute;
-    left: 86px;
-    top:132px;
-    /* width: 251px; */
+  
 height: 24px;
 text-align: right;
 letter-spacing: 0px;
@@ -684,10 +565,7 @@ font-weight: bold;
 }
 
 .exp3{
-    position: absolute;
-    left: 61px;
-    top:162px;
-    width: 286px;
+ 
 height: 85px;
 text-align: right;
 letter-spacing: 0px;
@@ -696,10 +574,7 @@ font-size: 14px;
 }
 
 .exp4{
-    position: absolute;
-    right: 63px;
-    /* left: 1022px; */
-    /* width: 223px; */
+
 height: 24px;
 text-align: left;
 letter-spacing: 0px;
@@ -709,7 +584,6 @@ font-weight: bold;
 }
 
 .exp5{
-    position: absolute;
     width: 286px;
     height: 85px;
     text-align: left;
@@ -722,7 +596,6 @@ font-weight: bold;
 }
 
 .exp6{
-    position: absolute;
     top:249px;
     right: 80px;  
     color: #646464;
@@ -731,9 +604,8 @@ font-weight: bold;
 }
 
 .exp7{
-    position: absolute;
-    top:283px;
-    right: 10px;
+   
+   
     width: 276px;
 height: 85px;
 text-align: left;
@@ -856,15 +728,15 @@ font-size: 14px;
     }
 
     .col-md-2 {
-        margin-left: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
         margin-top: 10px;
         margin-bottom: 10px;
     }
 }
 @media screen and (max-width:1000px) {
-    .includetext1,.includetext2{
-        font-size: 20px;
-    }
+
    
     .hyperland{
         margin-top: 370px;
@@ -873,193 +745,14 @@ font-size: 14px;
         margin-right: auto;
     }
     
-    .exp{
-        left: 10;
-    
-    font-size: 18px;
-    }
-    .exp1{
-        left: 10px;
-        top:34px;
-      font-size: 12px;
-    }
-    
-    .exp2{
-        left: 10px;
-        top:132px;
-    font-size: 18px;
-    }
-    
-    .exp3{
-        left: 10px;
-        top:162px;
-     
-    font-size: 12px;
-    }
-    
-    .exp4{
-        position: absolute;
-        left: 150px;
-        top: 491px;
-    font-size: 18px;
-    }
-    
-    .exp5{
-     
-        top:520px;
-        left: 120px;
-        font-size: 12px;
-    
-    }
-    
-    .exp6{
-        top:600px;
-        left: 120px;  
-    font-size: 18px;
-    }
-    
-    .exp7{
-       
-        top:640px;
-        left: 140px;
-    font-size: 12px;
-    
-    }
-        
-}
-
-@media screen and (max-width:700px) {
-    .includetext1{
-        margin-top: 820px;
-    }
-    
-}
-
-
-@media screen and (max-width:780px) {
-    .includetext1{
-        font-size: 18px;
-    }
-    .hyperland{
-        margin-top: 800px;
-        height: 900px;
-    }
-    .thebest{
-        width: 300px;
-    height: 200px;
-    position: absolute;
-    left: 10px;
-    top: 258px;
-    }
-   
-    .hyperland{
-        width: auto;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .exp{
-        left: 10;
-    
-    font-size: 18px;
-    }
-    .exp1{
-        left: 10px;
-        top:34px;
-      font-size: 12px;
-    }
-    
-    .exp2{
-        left: 10px;
-        top:132px;
-    font-size: 18px;
-    }
-    
-    .exp3{
-        left: 10px;
-        top:162px;
-     
-    font-size: 12px;
-    }
-    
-    .exp4{
-        position: absolute;
-        left: 10px;
-        top: 691px;
-    font-size: 18px;
-    }
-    
-    .exp5{
-     
-        top:720px;
-        left: 10px;
-        font-size: 12px;
-    
-    }
-    
-    .exp6{
-        top:800px;
-        left: 10px;  
-    font-size: 18px;
-    }
-    
-    .exp7{
-       
-        top:840px;
-        left: 10px;
-    font-size: 12px;
-    
-    }
-        
+  
 }
 
 
 
-@media screen and (max-width:400px) {
-    .includetext1{
-        font-size: 16px;
-    }
-    .thebest{
-        width: 250px;
-    height: 150px;
-   
 
-    }
-   
-    .exp{
-    font-size: 14px;
-    }
-    .exp1{
-      font-size: 10px;
-    }
-    
-    .exp2{
-    font-size: 14px;
-    }
-    
-    .exp3{
-    font-size: 10px;
-    }
-    
-    .exp4{
-    font-size: 14px;
-    }
-    
-    .exp5{
-        font-size: 10px;
-    
-    }
-    
-    .exp6{
-    font-size: 14px;
-    }
-    
-    .exp7{
-    font-size: 10px;
-    
-    }
-        
-}
+
+
 @media screen and (max-width:1000px) {
     .sepimg{
         position: relative;
@@ -1076,270 +769,16 @@ font-size: 14px;
     background:#CCCCCC ;
         top:45%;
     }   
-}
-
-@media (max-width: 1000px) {
     .mx-30 {
-        margin-bottom: 195px;
+        margin-bottom: auto;
     }
-}
-
-@media (max-width: 600px) {
-    .mx-30 {
-        font-size: 12px;
-    }
-
-    .includetext {
-        font-size: 20px;
-    }
-
     .card-img-top {
-        width: 300px;
-        height: 220px;
+        width: auto;
+        height: auto;
+        max-width: 300px;
     }
 }
 
-@media (max-width: 400px) {
-    .mx-30 {
-        margin-bottom: 188px;
-    }
-
-    .includetext {
-        font-size: 18px;
-    }
-
-    .card-img-top {
-        width: 200px;
-        height: 120px;
-    }
-
-    .vector1 {
-        top: 186px;
-        width: 20px;
-        height: 20px;
-    }
-
-    .vector-1 p {
-        top: 185px;
-    }
-
-    .vector2 {
-        top: 210px;
-        width: 20px;
-        height: 20px;
-    }
-
-    .vector-2 p {
-        top: 209px;
-    }
-
-    .vector3 {
-        top: 238px;
-        width: 20px;
-        height: 20px;
-    }
-
-    .vector-3 p {
-        top: 237px;
-    }
-
-    .vector4 {
-        top: 264px;
-        width: 20px;
-        height: 20px;
-    }
-
-    .vector-4 p {
-        top: 263px;
-    }
-
-    .vector5 {
-        top: 290px;
-        width: 20px;
-        height: 20px;
-    }
-
-    .vector-5 p {
-        top: 289px;
-    }
-}
-
-@media screen and (max-width:600px) {
-    .price {
-        margin-left: auto;
-        margin-right: auto;
-        height: 304px;
-        width: 300px;
-
-    }
-
-    .pricebtn {
-
-        width: 300px;
-        height: 304px;
-        border: 1px solid #B0C9CE;
-    }
-
-    .pricebtn::after {
-        clear: both;
-    }
-
-    .pricebtn .btn1 {
-        width: 300px;
-        height: 59px;
-
-        font-size: 20px;
-
-
-    }
-
-    .price .hr {
-
-
-        font-size: 24px;
-    }
-
-    .price .hr sub {
-
-        bottom: 35px;
-    }
-
-    .euro {
-
-        right: 63px;
-    }
-
-
-    .box1img {
-        width: 18px;
-        height: 18px;
-        left: 33px;
-        top: 12px;
-    }
-
-    .box1 p {
-        right: 138px;
-        top: 10px;
-    }
-
-
-    .box2img {
-        width: 18px;
-        height: 18px;
-
-        left: 33px;
-        top: 55px;
-    }
-
-    .box2 p {
-        right: 13px;
-        top: 51px;
-    }
-
-
-    .box3img {
-        width: 18px;
-        height: 18px;
-        left: 33px;
-        top: 100px;
-    }
-
-    .box3 p {
-        right: 105px;
-        top: 96px;
-    }
-
-}
-
-
-
-@media screen and (max-width:400px) {
-    .price {
-        margin-left: auto;
-        margin-right: auto;
-        height: 304px;
-        width: 200px;
-
-    }
-
-    .pricebtn {
-
-        width: 200px;
-        height: 200px;
-        border: 1px solid #B0C9CE;
-    }
-
-    .pricebtn::after {
-        clear: both;
-    }
-
-    .pricebtn .btn1 {
-        width: 200px;
-        height: 59px;
-
-        font-size: 16px;
-
-
-    }
-
-    .price .hr {
-
-
-        font-size: 18px;
-    }
-
-    .price .hr sub {
-        font-size: 12px;
-        bottom: 42px;
-    }
-
-    .euro {
-
-        right: 63px;
-    }
-
-
-    .box1img {
-        width: 12px;
-        height: 12px;
-        left: 11px;
-        top: 0px;
-    }
-
-    .box1 p {
-        right: 72px;
-        top: -4px;
-        font-size: 13px;
-    }
-
-
-    .box2img {
-        width: 12px;
-        height: 12px;
-        left: 11px;
-        top: 15px;
-    }
-
-    .box2 p {
-        right: -53px;
-        top: 12px;
-        font-size: 12px;
-    }
-
-
-    .box3img {
-        width: 12px;
-        height: 12px;
-        left: 11px;
-        top: 30px;
-    }
-
-    .box3 p {
-        right: 40px;
-        top: 27px;
-        font-size: 13px;
-    }
-}
 @media screen and (max-width:992px) {
     .navbar .collapse.show {
         display: block;
@@ -1382,6 +821,9 @@ font-size: 14px;
     }
     .navbar-nav .nav-link:hover{
         color:blueviolet;
+        font-weight: bold;
+        transition: 0.3s all;
+
     }
     .ps {
         width: auto;
@@ -1410,3 +852,81 @@ font-size: 14px;
         margin-right: 0px;
     }
 }
+@media screen and (max-width:800px) {
+    .exp,.exp1,.exp2,.exp3,.exp4,.exp5,.exp6,.exp7 {
+        width: auto;
+        height: auto;
+        text-align: center;
+    }
+    
+}
+
+
+@media screen and (max-width:600px) {
+    .price {
+        margin-left: auto;
+        margin-right: auto;
+        height: 304px;
+        width: 300px;
+
+    }
+    .pricebtn {
+        width: auto;
+        height: 281px;
+        border: 1px solid #B0C9CE;
+    }
+    .pricebtn .btn1 {
+        width: 100%;
+        height: 59px;
+        font-size: 16px;
+    }
+
+    .box1, .box2, .box3 {
+        margin-left: 4%;
+        margin-right: auto;
+        height: 45px;
+    }
+    .exp,.exp1,.exp2,.exp3,.exp4,.exp5,.exp6,.exp7 {
+        width: auto;
+        height: auto;
+        max-width: 320px;
+        text-align: center;
+    }
+    .newsletter .up_arrow {
+        left: 10px;
+    }
+    .newsletter .chats {
+        right: 10px;
+    }
+ 
+}
+
+@media (max-width: 400px) {
+    .mx-30 {
+        margin-bottom: auto;
+        width: 100%;
+    }
+    .thebest {
+        width: auto;
+        max-width: 250px;
+    }
+    .includetext {
+
+        font-size: 22px;
+
+    }
+    p{
+        font-size: 14px;
+    }
+
+    .card-img-top {
+        width: auto;
+        height: auto;
+    }
+  
+
+}
+
+
+
+
