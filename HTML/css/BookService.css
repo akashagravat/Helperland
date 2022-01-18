@@ -924,8 +924,9 @@ box-shadow: none;
     font-size: 17px;
     cursor: pointer;
 }
-.accept-aggrement p span{
+.accept-aggrement p span a{
     color: #1d7a8c;
+    text-decoration: none;
 }
 .credit-cards-master{
     padding-top: 7px;
