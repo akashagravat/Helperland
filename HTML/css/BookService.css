@@ -695,8 +695,7 @@ color: #646464;
 }
 .setup-paymemt-service{
     margin-top: 40px;
-    min-height: 1000px;
-}
+    }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -713,6 +712,233 @@ transform: rotate(90deg);
 .questions-titles[aria-expanded="false"] .arrowright{
     transform: rotate(0deg);
     }
+
+
+    /*-------------Address Details------  */
+    .addresses {
+    
+        border: 1px solid #c8c8c8;
+        border-radius: 3px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        padding-top: 15px;
+        padding-left: 13px;
+    }
+    .address-phone .addresse,.address-phone .phonenumber{
+        font-size: 16px;
+        line-height: 24px;
+        color: #4f4f4f;
+        font-weight: bold;
+    }
+
+    .address-phone .addresse span,.address-phone .phonenumber span{
+        font-weight: normal;
+    }
+.address-radio{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    height: 18px;
+    width: 18px;
+    border-radius: 500px;
+    padding: 3px;
+    border: 1px solid #c8c8c8;
+}
+.add-address{
+    font-weight: 700;
+    color: #1d7a8c!important;
+    border: 2px solid #1d7a8c!important;
+    background: 0 0;
+    padding: 10px 15px;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 50px;
+    margin-bottom: 25px;
+}
+.add-address:hover{
+    background: #1d7a8c;
+    border: none!important;
+    color: #fff!important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+}
+.your-favourite-service-ptovider{
+    line-height: 28px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid   #CCCCCC;
+}
+
+.service-provider-img{
+    width: 50px;
+    height: 32px;
+  }
+  .service-provider-imgs{
+      margin-left:auto;
+      margin-right:auto;
+    border-radius: 50%;
+    max-width: 70px;
+  height: 70px;
+  padding-left: 8px;
+  padding-top: 15px;
+  border: 1px solid #AAAAAA;
+  }
+  .service-provider-name{
+      text-align:center;
+  }
+  
+.selectbtn{
+    color: #4F4F4F;
+    width: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    border-radius: 0px;
+    border: 1px solid #4F4F4F;
+    background-color: #FFFFFF;
+}
+.selectbtn:hover,.selectbtn:focus{
+    background: #1d7a8c;
+    border: none!important;
+    color: #fff!important;
+    transition: all .3s ease;
+}
+.service-provider{
+    border-bottom: 1px solid   #CCCCCC;
+    padding-bottom: 30px;
+}
+.apply{
+    color: #1d7a8c!important;
+    border: 1px solid #1d7a8c!important;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    line-height: 24px;
+    width: 110px;
+    border-radius: 50px;
+    margin-bottom: 25px;
+}
+.apply:hover{
+    background: #1d7a8c;
+    border: none!important;
+    color: #fff!important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+}
+.promocodes{
+   padding-bottom: 30px;
+    border-bottom: 1px solid   #CCCCCC;
+
+}
+.final-submits{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid   #CCCCCC;
+ 
+}
+.promocode{
+   height: 55px;
+}
+.payment-cardno{
+    padding-left: 25px;
+    border: none;
+    background-color: transparent;
+    border: none;
+    color: #31325F;
+
+}
+.payment-cardno:focus,.dates:focus,.cvv:focus,.dates,.cvv{
+background-color: #fff;
+color: #31325F;
+border: none;
+outline: 0;
+box-shadow: none;
+}
+.credit-card{
+    position:absolute;
+    top:10px;
+    left:8px;
+    
+    color: #31325F;
+    line-height: 36px;
+    font-size: 16px;
+    height: 36px;
+    
+}
+.final-submit{
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    padding: 15px 34px;
+    background: #1d7a8c;
+    border: none!important;
+    border-radius: 50px;
+    color: #fff!important;
+    transition: all .3s ease;
+    
+    }
+    .all-contents{
+        display: grid;
+    }
+.cardpay{
+    padding-top: 14px;
+    height: 60px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    transition: box-shadow 150ms ease;
+    color: #31325F;
+    margin-top: 20px;
+}
+
+.accepted-card{
+    margin-top: 10px;
+    font-size: 10px;
+    color:#4f4f4f;
+}
+.accepted-cards{
+    margin-top: 20px;
+}
+.credit-cards-visa{
+    width: 50px;
+    height: 50px;
+}
+.cards-all{
+    padding-left: 50px;
+}
+.border-card{
+    padding-bottom: 140px;
+    border-bottom: 1px solid   #CCCCCC;
+}
+.accept-aggrement .checkboxs{
+    border: solid 1px #c7c7c7;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.accept-aggrement p{
+    padding-left: 10px;
+    line-height: 20px;
+    color: #4f4f4f;
+    font-size: 17px;
+    cursor: pointer;
+}
+.accept-aggrement p span{
+    color: #1d7a8c;
+}
+.credit-cards-master{
+    padding-top: 7px;
+    width: 50px;
+    height: 50px;
+    padding-bottom: 8px;
+}
+.credit-cards-ae{
+    padding-top: 1px;
+    width: 56px;
+    height: 50px;
+    padding-bottom: 6px;
+}
 @media screen and (max-width:1250px) {
     .setup-service {
         margin-left: 5px;
@@ -720,9 +946,17 @@ transform: rotate(90deg);
     .sidebar-menu {
         margin-right: auto;
     }
- 
+    #Your-Details{
+        padding-left: 21px;
+    }
 
     
+}
+@media screen and (max-width:1166px){
+    .setup-service {
+        width: 66%;
+    }
+ 
 }
 @media screen and (max-width:1155px){
     .setup-service .nav .nav-item .nav-link {
@@ -782,10 +1016,33 @@ transform: rotate(90deg);
         float: right;
     }
 }
-
+@media screen and (max-width:1110px){
+    .setup-service {
+        width: 60%;
+    }
+}
 @media screen and (max-width:1100px) {
     .payment {
         width: fit-content;
+    }
+    .cardpay{
+    display:block;
+    height:auto;
+    }
+    .promocode {
+        margin-bottom: 11px;
+        height: 55px;
+    }
+    .cardpay {
+        width: 100%;
+        margin-left: 5px;
+        height: auto;
+    }
+    .payment-cardno ,.dates,.cvv {
+        margin-bottom: 5px;
+    }
+    #Make-Payment{
+        width:99%;
     }
 }
 @media  screen and (max-width:1000px) {
@@ -818,6 +1075,7 @@ transform: rotate(90deg);
     .book-service-banners{
         margin-top: 64px;
     }
+
 }
 @media screen and (max-width:875px) {
     .sidebar-menu {
@@ -836,7 +1094,7 @@ transform: rotate(90deg);
     }
     
     .setup-service {
-        width: 98%;
+        width: 95%;
         max-width: none;
     }
     .setup-service .nav .nav-item .nav-link span {
@@ -884,6 +1142,7 @@ transform: rotate(90deg);
         margin-top: 40px;
     }
 }
+
 @media screen and (max-width:600px) {
     .select2-container--default .select2-selection--single {
         margin-bottom: 10px;
@@ -891,6 +1150,7 @@ transform: rotate(90deg);
     .selectdate{
         display: flex;
     }
+ 
 }
 @media screen and (max-width:500px) {
     #selectdate {
@@ -915,6 +1175,14 @@ transform: rotate(90deg);
         font-size: 13px;
     }
 }
+@media screen and (max-width:400px){
+    .address-phone{
+        margin-top: 46px;
+    }
+    .address-radio{
+        left:120px;
+    }
+}
 @media screen and (max-width:350px) {
     .setup-service .nav .nav-item .active::after {
         margin-left: 2.5%;
@@ -933,7 +1201,7 @@ transform: rotate(90deg);
 --------------------------------------------------------- */
 .newsletter {
     height: 130px;
-    margin-top: 150px;
+    margin-top: 20px;
 }
 
 .newsletter h1 {
