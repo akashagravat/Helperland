@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2022 at 08:33 AM
+-- Generation Time: Jan 21, 2022 at 09:24 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -47,7 +47,10 @@ CREATE TABLE `admin_details` (
   `Admin_id` int(11) NOT NULL,
   `Email` varchar(100) NOT NULL,
   `Name` varchar(100) NOT NULL,
-  `Password` varchar(100) NOT NULL
+  `Password` varchar(100) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `Creation_Date` datetime NOT NULL,
+  `Updation_Date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -81,10 +84,11 @@ CREATE TABLE `customer_details` (
   `Birthdate` date DEFAULT NULL,
   `Language` varchar(255) DEFAULT NULL,
   `PASSWORD` varchar(100) NOT NULL,
-  `RandomKey` varchar(30) NOT NULL
+  `token` varchar(255) NOT NULL,
+  `Status` varchar(255) NOT NULL,
+  `Creation_Date` datetime DEFAULT NULL,
+  `Update_Date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `customer_service_booking`
@@ -184,7 +188,9 @@ CREATE TABLE `serviceprovider_details` (
   `Location` varchar(50) DEFAULT NULL,
   `TaxNumber` int(11) DEFAULT NULL,
   `Password` varchar(100) NOT NULL,
-  `RandomKey` varchar(30) NOT NULL
+  `token` varchar(255) NOT NULL,
+  `Creation_Date` datetime NOT NULL,
+  `Updation_Date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -286,7 +292,7 @@ ALTER TABLE `admin_refund`
 -- AUTO_INCREMENT for table `customer_details`
 --
 ALTER TABLE `customer_details`
-  MODIFY `Customer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `favourite_sp`
