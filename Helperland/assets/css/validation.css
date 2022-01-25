@@ -1,0 +1,20 @@
+/* ---Validation---- */
+.valid-input {
+  border: 1px solid #1d7a8c !important;
+}
+
+.invalid-input {
+  border: 1px solid red !important;
+}
+
+.invalid-msg {
+  color: red;
+}
+
+.msg-privacy {
+  color: red;
+}
+
+.error-email {
+  color: green;
+}

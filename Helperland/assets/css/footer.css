@@ -1,0 +1,94 @@
+/* ----------------------------------
+    -----------Footer--------------------
+    ------------------------------------- */
+    .footers {
+        background-color: #111111;
+        margin-top: 40px;
+    }
+    
+    .footer {
+        width: 100%;
+        padding-top: 20px;
+        padding-left: 8%;
+        padding-bottom: 20px;
+    }
+    
+    .footer .logos {
+        max-width: 120px;
+        max-height: 92px;
+    }
+    
+    .footer .links {
+        padding-top: 2%;
+    }
+    
+    .footer .links .menus {
+        justify-content: center;
+    }
+    
+    .footer .links .menus .btn3 {
+        color: #F1F1F1;
+        font-size: 14px;
+    }
+    
+    .footer .links .menus .btn3:hover, .footer .social .icons .facebook:hover, .footer .social .icons .instagram:hover {
+        background-color: #006072;
+    }
+    
+    .footer .social {
+        padding-top: 2%;
+    }
+    
+    .footer .social .icons {
+        justify-content: center;
+    }
+    
+    .footer .social .icons .fb, .footer .social .icons .insta {
+        font-size: 18px;
+        color: #F1F1F1;
+    }
+    
+    .footers .privacy-policy {
+        padding-top: 23px;
+        padding-bottom: 5px;
+        text-align: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #9BA0A3;
+        width: 100%;
+        background-color: #111111;
+        margin: 0px;
+    }
+    
+    .footer h4 {
+        padding-top: 100px;
+    }
+    
+    .footer .logo1 {
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    
+    .footers .privacy-policy {
+        padding-top: 23px;
+        padding-bottom: 5px;
+        text-align: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #9BA0A3;
+        border-top: 1px solid;
+        width: 100%;
+        background-color: #111111;
+        margin: 0px;
+    }
+    
+    .footers .privacy-policy p span {
+        color: #9BA0A3;
+    }
+    
+    .footers .privacy-policy p span a {
+        text-decoration: none;
+    }
+    

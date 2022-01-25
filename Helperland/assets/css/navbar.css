@@ -1,0 +1,246 @@
+.navbar {
+    max-width: 1560px;
+    height: 64px;
+    background: #525252 0% 0% no-repeat padding-box;
+}
+
+.navbar-nav {
+    position: absolute;
+    right: 15px;
+}
+
+a {
+    color: #FFFFFF;
+}
+
+
+a:hover {
+    color: #FFFFFF;
+}
+
+.nav-item {
+    color: #FFFFFF;
+}
+
+.navbar .navbar-toggler-icon {
+    /* visibility: hidden; */
+    background-image: none;
+}
+
+.navbar .navbar-brand .logo {
+    max-height: 54px;
+    max-width: 73px;
+    position: absolute;
+    left: 15px;
+    top: 6px;
+}
+
+.fa-bars {
+    color: #007bff;
+    font-size: 30px;
+}
+
+.booknow {
+    width: 111px;
+    height: 40px;
+    background: #29626D 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.book-now {
+    font-size: 17px;
+    max-height: 20px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+
+}
+
+.ps {
+    width: 161px;
+    height: 40px;
+    background: #00607200 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 27px;
+
+}
+
+.ps1 {
+    font-size: 17px;
+    max-height: 20px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.wbg {
+    max-width: 258px;
+    max-height: 20px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 35px;
+}
+
+.login {
+    width: 83px;
+    height: 40px;
+    background: #29626D 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.log-in {
+    font-size: 16px;
+
+}
+
+.helper {
+
+    display: inline-flex;
+    justify-content: center;
+    width: 161px;
+    height: 40px;
+    background: #29626D 0% 0% no-repeat padding-box;
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+}
+
+.helper1 {
+    font-size: 16px;
+}
+
+
+
+.navbartoggler {
+
+    margin: auto;
+    position: initial;
+    visibility: visible;
+    display: block;
+    margin: auto;
+}
+
+.sidebar-scrollmany {
+    visibility: hidden;
+}
+
+.sidebar-scrolls {
+    top: 0px;
+    visibility: visible;
+}
+
+.heads {
+    top: 0px;
+    position: fixed;
+    background-color: #525252;
+
+    color: #FFFFFF;
+}
+
+@media screen and (max-width:400px) {
+    .sidebar-scrolls {
+        top: auto;
+        position: auto;
+
+    }
+
+    .heads {
+        top: auto;
+        position: auto;
+    }
+}
+
+
+@media screen and (max-width:992px) {
+    .navbar .collapse.show {
+        display: block;
+        position: fixed;
+        right: 0px;
+        top: 64px;
+        background-color: #FFFFFF;
+        overflow: scroll;
+        width: 300px;
+        height: 100vh;
+    }
+
+    .login {
+        width: auto;
+        height: 40px;
+        background: none;
+        border: none;
+        border-radius: 0px;
+
+        justify-content: center;
+        margin-right: 0px;
+    }
+
+    .navbar {
+        width: 100%;
+
+        position: fixed;
+        background: #525252 0% 0% no-repeat padding-box;
+    }
+
+    .helper {
+        display: inline-flex;
+        justify-content: center;
+        width: auto;
+        background: none;
+        border: none;
+        border-radius: 0px;
+    }
+
+    .navbar-nav .nav-link {
+        padding-right: 0;
+        color: #4F4F4F;
+        padding-left: 0;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: blueviolet;
+        font-weight: bold;
+        transition: 0.3s all;
+
+    }
+
+    .ps {
+        width: auto;
+        background: none;
+        border: none;
+        border-radius: 0px;
+
+        margin-right: 0px;
+    }
+
+    .navbar .navbar-nav {
+        position: initial;
+        right: 0px;
+    }
+
+    .wbg {
+        display: contents;
+        text-align: center;
+    }
+
+    .booknow {
+        width: auto;
+
+        background: none;
+        border: none;
+        border-radius: 0px;
+        display: inline-flex;
+        justify-content: center;
+        margin-right: 0px;
+    }
+
+}

@@ -1,0 +1,682 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto';
+}
+
+
+
+/*-----------------------
+------ PRICE Banner--------
+------------------------- */
+
+.price-banner {
+    max-height: 370px;
+    margin-top: 64px;
+}
+
+
+.pricetext {
+    /* width: 84px; */
+    height: 43px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+    font-size: 36px;
+    font-family: Roboto;
+    font-weight: bold;
+    margin-top: 32px;
+}
+
+.sepimg {
+    position: relative;
+    margin-left: 470px;
+    margin-right: 470px;
+}
+
+
+.sepimg::after, .sepimg::before {
+    content: '';
+    position: absolute;
+    margin: auto;
+    height: 1px;
+    width: 39%;
+    height: 1px;
+    background: #CCCCCC;
+    top: 45%;
+}
+
+.sepimg::before {
+    left: 0;
+}
+
+.sepimg::after {
+    right: 0;
+}
+
+.sepretor {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    width: 24px;
+    height: 25px;
+    position: relative;
+    margin-top: 9px;
+}
+
+
+/* ----------------------------------------
+-----------NewsLetter----------------------
+------------------------------------------- */
+.newsletter {
+    position: relative;
+    color: #353548;
+    width: 100%;
+    padding-bottom: 53px;
+}
+
+.newsletter .up_arrow {
+    position: absolute;
+    left: 70px;
+    top: 15px;
+    background-color: #525252;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.newsletter .up_arrow .arrow-up {
+
+    position: absolute;
+    top: 17px;
+    left: 13px;
+
+}
+
+.newsletter #email::placeholder {
+    font-size: 14px;
+    color: #525252;
+}
+
+.newsletter .chats {
+    position: absolute;
+    right: 70px;
+    top: 0px;
+}
+
+.newsletter #email {
+    border: 1px solid #565656;
+    border-radius: 20px;
+    background-color: #F4F5F8;
+}
+
+.newsletter .submit {
+    background-color: #FF7B6D;
+    color: #FFFFFF;
+    border-radius: 20px;
+    width: 88px;
+    height: 40px;
+    margin-left: 11px;
+}
+
+.newsletter .news {
+    margin-top: 16px;
+}
+
+
+h4 {
+    padding-top: 100px;
+}
+
+
+
+/* -------------------------------------
+-----------------------Prices------------
+------------------------------------------- */
+
+.price {
+    margin-left: auto;
+    margin-right: auto;
+    height: 304px;
+    width: 553px;
+    margin-top: 42px;
+
+}
+
+#hr {
+    margin-top: 51px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1140px;
+    color: #DCDCDC;
+}
+
+.pricebtn {
+    width: 553px;
+    height: 304px;
+    border: 1px solid #B0C9CE;
+}
+
+.pricebtn .btn1 {
+    width: 553px;
+    height: 59px;
+    background: #1D7A8C 0% 0% no-repeat padding-box;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: bold;
+
+}
+
+.price .hr {
+    margin-top: 18px;
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 94px;
+    min-height: 58px;
+    text-align: center;
+    color: #646464;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.price .hr span {
+    font-size: 30px;
+    font-weight: normal;
+
+}
+
+.price .money {
+    display: inline-block;
+}
+
+.euro {
+    font-weight: normal;
+    width: 31px;
+    height: 36px;
+    display: inline-block;
+}
+
+.box1 {
+    margin-top: 5px;
+}
+
+.box1, .box2, .box3 {
+    margin-left: 30%;
+    margin-right: auto;
+    height: 45px;
+
+}
+
+.box1img, .box-2img, .box3img {
+    width: 24px;
+    height: 24px;
+
+}
+
+.box1 span, .box2 span, .box3 span {
+    padding-left: 7px;
+    height: 19px;
+    letter-spacing: 0px;
+    color: #646464;
+
+}
+
+.nav-link:hover {
+    color: yellow;
+}
+
+
+@media screen and (max-width:400px) {
+    .newsletter .news {
+        flex-direction: column;
+        margin-top: 16px;
+        width: 203px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* ------------------------------------------
+-------------What We include in cleaning-----
+------------------------------------------ */
+.wwic {
+    background-color: #F6F6F6;
+    width: auto;
+    height: auto;
+    margin-top: 36px;
+}
+
+.wwic .sepretor {
+    margin-top: 60px;
+}
+.navbar .prices {
+    width: 162px;
+}
+
+
+.includetext {
+    /* width: 84px; */
+    height: 43px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+    font-size: 36px;
+    font-family: Roboto;
+    font-weight: bold;
+    padding-top: 73px;
+}
+
+
+.card {
+    width: 362px;
+    border: none;
+    background-color: #F6F6F6;
+}
+
+.wrapper {
+    background-color: #F6F6F6;
+
+}
+
+.img1, .img2, .img3 {
+    height: 24px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+
+    position: absolute;
+    left: 0px;
+
+    font-family: Roboto;
+
+}
+
+
+.wrapper {
+    margin-top: 42px;
+}
+
+.card-body {
+    text-align: left;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.card-img-top {
+    width: 360px;
+    height: 210px;
+}
+
+.vector-1 p {
+    display: block;
+    margin-top: 20px;
+}
+
+.vector-2 p, .vector-3 p, .vector-4 p .vector-5 p {
+    display: block;
+}
+
+.mx-30 {
+    margin-left: 15px;
+}
+
+
+
+
+/* -----------------------------------------
+---------------WHY HYPERLAND----------------
+--------------------------------------------- */
+.hyperland {
+    max-width: 1054px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    margin-top: 71px;
+}
+
+.includetext1 {
+    /* width: 84px; */
+    height: 43px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+
+.best {
+    margin-top: 42px;
+}
+
+.thebest {
+    width: 375px;
+    height: 241px;
+    left: 360px;
+}
+
+
+.exp {
+    width: 342px;
+    height: 24px;
+    letter-spacing: 0px;
+    color: #646464;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.exp1 {
+
+    height: 85px;
+    text-align: right;
+    letter-spacing: 0px;
+    color: #646464;
+    font-size: 14px;
+}
+
+.exp2 {
+
+    height: 24px;
+    text-align: right;
+    letter-spacing: 0px;
+    color: #646464;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.exp3 {
+
+    height: 85px;
+    text-align: right;
+    letter-spacing: 0px;
+    color: #646464;
+    font-size: 14px;
+}
+
+.exp4 {
+
+    height: 24px;
+    text-align: left;
+    letter-spacing: 0px;
+    color: #646464;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.exp5 {
+    width: 286px;
+    height: 85px;
+    text-align: left;
+    letter-spacing: 0px;
+    color: #646464;
+    top: 150px;
+    right: 0px;
+    font-size: 14px;
+
+}
+
+.exp6 {
+    top: 249px;
+    right: 80px;
+    color: #646464;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.exp7 {
+
+
+    width: 276px;
+    height: 85px;
+    text-align: left;
+    letter-spacing: 0px;
+    color: #646464;
+    font-size: 14px;
+
+}
+
+
+/* ----------------------------------------
+-------------------Extra Services----------
+-------------------------------------------- */
+
+.box {
+    /* margin-top: 51px; */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1140px;
+    display: block;
+
+}
+
+.box .row {
+    margin-top: 39px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+
+}
+
+
+.includetext2 {
+    /* width: 84px; */
+    height: 43px;
+    letter-spacing: 0px;
+    color: #4F4F4F;
+    font-size: 36px;
+    font-family: Roboto;
+    font-weight: bold;
+    margin-top: 41px;
+}
+
+
+
+.box .img11, .box .img12, .box .img13, .box .img14, .box .img15 {
+    width: 108px;
+    height: 108px;
+    border: 1px solid #B0C9CE;
+    border-radius: 50%;
+    position: relative;
+}
+
+.imgs1 {
+    position: absolute;
+    top: 30px;
+    left: 36px;
+    width: 37px;
+    height: 48px;
+}
+
+.box .heading {
+    width: 108px;
+    height: 19px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #646464;
+    font-size: 16px;
+    margin-left: 1px;
+    margin-top: 14px;
+    margin-top: 5px;
+}
+
+.box .duration {
+    /* width: 90px; */
+    height: 22px;
+    /* text-align: center; */
+    letter-spacing: 0px;
+    color: #1D7A8C;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 1px;
+}
+
+.imgs2 {
+    width: 28px;
+    height: 56px;
+    position: absolute;
+    left: 40px;
+    top: 24px;
+}
+
+.imgs3 {
+    width: 52px;
+    height: 32px;
+    position: absolute;
+    top: 38px;
+    left: 28px;
+}
+
+.imgs4 {
+    position: absolute;
+    top: 31px;
+    left: 35px;
+    width: 39px;
+    height: 46px;
+}
+
+.imgs5 {
+    position: absolute;
+    top: 31px;
+    left: 31px;
+    width: 47px;
+    height: 47px;
+}
+
+@media screen and (max-width:900px) {
+    .box {
+        width: auto;
+    }
+
+    .col-md-2 {
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+
+@media screen and (max-width:1000px) {
+    .sepimg {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sepimg::after, .sepimg::before {
+        content: '';
+        position: absolute;
+        margin: auto;
+        height: 1px;
+        width: 39%;
+        height: 1px;
+        background: #CCCCCC;
+        top: 45%;
+    }
+
+    .mx-30 {
+        margin-bottom: auto;
+    }
+
+    .card-img-top {
+        width: auto;
+        height: auto;
+        max-width: 300px;
+    }
+}
+
+
+@media screen and (max-width:800px) {
+    .exp, .exp1, .exp2, .exp3, .exp4, .exp5, .exp6, .exp7 {
+        width: auto;
+        height: auto;
+        text-align: center;
+    }
+
+}
+
+
+
+@media screen and (max-width:600px) {
+    .price {
+        margin-left: auto;
+        margin-right: auto;
+        height: 304px;
+        width: 300px;
+
+    }
+
+    .pricebtn {
+        width: auto;
+        height: 281px;
+        border: 1px solid #B0C9CE;
+    }
+
+    .pricebtn .btn1 {
+        width: 100%;
+        height: 59px;
+        font-size: 16px;
+    }
+
+    .box1, .box2, .box3 {
+        margin-left: 4%;
+        margin-right: auto;
+        height: 45px;
+    }
+
+    .exp, .exp1, .exp2, .exp3, .exp4, .exp5, .exp6, .exp7 {
+        width: auto;
+        height: auto;
+        max-width: 320px;
+        text-align: center;
+    }
+
+    .newsletter .up_arrow {
+        left: 10px;
+    }
+
+    .newsletter .chats {
+        right: 10px;
+    }
+
+}
+
+@media (max-width: 400px) {
+    .mx-30 {
+        margin-bottom: auto;
+        width: 100%;
+    }
+
+    .thebest {
+        width: auto;
+        max-width: 250px;
+    }
+
+    .includetext {
+
+        font-size: 22px;
+
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .card-img-top {
+        width: auto;
+        height: auto;
+    }
+
+
+}
