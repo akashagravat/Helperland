@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto';
+}
+
+.pricewrapper {
+    margin-top: 25% !important;
+}
+
+.logouts {
+    padding-bottom: 9px;
+    padding-left: 17px;
+}
+.scrolling-active .navbar-nav {
+    padding-top: 53px;
+    padding-bottom: 40px;
+}
+.navbar .navbar-nav .nav-item .nav-link:hover {
+    color: yellow !important;
+    border-radius: 20px;
+    border: none ;
+    background-color: #525252 !important;
+}
+
+.wlcm {
+    color: #4F4F4F;
+    font-size: 30px;
+    font-weight: normal;
+}
+
+.wlcm-nm {
+    color: #4F4F4F;
+    font-weight: bold;
+}
+
+
+.navbar {
+    background-color: #525252;
+    height: auto;
+}
+
+.navbar-nav .nav-item {
+    padding-top: 6px;
+}
+
+.navbar-nav .nav-item:last-child {
+    padding-top: 0px;
+}
+
+.navbar .navbar-brand img {
+    width: 73px;
+    height: 54px;
+}
+
+.navbar .navbar-nav .nav-item .item1 {
+    height: 20px;
+    color: #FFFFFF;
+    font-size: 17px;
+}
+
+.navbar .navbar-nav .wbg {
+    max-width: 258px;
+    max-height: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar .navbar-nav .wbg a {
+    font-size: 17px;
+    color: #FFFFFF;
+}
+.navbar .navbar-nav {
+    padding-top: 60px;
+    padding-bottom: 57px;
+    position: absolute;
+    right: 15px;
+}
+
+.navbar .user {
+    font-size: 22px;
+    color: #FFFFFF;
+}
+
+.navbar .notification {
+    width: 70px;
+    padding-left: 10px;
+    border-left: 1px solid white;
+
+}
+
+
+
+.bars {
+    color: #FFFFFF;
+    align-items: center;
+}
+
+
+.navbar .navbar-nav .ntf {
+    font-size: 23px;
+    color: #FFFFFF;
+}
+
+.navbar .users {
+    padding-left: 10px;
+    border-left: 1px solid #FFFFFF;
+}
+
+.navbar .navbar-nav .badge-danger {
+    color: #fff;
+    top: 0px;
+    left: 32px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #dc3545;
+}
+
+.notification .dropdown-toggle::after {
+    content: none;
+
+
+}
+
+.users .dropdown-toggle {
+    color: #FFFFFF;
+}
+
+.navbar .nav-item .booknow {
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    color: #FFFFFF;
+    background-color: #29626D;
+    width: 111px;
+    height: 40px;
+    text-align: center;
+
+}
+
+.booked {
+    width: 118px
+}
+
+.navbar .prices {
+    width: 162px;
+}
+
+.prices .item1 {
+    width: 162px;
+}
+
+
+
+
+/* Mobile Navbar */
+
+.mobile-nav {
+    display: none;
+}
+
+
+
+@media screen and (max-width:1150px) {
+    .vertical-nav {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block;
+    }
+
+    .header-navigationbar {
+        display: none !important;
+    }
+
+    .mobile-nav .navbar-toggler {
+        display: block !important;
+        position: fixed;
+        right: 10px;
+    }
+
+    .mobile-nav .collapse {
+        display: none !important;
+    }
+
+    .mobile-nav .show {
+        transition: 0.3s all;
+        display: block !important;
+    }
+
+    .header-navigationbar .navbar-collapse {
+        display: none !important;
+    }
+
+    .mobile-nav .nav {
+        top: 75px;
+        right: 0px;
+        background-color: #FFFFFF;
+        position: fixed;
+        width: 250px;
+        overflow: scroll;
+        /* margin: auto; */
+        height: 87vh;
+        display: block;
+    }
+
+    .table {
+        width: 100%;
+        max-width: initial;
+        margin-left: auto;
+        overflow: scroll;
+        margin-right: 0%;
+    }
+}
+
+.mobile-nav .nav-item .nav-link:hover {
+    color: #1D7A8C !important;
+    font-weight: bold;
+    transition: 0.3s all;
+}
+
+.mobile-nav .nav-item .nav-link {
+    color: #424242;
+}
+
+.mobile-nav .wlcm {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #4F4F4F;
+    font-size: 20px;
+    padding-left: 15px;
+    /* text-align: center; */
+    font-weight: normal;
+    border-bottom: 1px solid silver;
+}
+
+.mobile-nav .active .nav-link {
+    color: #1D7A8C;
+    font-weight: bold;
+}
+
+.mobile-nav .newnav {
+    padding-top: 5px;
+    border-top: 0.5px solid silver;
+}
+
+.mobile-nav .ntf {
+    font-size: 23px;
+    color: #FFFFFF;
+}
+
+.mobile-nav .badge-danger {
+    color: #fff;
+    top: -5px;
+    left: 25px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #dc3545;
+}
+
+.mobile-nav .dropdown-toggle::after {
+    content: none;
+
+
+}
+
+.mobile-nav .navbar {
+    height: 75px;
+}
+
+.mobile-nav .notifications {
+    width: 56px;
+    height: 38px;
+    display: grid;
+    align-items: center;
+    padding-left: 10px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mobile-nav .fb-insta {
+    padding-top: 5px;
+    text-align: center;
+    border-top: 0.5px solid silver;
+}
+
+.mobile-nav .fb-insta .nav-link span {
+    margin-left: 10px;
+}
+
+.mobile-nav .bars {
+    color: #FFFFFF;
+    align-items: center;
+    font-size: 30px;
+}
+
+.navbar .nav-item .nav-link:hover {
+    color: yellow;
+    transition: 0.3s all;
+    font-weight: bold;
+}
+
+@media screen and (min-width:1100px) {
+
+    .navbar .nav-item a {
+        margin-right: 40px;
+    }
+
+    .navbar-nav .wbg {
+        max-width: 258px;
+        max-height: 20px;
+    }
+
+    .navbar .wbg a {
+        margin-right: 18px;
+    }
+
+    .navbar .dropdown-menu {
+        margin-left: -114px;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .mobile-nav .navbar .collapse.show {
+        display: block;
+        position: fixed;
+        right: 0px;
+        top: 75px;
+        background-color: #FFFFFF;
+        overflow: scroll;
+        width: auto;
+    }
+}
