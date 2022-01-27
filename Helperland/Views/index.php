@@ -6,15 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
-
+    <?php
+    $base_url = "http://localhost/helper/";
+    ?>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/Homepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/validation.css">
-    <?php 
+    <?php
+    if (!isset($_SESSION['username'])) { ?>
+        <link rel="stylesheet" href="./assets/css/Homenav.css">
+    <?php } ?>
+    <?php
     if (isset($_SESSION['username'])) { ?>
-        <link rel="stylesheet" href="./../assets/css/loginnav.css">
+        <link rel="stylesheet" href="./assets/css/HomeLogin.css">
     <?php } ?>
 
 
@@ -23,7 +29,7 @@
 
 <body>
     <div class="wrapper">
-     <?php include('Homenav.php');?>
+        <?php include('Homenav.php'); ?>
         <main>
             <section class="banner">
                 <ul class="dummy">
@@ -116,14 +122,14 @@
                             </p>
 
                         </div>
-                        <form method="POST" action="">
+                        <form method="POST" action=<?= $base_url . "./?controller=Helperland&function=Login" ?>>
 
                             <div class="form-group email">
                                 <input type="email" class="form-control" id="loginemail" name="loginemail" value="<?php if (isset($_COOKIE['emailcookie'])) {
                                                                                                                         echo $_COOKIE['emailcookie'];
                                                                                                                     } ?>" placeholder="Email">
-                                <span class="email-msg mails"></span>
                             </div>
+                            <div class="email-msg mails mb-2"></div>
                             <div class="form-group password">
                                 <input type="password" class="form-control" id="loginpassword" name="password" value="<?php if (isset($_COOKIE['passwordcookie'])) {
                                                                                                                             echo $_COOKIE['passwordcookie'];
@@ -131,7 +137,12 @@
 
                             </div>
                             <div class="form-check mb-2 my-sm-2">
-                                <input class="form-check-input" name="remember" type="checkbox" id="inlineFormCheck" />
+                                <?php if (isset($_COOKIE)) { ?>
+                                    <input class="form-check-input" name="remember" type="checkbox" checked id="inlineFormCheck" />
+                                <?php } ?>
+                                <?php if (!isset($_COOKIE)) { ?>
+                                    <input class="form-check-input" name="remember" type="checkbox" id="inlineFormCheck" />
+                                <?php } ?>
                                 <label class="form-check-label" for="inlineFormCheck">
                                     Remember me
                                 </label>
@@ -166,7 +177,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="include/crud.php">
+                        <form method="POST" action=<?= $base_url . "./?controller=Helperland&function=ForgotMail" ?>>
                             <div class="form-group email">
                                 <span class="email-msg float-left"></span>
                                 <span class="error-emails float-right" style="color:green;"></span>
@@ -458,7 +469,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="./assets/js/HomePage.js"></script>
+    <script src="./assets/js/Homepage.js"></script>
 
 </body>
 

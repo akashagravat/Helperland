@@ -1,5 +1,6 @@
 <?php
 
+$base_url = "http://localhost/helper/";
 
 if (!isset($_SESSION['username'])) { ?>
     <nav class="navbar  navbar-expand-lg fixed-top">
@@ -81,9 +82,9 @@ if (!isset($_SESSION['username'])) { ?>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Setting</a>
                             <div class="dropdown-divider"></div>
-                            <form method="GET" action="./include/logout.php">
-                                <button class="dropdown-item" name="logout">Logout</button>
-                            </form>
+                            <form method="POST" action=<?= $base_url."./?controller=helperland&function=Logout"?>>
+                                    <button class="dropdown-item" name="logout" type="submit">Logout</button>
+                                </form>
                         </div>
                     </li>
                 </ul>
@@ -159,9 +160,9 @@ if (!isset($_SESSION['username'])) { ?>
                             My Setting </a>
                     </li>
                     <li class="nav-item">
-                        <form method="GET" action="include/logout.php">
-                            <button class="dropdown-item logouts" name="logout">Logout</button>
-                        </form>
+                    <form method="POST" action=<?= $base_url."./?controller=helperland&function=Logout"?>>
+                                    <button class="dropdown-item" name="logout" type="submit">Logout</button>
+                                </form>
                     </li>
                     <li class="nav-item newnav">
                         <a href="#" class="nav-link ">

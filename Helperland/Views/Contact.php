@@ -1,4 +1,7 @@
-<?php include('./header.php'); ?>
+<?php include('./header.php'); 
+
+$base_url = "http://localhost/helper/";
+?>
 
 <link rel="stylesheet" href="./assets/css/Contacts.css">
 
@@ -49,36 +52,49 @@
     <section class="contactus">
         <div class="container forms">
             <h3 class="gettouch">Get In Touch With US</h3>
-            <form class="cntfm">
+            <form class="cntfm" method="POST" action=<?= $base_url."./?controller=helperland&function=ContactUs"?>>
+              <?php if(isset($_SESSION['message'])){ ?>
+                <div class="form-row mb-3">
+                    <p class="text-center bg-success text-white px-4 py-2 mx-auto my-auto">
+                    <?php echo $_SESSION['message']; ?>
+                    </p>
+                </div>
+                <?php } ?>
                 <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <input type="text" class="form-control" placeholder="First name">
+                    <div class="col-md-6 mb-2">
+                        <input type="text" class="form-control" id="firstName" name="firstname" placeholder="First name">
+                        <div class="first-name-msg"></div>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <input type="text" class="form-control" placeholder="Last name">
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name">
+                        <div class="last-name-msg"></div>
                     </div>
                 </div>
                 <div class="form-row part2">
-                    <div class="col-md-6 mb-2">
+                    <div class="col-md-6 mb-1">
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">+49</div>
                             </div>
-                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Mobile Number">
+                            <input type="text" class="form-control" id="mobilenum" name="mobile"  placeholder="Mobile Number" maxlength="10" size="10">
                         </div>
+                        <div class="mobile-msg"></div>
                     </div>
                     <div class="col-md-6">
-                        <input type="email" class="form-control" placeholder="Email address">
+                        <input type="email" class="form-control" id="useremail" name="email" placeholder="Email address">
+                        <div class="email-msg "></div>
                     </div>
                 </div>
                 <div class="form-row dropdowns">
-                    <select id="disabledSelect" class="form-control drop">
+                    <select id="disabledSelect" class="form-control drop" name="sub">
                         <option>Subject</option>
+                        <option>Subscription</option>
+                        <option>Feedback</option>
                     </select>
                 </div>
 
                 <div class="form-row msg">
-                    <textarea class="form-control message" placeholder="Message"></textarea>
+                    <textarea class="form-control message" name="message" placeholder="Message" required></textarea>
                 </div>
 
                 <div class="form-row sbmt">
@@ -107,6 +123,7 @@
     <?php
     include('./footer.php');
     ?>
+    <script src="./assets/js/CustomerSignUp.js"></script>
 </body>
 
 </html>

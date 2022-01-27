@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -15,7 +16,12 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/validation.css">
-    <?php if (!isset($_SESSION['username'])) { ?>
+    <?php
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+     if (!isset($_SESSION['username'])) { ?>
         <link rel="stylesheet" href="./assets/css/navbar.css">
     <?php  } ?>
     <?php if (isset($_SESSION['username'])) { ?>
