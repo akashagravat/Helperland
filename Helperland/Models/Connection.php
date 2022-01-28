@@ -25,11 +25,15 @@ class Helperland
         $result = $stmt->execute($array);
         // return $result;
         if ($result) {
-            $_SESSION['msg'] = "Your Account has been Created Please Verify Your Email.";
+            $_SESSION['status_msg'] = "Your Account has been Created Please Verify Your Email.";
+            $_SESSION['status_txt'] = "";
+            $_SESSION['status'] = "success";
         } else {
-            $_SESSION['msg'] = "Your Account is not Created Please Try Again.";
+            $_SESSION['status_msg'] = "Your Account is not Created Please Try Again.";
+            $_SESSION['status_txt'] = "";
+            $_SESSION['status'] = "alert";
         }
-        return $_SESSION['msg'];
+        return array($_SESSION['status_msg'], $_SESSION['status_txt'], $_SESSION['status']);
     }
 
     public function EmailExists($email)
@@ -41,7 +45,8 @@ class Helperland
         return $count;
     }
 
-    public function ResetKey($email){
+    public function ResetKey($email)
+    {
         $sql = "select * from user where Email = '$email'";
         $stmt =  $this->conn->prepare($sql);
         $stmt->execute();
@@ -49,9 +54,7 @@ class Helperland
         $username = $row['FirstName'];
         $resetkey = $row['ResetKey'];
         $count = $stmt->rowCount();
-        return array($username,$resetkey,$count);
-        
-
+        return array($username, $resetkey, $count);
     }
     public function Activation($resetkey)
     {
@@ -59,14 +62,17 @@ class Helperland
         $stmt =  $this->conn->prepare($update);
         $result = $stmt->execute();
         if ($result) {
-            if (isset($_SESSION['msg'])) {
-                $_SESSION['msg'] = "Congratulation,Your Account verification is successfull!! You Can Login Now";
-            }
+            $_SESSION['status_msg'] = "Congratulation, Your Account verification is successfull!! ";
+            $_SESSION['status_txt'] = "You Can Login Now";
+            $_SESSION['status'] = "success";
         } else {
-            $_SESSION['msg'] = "You are Logged Out";
+            $_SESSION['status_msg'] = "You Are Logged Out";
+            $_SESSION['status_txt'] = "";
+            $_SESSION['status'] = "success";
         }
+        return array($_SESSION['status_msg'], $_SESSION['status_txt'], $_SESSION['status']);
     }
-    public function CheckLogin($email,$password)
+    public function CheckLogin($email, $password)
     {
         $base_url = "http://localhost/helper/#LoginModal";
         $customer = "http://localhost/helper/Customer-Servicehistory";
@@ -80,22 +86,24 @@ class Helperland
         $usertypeid = $row['UserTypeId'];
         if ($count == 1) {
             if (password_verify($password, $row['Password'])) {
-                if($usertypeid = 0){
-                $_SESSION['username'] = $email;
-          
-                header('Location:' . $customer);
-                }else if($usertypeid = 1){
+                if ($usertypeid = 0) {
+                    $_SESSION['username'] = $email;
+
+                    header('Location:' . $customer);
+                } else if ($usertypeid = 1) {
                     $_SESSION['username'] = $email;
                     header('Location:' . $sp);
-
                 }
-              } 
-              else{
-                $_SESSION['msg'] = "Password Invalid";  
+            } else {
+                $_SESSION['status_msg'] = "Password Invalid";
+                $_SESSION['status_txt'] = "Please Enter Valid Password";
+                $_SESSION['status'] = "warning";
                 header('Location:' . $base_url);
-      
-              }
+            }
         } else {
+            $_SESSION['status_msg'] = "User does not exists";
+            $_SESSION['status_txt'] = "Please Enter Valid User";
+            $_SESSION['status'] = "alert";
             $_SESSION['msg'] = "User Not Available";
             header('Location:' . $base_url);
         }
@@ -109,11 +117,17 @@ class Helperland
         $result = $stmt->execute($array);
         // return $result;
         if ($result) {
-            $_SESSION['message'] = "Message Has Been Sent Succesfully";
+            $_SESSION['status_msg'] = "Message Has Been Sent Succesfully";
+            $_SESSION['status_txt'] = "";
+            $_SESSION['status'] = "success";
+            // $_SESSION['msg'] = "Your Account has been Created Please Verify Your Email.";
         } else {
-            $_SESSION['message'] = "Your Account is not Created Please Try Again.";
+            $_SESSION['status_msg'] = "Your Message is not Sent Please Try Again.";
+            $_SESSION['status_txt'] = "";
+            $_SESSION['status'] = "alert";
+
         }
-        return $_SESSION['message'];
+        return array($_SESSION['status_msg'], $_SESSION['status_txt'], $_SESSION['status']);
     }
 
     public function ResetPass($array)
@@ -122,11 +136,14 @@ class Helperland
         $stmt =  $this->conn->prepare($sql);
         $result = $stmt->execute($array);
         if ($result) {
-            $_SESSION['msg'] = "Password Updated Successfully";
+            $_SESSION['status_msg'] = "Password Updated Successfully";
+            $_SESSION['status_txt'] = "";
+            $_SESSION['status'] = "success";
         } else {
-            $_SESSION['msg'] = "Password Not Updated.Please Try Again.";
+            $_SESSION['status_msg'] = "Password Not Updated. Please Try Again. ";
+            $_SESSION['status_txt'] = "";
+            $_SESSION['status'] = "warning";
         }
-        return $_SESSION['msg'];
+        return array($_SESSION['status_msg'], $_SESSION['status_txt'], $_SESSION['status']);
     }
-
 }
