@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="./assets/css/Homepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/validation.css">
+    
     <?php
     if (!isset($_SESSION['username'])) { ?>
         <link rel="stylesheet" href="./assets/css/Homenav.css">
@@ -469,7 +471,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
+    <script src="./assets/js/Script.js"></script>
+    <script src="alerts.php"></script>
     <script src="./assets/js/Homepage.js"></script>
+    <?php if (isset($_SESSION)) { ?>
+    <script>
+        $(document).ready(function() {
+
+            Swal.fire({
+                title: '<?php echo $_SESSION['status_msg']; ?>',
+                text: '<?php echo $_SESSION['status_txt']; ?>',
+                icon: '<?php echo $_SESSION['status']; ?>',
+                confirmButtonText: 'Done'
+            })
+
+        });
+    </script>
+<?php
+    unset($_SESSION['status_msg']);
+    unset($_SESSION['status_txt']);
+    unset($_SESSION['status']);
+}
+?>
 
 </body>
 

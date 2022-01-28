@@ -47,4 +47,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/table2csv@1.1.6/src/table2csv.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
 <script src="./assets/js/Script.js"></script>
+<?php if (isset($_SESSION)) { ?>
+    <script>
+        $(document).ready(function() {
+
+            Swal.fire({
+                title: '<?php echo $_SESSION['status_msg']; ?>',
+                text: '<?php echo $_SESSION['status_txt']; ?>',
+                icon: '<?php echo $_SESSION['status']; ?>',
+                confirmButtonText: 'Done'
+            })
+
+        });
+    </script>
+<?php
+    unset($_SESSION['status_msg']);
+    unset($_SESSION['status_txt']);
+    unset($_SESSION['status']);
+}
+?>
