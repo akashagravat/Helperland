@@ -11,7 +11,7 @@ class HelperlandController
     {
         include("./Views/index.php");
     }
-
+ 
     public function InsertUser()
     {
         $baseurl = "http://localhost/helper/Customer-Signup";
@@ -37,10 +37,16 @@ class HelperlandController
                     'isregistered' => 'yes',
                 ];
                 $result = $this->model->InsertCustomer_SP($array);
+                $_SESSION['status_msg'] = $result[0];
+                $_SESSION['status_txt'] = $result[1]; 
+                $_SESSION['status'] = $result[2];
                 include('ActivateAccount.php');
                 header('Location:' . $base_url);
             } else {
-                $_SESSION['err'] = "Email Already Exists";
+                $_SESSION['status_msg'] = "Email Already Exists";
+                $_SESSION['status_txt'] = "Try Another Email";
+                $_SESSION['status'] = "error";
+                // $_SESSION['err'] = "Email Already Exists";
                 header("Location:" . $baseurl);
             }
         }
@@ -111,10 +117,16 @@ class HelperlandController
             $count = $result[2];
             if ($count == 1) {
                 include('ForgotPassword.php');
-                $_SESSION['msg'] = "Reset Password Link has been sent successfully!";
+                $_SESSION['status_msg'] = "Reset Password Link has been sent successfully!";
+                $_SESSION['status_txt'] = "";
+                $_SESSION['status'] = "success";
+                // $_SESSION['msg'] = "Reset Password Link has been sent successfully!";
                 header('Location:' . $base_url);
             } else {
-                $_SESSION['msg'] = "Please Enter Valid Email";
+                $_SESSION['status_msg'] = "Please Enter Valid Email";
+                $_SESSION['status_txt'] = "";
+                $_SESSION['status'] = "error";
+                // $_SESSION['msg'] = "Please Enter Valid Email";
                 header('Location:' . $base_url);
             }
         }
@@ -144,9 +156,14 @@ class HelperlandController
                     'resetkey' => $resetkey,
                 ];
                 $result = $this->model->ResetPass($array);
+                $_SESSION['status_msg'] = $result[0];
+                $_SESSION['status_txt'] = $result[1]; 
+                $_SESSION['status'] = $result[2];
                 header('Location:' . $base_url);
             } else {
-                $_SESSION['msg'] = "Password Not Match";
+                $_SESSION['status_msg'] = "Password Not Match";
+                $_SESSION['status_txt'] = "Please Try Again"; 
+                $_SESSION['status'] = "warning";
                 header('Location:' . $base_url);
             }
         }
@@ -174,6 +191,9 @@ class HelperlandController
             $result = $this->model->Contactus($array);
             $results = $this->model->ResetKey($email);
             $_SESSION['firstname'] = $results[0];
+            $_SESSION['status_msg'] = $result[0];
+            $_SESSION['status_txt'] = $result[1]; 
+            $_SESSION['status'] = $result[2];
             header('Location:' . $base_url);
         }
     }
@@ -183,7 +203,10 @@ class HelperlandController
         if(isset($_POST)){
             $base_url = "http://localhost/helper/#LoginModal";
             unset($_SESSION['username']);
-            $_SESSION['msg'] = "You are Logged Out"; 
+            $_SESSION['status_msg'] = "You are Logged Out";
+            $_SESSION['status_txt'] = "";
+            $_SESSION['status'] = "success";
+            // $_SESSION['msg'] = "You are Logged Out"; 
             header('Location:'.$base_url);
         }
     }
