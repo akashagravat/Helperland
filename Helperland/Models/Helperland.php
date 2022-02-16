@@ -56,8 +56,9 @@ class Helperland
         $username = $firstname . ' ' . $lastname;
         $userid = $row['UserId'];
         $resetkey = $row['ResetKey'];
+        $usertypeid = $row['UserTypeId'];
         $count = $stmt->rowCount();
-        return array($username, $resetkey, $count, $userid);
+        return array($username, $resetkey, $count, $userid, $usertypeid);
     }
     public function Activation($resetkey)
     {
@@ -94,16 +95,19 @@ class Helperland
 
                     if ($usertypeid == 0) {
                         $_SESSION['username'] = $email;
+                        $_SESSION['usertypecustomer'] = $usertypeid;
                         $update = "UPDATE user SET Status = 'Active' WHERE Email= '$email'";
                         $update =  $this->conn->prepare($update);
                         $update->execute();
                         header('Location:' . $customer);
                     }
                     if ($usertypeid == 1) {
-                        $_SESSION['username'] = $email;
+                        $_SESSION['usertype'] = $usertypeid;
+                        $_SESSION['usernameservice'] = $email;
                         header('Location:' . $sp);
                     }
-                    if ($usertypeid == 3) {
+                    if ($usertypeid == 2) {
+                        $_SESSION['usertypeadmin'] = $usertypeid;
                         $_SESSION['username'] = $email;
                         header('Location:' . $admin);
                     }
@@ -153,6 +157,7 @@ class Helperland
         $sql = "UPDATE user SET Password = :password , ModifiedDate = :updatedate , ModifiedBy = :modifiedby WHERE ResetKey = :resetkey";
         $stmt =  $this->conn->prepare($sql);
         $result = $stmt->execute($array);
+        $count = $stmt->rowCount();
         if ($result) {
             $_SESSION['status_msg'] = "Password Updated Successfully";
             $_SESSION['status_txt'] = "";
@@ -162,7 +167,7 @@ class Helperland
             $_SESSION['status_txt'] = "";
             $_SESSION['status'] = "warning";
         }
-        return array($_SESSION['status_msg'], $_SESSION['status_txt'], $_SESSION['status']);
+        return array($_SESSION['status_msg'], $_SESSION['status_txt'], $_SESSION['status'],$count);
     }
 
     public function PostalExists($postal)
@@ -298,7 +303,18 @@ class Helperland
         $result  = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
-
+    public function GetUsersServiceprovider($id)
+    {
+        $idresult = array();
+        foreach($id as $array){
+            $sql = "SELECT Email FROM `user` WHERE UserId = {$array}";
+            $stmt =  $this->conn->prepare($sql);
+            $stmt->execute();
+            $result  = $stmt->fetch(PDO::FETCH_ASSOC);
+            array_push($idresult,$result);
+        }
+        return $idresult;
+    }
     public function AddService($array)
     {
         $sql = "INSERT INTO servicerequest ( `UserId`, `ServiceStartDate`, `ServiceTime`, `ZipCode`,  `ServiceHourlyRate`, `ServiceHours`, `ExtraHours`, `TotalHours`, `TotalBed`, `TotalBath`, `SubTotal`, `Discount`, `TotalCost`, `EffectiveCost`, `ExtraServices`, `Comments`, `AddressId`, `PaymentTransactionRefNo`, `PaymentDue`, `HasPets`, `Status`, `CreatedDate`,  `PaymentDone`, `RecordVersion`)
@@ -327,4 +343,32 @@ class Helperland
         $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function GetServiceHistory($userid)
+    {
+        $sql = "SELECT * FROM `servicerequest` WHERE `UserId` = $userid";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function GetUserAllDetails($email)
+    {
+        $sql = "select * from user where Email = '$email'";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function UpdateCustomer($array)
+    {
+        $sql = "UPDATE `user` SET `FirstName`= :fistname,`LastName`=:lastname,`Mobile`=:mobile,`DateOfBirth`= :birthdate,`LanguageId`=:language,`ModifiedDate`=:modifieddate,`ModifiedBy`=:modifiedby WHERE `Email`=:email";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute($array);
+       $count = $stmt->rowCount();
+       return array($count);
+    }
+
+   
 }
