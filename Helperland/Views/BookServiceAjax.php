@@ -168,8 +168,6 @@
         $(".addresssave").on("click", function(e) {
             e.preventDefault();
             var street = $.trim($("#street").val());
-
-
             var houseno = $.trim($("#houseno").val());
             var pincode = $.trim($("#pincode").val());
             var location = $.trim($("#location").val());
@@ -202,7 +200,13 @@
                         GetAddress();
 
                     } else {
-                        alert("it Enter valid Address");
+                        Swal.fire({
+                            title: 'Enter valid Address',
+                            text: '',
+                            icon: 'error',
+                            confirmButtonText: 'Done'
+                        })
+                        // alert("Enter valid Address");
                     }
                 }
             });
@@ -368,10 +372,16 @@
                 Extraservice = elements;
                 extrahours = extrahour;
 
-                selectedsp = "";
-                if ($('.selectbtn').hasClass('selectedsp')) {
-                    selectedsp = $('.selectedsp').val();
-                }
+                selectedsp = ['0'];
+                $('.selectedsp').each(function () {
+                    if($('.selectbtn').hasClass('selectedsp')){
+
+                    selectedsp.push($(this).val());
+                      
+                    }
+
+                })
+            
 
                 var servicehour = $('.basics span').text();
                 servicehours = parseFloat(servicehour);
@@ -534,8 +544,8 @@
                     if (data == 0) {
                         // alert('data not inserted');
                         Swal.fire({
-                            title: 'Data not Inserted ',
-                            text: 'Your id is ',
+                            title: 'Booking not completed',
+                            text: 'Please Try Again Later',
                             icon: 'error',
                             confirmButtonText: 'Done'
                         })
