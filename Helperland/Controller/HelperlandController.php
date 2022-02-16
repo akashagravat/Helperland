@@ -479,7 +479,9 @@ class HelperlandController
             $date = date('Y-m-d H:i:s');
             $paymentdone = 1;
             $recordversion = 1;
-            $id = $_POST['selectedsp'];
+            $ids = $_POST['selectedsp'];
+            $id = array_slice($ids,1);
+            // print_r($id);
             // echo $selectdate. ''. $servicetime. ''. $zipcode.''.$servicehourate.''.$servicehours.''
             // .$extrahour.''.$totalhour.''.$totalbed.''.$totalbath.''.$subtotal.''.$discount.''.$totalcost.''.$effectivecost.''.$extraservice.''. $comments.''
             // .$addressid.''. $paymentrefno.''.$paymentdue.''.$haspets;
@@ -528,13 +530,21 @@ class HelperlandController
             $serviceprovider = $this->model->GetActiveServiceProvider();
             if ($result) {
                 include('BookServiceClientConfirmationMail.php');
-                if (!empty($id)) {
-                    $sp = $this->model->GetUsers($id);
+                if (sizeof($id)>0) {
+                    $sp = $this->model->GetUsersServiceprovider($id);
+                    if(count($sp)){
+                    // $email = $sp['Email'];
                     $addressid = $result;
-                    $email = $sp['Email'];
-                    include('BookingMail.php');
+                    
+                    foreach($sp as $emails){
+                        $email = $emails['Email'];
+                        include('BookingMail.php');
+                    }
+                }
                     echo $addressid;
-                } else {
+                    // print_r($sp);
+                }
+                 else {
                     if (count($serviceprovider)) {
                         foreach ($serviceprovider as $row) {
                             $addressid = $result;
@@ -548,6 +558,335 @@ class HelperlandController
             } else {
                 echo 0;
             }
+        }
+    }
+    public function CustomerDetails()
+    {
+        if (isset($_POST)) {
+            $email = $_POST['username'];
+            $result = $this->model->GetUserAllDetails($email);
+            if (count($result)) {
+                foreach ($result as $row) {
+                    $firstname = $row['FirstName'];
+                    $lastname = $row['LastName'];
+                    $email = $row['Email'];
+                    $mobile = $row['Mobile'];
+                    $date = $row['DateOfBirth'];
+                    $languageid = $row['LanguageId'];
+
+                    if (!empty($date)) {
+
+                        list($year, $month, $day) = explode("-", $date);
+                    } else {
+                        $year = "Year";
+                        $month = "Month";
+                        $day = "Day";
+                    }
+
+                    $result = [$firstname, $lastname, $email, $mobile, $day, $month, $year, $languageid];
+
+                    echo json_encode($result);
+                }
+            }
+        }
+    }
+
+    public function AddCustomerDetails()
+    {
+        if (isset($_POST)) {
+            $firstname =   $_POST['firstname'];
+            $lastname =   $_POST['lastname'];
+            $email =   $_POST['email'];
+            $mobile =   $_POST['mobile'];
+            $birthdate =   $_POST['birthdate'];
+            $language =   $_POST['language'];
+            $modifiedby = $firstname . " " . $lastname;
+            $modifieddate = date('Y-m-d H:i:s');
+            $array = [
+                'fistname' => $firstname,
+                'lastname' => $lastname,
+                'mobile' => $mobile,
+                'birthdate' => $birthdate,
+                'language' => $language,
+                'modifieddate' => $modifieddate,
+                'modifiedby' => $modifiedby,
+                "email" => $email,
+            ];
+            $result = $this->model->UpdateCustomer($array);
+            $count = $result[0];
+            if ($count == 1) {
+                echo 1;
+            } else {
+                echo 0;
+            }
+        }
+    }
+
+    public function UpdatePassword()
+    {
+        if (isset($_POST)) {
+            $email = $_POST['username'];
+            $currentpassword = $_POST['currentpassword'];
+            $newpassword = $_POST['newpassword'];
+            $confirmpassword = $_POST['newconfirmpassword'];
+            $modifiedby = $_POST['modifiedby'];
+            $password = $this->model->GetUserAllDetails($email);
+            if (count($password)) {
+                foreach ($password as $pass) {
+                    $databasepassword = $pass['Password'];
+                    $resetkey = $pass['ResetKey'];
+                    if (password_verify($currentpassword, $databasepassword)) {
+                        if ($newpassword == $confirmpassword) {
+                            $update_date = date('Y-m-d H:i:s');
+                            $newpass = password_hash($newpassword, PASSWORD_BCRYPT);
+                            $cpass = password_hash($confirmpassword, PASSWORD_BCRYPT);
+                            $array = [
+                                'password' => $newpass,
+                                'updatedate' => $update_date,
+                                'modifiedby' => $modifiedby,
+                                'resetkey' => $resetkey,
+                            ];
+                            $result = $this->model->ResetPass($array);
+                            unset($_SESSION['status_msg']);
+                            unset($_SESSION['status_txt']);
+                            unset($_SESSION['status']);
+
+                            $count = $result[3];
+                            if ($count == 1) {
+                                echo 1;
+                            } else {
+                                echo 2;
+                            }
+                        }
+                    } else {
+                        echo 0;
+                    }
+                }
+            }
+        }
+    }
+
+    public function CustomerHistory()
+    {
+        if (isset($_POST)) {
+            $email = $_POST['username'];
+            $result = $this->model->ResetKey($email);
+            $userid = $result[3];
+            $result = $this->model->GetServiceHistory($userid);
+            $json['data'] = array();
+            if (count($result)) {
+                foreach ($result as $row) {
+                    $date = $row['ServiceStartDate'];
+                    $starttime = $row['ServiceTime'];
+                    $totaltime = $row['TotalHours'];
+                    $payment = $row['TotalCost'];
+                    $serviceid = $row['ServiceRequestId'];
+                    $control = '';
+                    $serviceidcolumn = ' <td class="serviceids" ><p class="specialmodaltext" title="View Service Details" data-toggle="modal" data-target="#bookingdetails" >' . $serviceid . '</p></td>';
+                    $datecolumn = '<td scope="row" class="dtime">
+                
+                                    <div class="col date specialmodaltext" title="View Service Details" data-toggle="modal" data-target="#bookingdetails"><img src="./assets/image/calendar2.png" class="calender">' . $date . '</div>
+
+                                    <div class="col time specialmodaltext" title="View Service Details" data-toggle="modal" data-target="#bookingdetails"><img src="./assets/image/layer-712.png" class="clock">' . $starttime . '</div>
+                    
+                                    </td>';
+                                        $serviceprovider = '<td class="service_provider_names">
+                                <div class="row ">
+                                    <div class="col service-provider-imgs"><img src="./assets/image/forma-1-copy-19.png" class="service-provider-img"></div>
+                                    <div class="col ml-3">
+                                        <div class="row service-provider">' . $serviceid . '</div>
+                                        <div class="row star">
+
+
+                                            <i class="fa fa-star s1"></i>
+                                            <i class="fa fa-star s2"></i>
+                                            <i class="fa fa-star s3"></i>
+                                            <i class="fa fa-star s4"></i>
+                                            <i class="fa fa-star s5"></i>
+                                        </div>
+                                        <span class="info"></span>
+
+                                    </div>
+                                </div>
+                            </td>';
+                                        $paymentcolumn = '<td>
+                            <div class="payment">
+                                <span class="euro">€</span>' . $payment . '
+                            </div>
+                        </td>';
+
+                                        $actioncolumn =  ' <td class="actionblock">
+                        <div class="row actionblocks">
+                            <div class="col-lg-6 col-md-6 col-6">
+                                <button class="btn reschedule" title="Reschedule" data-toggle="modal" data-target="#rescheduletime">Reschedule</button>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-6">
+                                <button class="btn cancel" title="Cancel" data-toggle="modal" data-target="#cancelmodal">Cancel</button>
+                            </div>
+                        </div>
+                    </td>';
+
+                    $results = array();
+                    $results['blocks'] = $control;
+                    $results['serviceid'] = $serviceidcolumn;
+                    $results['date'] = $datecolumn;
+                    $results['serviceprovider'] = $serviceprovider;
+                    $results['payment'] = $paymentcolumn;
+                    $results['action'] = $actioncolumn;
+
+                    array_push($json['data'], $results);
+                }
+                echo json_encode($json);
+                // $return = json_encode($output);
+
+            }
+        }
+    }
+
+    public function Getaddresstable()
+    {
+        if (isset($_POST)) {
+            $email = $_POST['username'];
+            $result = $this->model->GetAddress($email);
+            $json['data'] = array();
+            if (count($result)) {
+                foreach ($result as $row) {
+                    $street = $row['AddressLine1'];
+                    $houseno = $row['AddressLine2'];
+                    $city = $row['City'];
+                    $pincode = $row['PostalCode'];
+                    $mobile = $row['Mobile'];
+                    $isdefault = $row['IsDefault'];
+                    $isdeleted = $row['IsDeleted'];
+                    $addressid = $row['AddressId'];
+                    if ($isdefault == 1) {
+                        $isdefault =  'checked';
+                    } else {
+                        $isdefault = '';
+                    }
+                    if ($isdeleted == 0) {
+                        $radiooutput = '
+                        <div scope="row" class="addressradio">
+                        <input type="radio" id="unique' . $addressid . '" value="' . $addressid . '" name="addressradio" ' . $isdefault . '>
+                    </div>';
+     
+                      $addressline =  ' 
+                      <div scope="row">
+                                <div class="form-row control"><b>Address:</b> ' . $street . '  ' . $houseno . ' , ' . $city . ' ' . $pincode . '</div>
+                                <div class="form-row control"><b>Phone number:</b> ' . $mobile . '</div>
+                            </div>';
+
+                            $editdelete = ' <div class="edit_delete_address">
+                            <a href="#" class="edit_delete">
+                                <img src="./assets/Image/edit-icon.png">
+                            </a>
+                            <a href="#" class="edit_delete">
+                                <img src="./assets/Image/delete-icon.png">
+                            </a>
+                        </div>';
+
+                    $results = array();
+                    $results['radiobutton'] = $radiooutput;
+                    $results['addressoutput']= $addressline;
+                    $results['editordelete'] = $editdelete;
+                    array_push($json['data'], $results);
+                }
+                }
+            }
+            echo json_encode($json);
+
+        }
+    }
+
+    public function test()
+    {
+        if (isset($_POST)) {
+            $email = $_POST['username'];
+            $result = $this->model->ResetKey($email);
+            $userid = $result[3];
+            $result = $this->model->GetServiceHistory($userid);
+            $json['data'] = array();
+            if (count($result)) {
+                foreach ($result as $row) {
+                    $date = $row['ServiceStartDate'];
+                    $starttime = $row['ServiceTime'];
+                    $totaltime = $row['TotalHours'];
+                    $payment = $row['TotalCost'];
+                    $serviceid = $row['ServiceRequestId'];
+                    $control = '';
+                    $serviceidcolumn = ' <td class="serviceids" ><p class="specialmodaltext" title="View Service Details" data-toggle="modal" data-target="#bookingdetails" id="'.$serviceid.'" >' . $serviceid . '</p></td>';
+                    $datecolumn = '<td scope="row" class="dtime">
+                
+                <div class="col date specialmodaltext" title="View Service Details" data-toggle="modal" data-target="#bookingdetails"><img src="./assets/image/calendar2.png" class="calender">' . $date . '</div>
+
+                <div class="col time specialmodaltext" title="View Service Details" data-toggle="modal" data-target="#bookingdetails"><img src="./assets/image/layer-712.png" class="clock">' . $starttime . '</div>
+ 
+                </td>';
+                    $serviceprovider = '<td class="service_provider_names">
+            <div class="row ">
+                <div class="col service-provider-imgs"><img src="./assets/image/forma-1-copy-19.png" class="service-provider-img"></div>
+                <div class="col ml-3">
+                    <div class="row service-provider">' . $serviceid . '</div>
+                    <div class="row star">
+
+
+                        <i class="fa fa-star s1"></i>
+                        <i class="fa fa-star s2"></i>
+                        <i class="fa fa-star s3"></i>
+                        <i class="fa fa-star s4"></i>
+                        <i class="fa fa-star s5"></i>
+                    </div>
+                    <span class="info"></span>
+
+                </div>
+            </div>
+        </td>';
+                    $paymentcolumn = '<td>
+        <div class="payment">
+            <span class="euro">€</span>' . $payment . '
+        </div>
+    </td>';
+
+                    $actioncolumn =  ' <td class="actionblock">
+    <div class="row actionblocks">
+        <div class="col-lg-6 col-md-6 col-6">
+            <button class="btn reschedule" title="Reschedule" data-toggle="modal" data-target="#rescheduletime">Reschedule</button>
+        </div>
+        <div class="col-lg-6 col-md-6 col-6">
+            <button class="btn cancel" title="Cancel" data-toggle="modal" data-target="#cancelmodal">Cancel</button>
+        </div>
+    </div>
+</td>';
+
+                    $results = array();
+                    $results['blocks'] = $control;
+                    $results['serviceid'] = $serviceidcolumn;
+                    $results['date'] = $datecolumn;
+                    $results['serviceprovider'] = $serviceprovider;
+                    $results['payment'] = $paymentcolumn;
+                    $results['action'] = $actioncolumn;
+
+                    array_push($json['data'], $results);
+                }
+                echo json_encode($json);
+                // $return = json_encode($output);
+
+            }
+        }
+    }
+
+    public function PinCodeCity()
+    {
+        if (isset($_POST)) {
+            $pincode = $_POST['postalcode'];
+            $result = $this->model->CityLocation($pincode);
+            $city = $result[0];
+            $state = $result[1];
+            $return = [$city, $state];
+            $output =  '<option value="' . $city . '" selected>
+            ' . $city . '
+        </option>';
+            echo $output;
         }
     }
 }
