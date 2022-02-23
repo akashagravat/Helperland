@@ -47,7 +47,7 @@
     <?php if (isset($_SESSION['username'])) { ?>
         <div class="header-navigationbar">
             <nav class="navbar navbar-expand-lg fixed-top">
-                <a class="navbar-brand"><img src="assets/image/white-logo-transparent-background.png"></a>
+                <a class="navbar-brand" href="index.php"><img src="assets/image/white-logo-transparent-background.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"><i class="fa fa-bars bars"></i></span>
                 </button>
@@ -81,19 +81,21 @@
 
 
                         <li class="nav-item dropdown users">
-                            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/image/admin-user.png">
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">User Profile</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Setting</a>
-                                <div class="dropdown-divider"></div>
-                                <form method="POST" action=<?= $base_url."./?controller=helperland&function=Logout"?>>
-                                    <button class="dropdown-item" name="logout" type="submit">Logout</button>
-                                </form>
-                            </div>
-                        </li>
+                                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="assets/image/admin-user.png">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item disabled" >Welcome<div style="font-weight: bold;">
+                                    <?php echo $_SESSION["firstname"]; ?>  
+                                                                  </div></a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="./CustomerDashboard.php">My Dashboard</a>
+                                    <a class="dropdown-item" href="./CustomerSetting.php">My Settings</a>
+                                    <form method="POST" action=<?= $base_url . "./?controller=helperland&function=Logout" ?>>
+                                        <button class="dropdown-item" name="logout" type="submit">Logout</button>
+                                    </form>
+                                </div>
+                            </li>
                     </ul>
                 </div>
             </nav>
@@ -132,12 +134,12 @@
 
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link ">
+                            <a href="./CustomerDashboard.php" class="nav-link ">
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a href="#" class="nav-link ">
+                            <a href="./Customer-ServiceHistory.php" class="nav-link ">
                                 Service History </a>
                         </li>
                         <li class="nav-item ">
@@ -163,7 +165,7 @@
                                 Notifications </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ">
+                            <a href="CustomerSetting.php" class="nav-link ">
                                 My Setting </a>
                         </li>
                         <li class="nav-item">
@@ -172,12 +174,12 @@
                         </form>
                         </li>
                         <li class="nav-item newnav">
-                            <a href="#" class="nav-link ">
+                            <a href="./BookService.php" class="nav-link ">
                                 Book now
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link ">
+                            <a href="./Price.php" class="nav-link ">
                                 Prices & services
                             </a>
                         </li>
@@ -190,7 +192,7 @@
                                 Blog </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="#" class="nav-link ">
+                            <a href="./Contact.php" class="nav-link ">
                                 Contact </a>
                         </li>
 
