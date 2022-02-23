@@ -1,0 +1,436 @@
+table thead {
+    background-color: #E1E1E1 !important;
+}
+
+table.dataTable.no-footer {
+    border: 1px solid #E1E1E1;
+
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    padding: 10px 18px;
+    border-bottom: none;
+}
+.cancel:hover {
+
+background-color: #FF6B7F;
+}
+.selectime{
+    width: 100%;
+    height: 46px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    color: #495057;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{
+    color: #FFFFFF !important;
+    cursor: pointer;
+    background-color: #1D7A8C;
+    text-decoration: none;
+    border-radius: 50%;
+    background: #FFFFFF;
+    /* color: #777777 !important; */
+    font-size: 14px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #E1E1E1;
+    display: inline-block;
+    text-align: center;
+    padding: 6px;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    background-color: #1D7A8C;
+    text-decoration: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #777777 !important;
+    font-size: 14px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #E1E1E1;
+    display: inline-block;
+    text-align: center;
+    padding: 6px;
+}
+
+.dataTables_info {
+    margin-top: 2.5%;
+    display: inline-block;
+    padding-left: 8px;
+    padding-top: 0px !important;
+    clear: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+    border-radius: 50%;
+    background: #FFFFFF;
+    /* color: #777777 !important; */
+    font-size: 14px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #E1E1E1;
+    display: inline-block;
+    text-align: center;
+    padding: 6px;
+    color: #FFFFFF !important;
+    cursor: pointer;
+    background-color: #1D7A8C;
+   
+    text-decoration: none;
+}
+
+.dataTables_wrapper {
+    /* margin: auto; */
+    display: inline-block;
+    position: relative;
+    clear: both;
+    margin-left: 4%;
+    /* width: 100%; */
+}
+
+.add-servicerequest {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 14px;
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px;
+    float: right;
+    margin-right: 10%;
+}
+
+.add-servicerequest:hover {
+    background: #146371 !important;
+    border: none;
+    outline: 0 !important;
+    box-shadow: none;
+    opacity: 1;
+}
+
+.usertable {
+    overflow: hidden;
+    margin-top: 31px;
+}
+
+.dataTables_length {
+    padding-left: 4%;
+}
+
+.dataTables_length {
+    padding-left: 4%;
+    margin-top: 2%;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 1%;
+
+}
+
+.heading2 {
+    padding-top: 2%;
+    padding-left: 8%;
+}
+
+.serviceids {
+    width: 120px;
+    padding-left: 23px !important;
+}
+
+.dtime {
+    width: 220px;
+}
+
+.service_provider_names {
+    width: 250px;
+}
+
+.serviceprovidercol {
+    padding-left: 0px !important;
+}
+
+table.dataTable>tbody>tr.child ul.dtr-details {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-left: 12px;
+}
+
+.paymentcol {
+    padding-left: 0px !important;
+}
+
+.actionblock {
+
+    width: 270px;
+}
+
+.actionblocks {
+
+    width: 255px;
+}
+
+.paymentblock {
+
+    width: 150px;
+}
+
+.reschedule {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    /* padding: 11px 25px; */
+    border-radius: 50px;
+}
+
+.cancel {
+    border-radius: 50px;
+    padding: 8px 8px;
+    width: 82px;
+    /* border-radius: 0%; */
+    font-size: 13px;
+    color: #FFFFFF;
+    background-color: #FF6B6B;
+}
+
+.reschedule:hover {
+    background: #146371 !important;
+    border: none;
+    outline: 0 !important;
+    box-shadow: none;
+    opacity: 1;
+}
+
+.datimg {
+    position: absolute;
+    margin-top: 13px;
+    margin-left: 5px;
+}
+
+#selectdate:disabled {
+    height: 46px;
+    padding-left: 40px;
+    background-color: #FFFFFF;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    width: 100%;
+    height: 46px;
+    padding-top: 10px;
+}
+
+.select2-container {
+    width: 229px !important;
+}
+
+.rescheduleconfirm {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px;
+    width: 100%;
+}
+
+.customerdashboard .nav-tabs .active,
+.customerdashboard .nav-tabs a:hover {
+    color: #1d7a8c;
+    background: 0 0;
+    border: none !important;
+    border-bottom: 4px solid #1d7a8c !important;
+}
+
+#rescheduletime .modal-header,
+#cancelmodal .modal-header,
+#bookingdetails .modal-header {
+    border: none;
+}
+
+.rescheduletime .form-control {
+    background: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+    height: auto;
+    padding: 12px 15px;
+    box-shadow: none;
+    border: 1px solid #dedddd;
+    resize: vertical;
+    height: 46px !important;
+    resize: none;
+}
+
+.datesandtimes {
+    font-size: 22px;
+    line-height: 26px;
+    color: #4f4f4f;
+    font-weight: 700;
+}
+
+.reschedulehr {
+    border-color: #e1e1e1;
+    margin: 12px 0;
+}
+
+.title-text {
+    display: block;
+    font-size: 16px;
+    line-height: 20px;
+    color: #4f4f4f;
+    margin-bottom: 5px;
+}
+.specialmodaltext{
+cursor: pointer;
+}
+.specialmodaltext:hover{
+opacity: .8;
+}
+
+.paids {
+    display: flex;
+}
+
+.rescheduleconfirms {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px;
+}
+
+.cancelconfirm {
+    width: auto;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px;
+    background-color: #FF6B6B;
+}
+
+.finalcancel {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px;
+    width: 100%;
+}
+.bookpayment{
+    width: auto;
+}
+.add-servicerequest {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 14px;
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px;
+    float: right;
+    margin-right: 10%;
+}
+
+.add-servicerequest:hover {
+    background: #146371 !important;
+    border: none;
+    outline: 0 !important;
+    box-shadow: none;
+    opacity: 1;
+}
+.vertical-nav {
+    width: 261px;
+    /* height: 712px; */
+    margin-right: auto;
+    background-color: #1D7A8C;
+    /* position: fixed; */
+    height: 100%;
+    float: left;
+}
+.usertable {
+    overflow: hidden;
+    margin-top: 31px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 11px;
+    right: 1px;
+    width: 20px;
+}
+
+.dataTables_length {
+    padding-left: 4%;
+}
+
+.heading2 {
+    padding-top: 2%;
+    padding-left: 8%;
+}
+
+@media screen and (max-width:800px) {
+    .serviceids {
+        padding-left: 42px !important;
+    }
+
+    .dataTables_wrapper {
+
+        width: 94%;
+    }
+}
+
+.service-provider {
+    color: #646464;
+    font-size: 16px;
+    width: auto;
+}
+.serviceproviderblocks{
+    width: 200px;
+}
+@media screen and (max-width:750px) {
+    
+.serviceproviderblocks{
+    width: auto;
+}
+}
+@media screen and (max-width:700px) {
+  #iframeloading {
+      top: -22% !important;
+      left: -41% !important;
+      height: 100%;
+  }
+}

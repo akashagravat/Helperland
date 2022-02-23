@@ -1,0 +1,341 @@
+.customerdashboard .nav-tabs .active,
+.customerdashboard .nav-tabs a:hover {
+    color: #1d7a8c;
+    background: 0 0;
+    border: none !important;
+    border-bottom: 4px solid #1d7a8c !important;
+}
+
+#subscribecheckbox {
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.preferredlanguage {
+    border-top: 1px solid #dcdcdc;
+}
+
+.customerdashboard .nav-tabs a {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #646464;
+    border: none;
+    border-radius: 0;
+    border-bottom: 4px solid #e1e1e1;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.customerdashboard .nav-tabs {
+    border-bottom: none;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.customerdashboard .nav-tabs a {
+    width: 25%;
+    text-align: center;
+    padding: 15px 0;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.form-row {
+    width: 100%;
+}
+
+.btn-details,
+.addnewaddress {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px;
+}
+
+.btn-details:hover,
+.addnewaddress:hover {
+    background: #146371 !important;
+    border: none;
+    outline: 0 !important;
+    box-shadow: none;
+    opacity: 1;
+}
+
+.form-control {
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+    height: auto;
+    padding: 12px 15px;
+    border: 1px solid #dedddd;
+    height: 46px;
+    resize: none;
+}
+
+#emailaddress {
+    cursor: not-allowed;
+}
+
+#dateofbirth {
+    display: inline-block;
+    padding: 12px 4px;
+    height: 46px;
+    padding-top: 10px;
+    padding-left: 2px;
+    width: 25%;
+}
+
+#dateofmonth {
+    width: 44%;
+    margin-left: 2px;
+    height: 46px;
+    display: inline-block;
+    padding: 12px 4px;
+    padding-top: 10px;
+    padding-left: 2px;
+}
+
+#birthyear {
+    display: inline-block;
+    padding: 12px 4px;
+    height: 46px;
+    padding-top: 10px;
+    padding-left: 2px;
+    width: 25%;
+}
+
+#language {
+    height: 46px;
+    width: 180px;
+    padding: 2px;
+}
+
+#addaddress .modal-header {
+    border: none;
+}
+
+.addresstable {
+    margin-bottom: 11px !important;
+    margin: auto;
+    width: 96%;
+    border: 1px solid #e5e5e5;
+}
+
+.addresstable thead th {
+    background: #f3f3f3;
+    border-bottom: 2px solid #e1e1e1;
+    font-weight: 500;
+}
+
+.addnewaddress {
+    margin-left: 20px;
+}
+
+.addressradio {
+    text-align: center;
+    align-items: center;
+    line-height: 47px;
+}
+
+.control {
+    line-height: 27px;
+}
+
+#addresstable_paginate {
+    float: right;
+}
+
+#addresstable_info {
+    padding-top: 5px;
+    float: right;
+    margin-right: 5px;
+}
+
+.addressradio input[type=radio] {
+    width: 18px;
+    height: 18px;
+}
+
+#addresstable .page-item.active .page-link {
+    color: #fff !important;
+    background-color: #000 !important;
+    border-color: #000 !important;
+}
+
+.dataTables_paginate {
+    float: right;
+    display: flex;
+    padding-right: 4%;
+}
+
+.dataTables_paginate .paginate_button {
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: #777777;
+    font-size: 14px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #E1E1E1;
+    display: inline-block;
+
+    text-align: center;
+    padding: 6px;
+}
+
+.dataTables_paginate .current,
+.dataTables_paginate .paginate_button:hover,
+#pagination-demo .active .page-link,
+.page-item .page-link:hover {
+    color: #FFFFFF !important;
+    cursor: pointer !important;
+    background-color: #1D7A8C !important;
+    text-decoration: none !important;
+}
+
+.edit_delete {
+    text-align: center;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.edit_delete_address {
+    text-align: center;
+    padding-top: 20px !important;
+}
+
+.edit_delete:hover {
+    text-decoration: none;
+}
+
+.add_address .form-control {
+    background: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+    height: auto;
+    padding: 12px 15px;
+    box-shadow: none;
+    border: 1px solid #dedddd;
+    resize: vertical;
+    height: 46px !important;
+    resize: none;
+}
+
+.save {
+    cursor : not-allowed;
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px;
+    width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#location {
+    height: 46px;
+}
+
+.customerdashboard {
+    overflow: auto;
+    padding-left: 15px;
+}
+
+.usertable {
+    margin-top: 31px;
+    overflow: auto;
+}
+
+.navimg {
+    display: none;
+}
+#addresstable {
+    width: 100% !important;
+}
+
+.addressth {
+    width: 200px;
+}
+
+.addressmsg,
+.addresserr {
+    max-width: 864px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.save:hover {
+    background: #146371 !important;
+    border: none;
+    outline: 0 !important;
+    box-shadow: none;
+    opacity: 1;
+}
+#deleteaddress .modal-header{
+    border: none;
+}
+@media screen and (max-width:760px) {
+    .customerdashboard .nav-tabs .active .addresswhite,
+.customerdashboard .nav-tabs a :hover .addresswhite,    
+.customerdashboard .nav-tabs .active .detailswhite,
+.customerdashboard .nav-tabs a :hover .detailswhite,  
+ .customerdashboard .nav-tabs .active .alertwhite,
+.customerdashboard .nav-tabs a :hover .alertwhite,   
+.customerdashboard .nav-tabs .active .passwordwhite,
+.customerdashboard .nav-tabs a :hover .passwordwhite      {
+    display: none;
+}
+.customerdashboard .nav-tabs .active .addressgreen,
+.customerdashboard .nav-tabs a :hover .addressgreeen,
+.customerdashboard .nav-tabs .active .detailsgreen,
+.customerdashboard .nav-tabs a :hover .detailsgreen,  
+ .customerdashboard .nav-tabs .active .alertgreen,
+.customerdashboard .nav-tabs a :hover .alertgreen,   
+.customerdashboard .nav-tabs .active .passwordgreen,
+.customerdashboard .nav-tabs a :hover .passwordgreen   {
+    display: initial;
+    transition: 0.3s all;
+}
+    .navimg {
+        display: initial;
+    }
+
+    .navimggreen {
+        display: none;
+    }
+
+    .dashboard span {
+        display: none;
+    }
+
+}
+@media screen and (max-width:700px) {
+    #iframeloading {
+        top: -22% !important;
+        left: -41% !important;
+        height: 100%;
+    }
+  }

@@ -1,0 +1,147 @@
+table.dataTable.no-footer {
+    border: none;
+}.table-hover tbody tr:hover {
+background: none;
+}
+
+table thead {
+    display: none;
+}
+
+.table td,
+.table th {
+    border-top: none;
+}
+
+.table tbody .odd { 
+    float: left;
+    /* width: 125px; */
+}
+
+.table tbody .even {
+    /* width: 125px; */
+    float: right;
+
+} 
+
+.starratings {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ratingtxt {
+    width: 130px;
+}
+
+.block-customer {
+    margin: 10px;
+    width: 300px;
+    padding: 25px;
+    border: 2px solid #E1E1E1;
+    /* width: 200px; */
+    display: inline-block;
+}
+
+.spimage {
+    border: 1px solid;
+    /* padding-left: 40%; */
+    /* margin-bottom: 7%; */
+    margin: auto;
+    width: 105px;
+    border-radius: 51px;
+    margin-bottom: 12px;
+}
+
+.ratings3 {
+    width: 120px;
+    margin: auto;
+    margin-bottom: 12px;
+}
+
+.cleaningtxt {
+    margin: auto;
+    width: 90px;
+    margin-bottom: 10px;
+}
+
+.favblockbutton {
+    width: 230px;
+    margin: auto;
+}
+
+.serviceproviderimgs {
+    border-radius: 50%;
+    margin: auto;
+    max-width: 69px;
+    margin-right: 40%;
+    height: 62px;
+    padding-left: 12px;
+    margin-bottom: 15px;
+    /* background: #AAAAAA; */
+    padding-top: 13px;
+    border: 1px solid #AAAAAA;
+}
+
+.serviceproviderimg {
+    width: 46px;
+    height: 31px;
+}
+
+.btn-favourite-unfavourite {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    /* padding: 11px 25px; */
+    border-radius: 50px;
+    opacity: 0.9;
+}
+
+.btn-favourite-unfavourite:hover {
+    opacity: 1;
+    transition: 0.3s all;
+}
+
+.btn-block-unblock {
+    border-radius: 50px;
+    padding: 8px 8px;
+    width: 82px;
+    /* border-radius: 0%; */
+    font-size: 13px;
+    color: #FFFFFF;
+    background-color: #FF6B6B;
+    opacity: 0.9;
+}
+
+.btn-block-unblock:hover {
+    opacity: 1;
+    transition: 0.3s all;
+}
+
+.spnames {
+    max-width: 180px;
+    margin: auto;
+    font-size: 20px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    padding-left: 10px;
+}
+.msgblock{
+    width: 520px;
+margin: auto;
+display: none;
+}
+.fa-star {
+color: silver;
+width: 15px;
+height: 16px;
+}
+@media screen and (max-width:700px) {
+    #iframeloading {
+        top: -22% !important;
+        left: -41% !important;
+        height: 100%;
+    }
+  }

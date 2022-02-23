@@ -513,11 +513,7 @@ font-weight: normal;
   margin-left: 9px;
  
 }
-#tblservicehistory .page-item.active .page-link  {
-  color: #fff !important;
-  background-color: #000 !important;
-  border-color: #000 !important; 
-}
+
 
 .dataTables_paginate{
   float: right;
@@ -770,26 +766,94 @@ margin-left: 10px;
 .table-view-card .selects{
 margin-top: 20px;
 }
+
+
+.vertical-nav {
+  height: 100%;
+}
+
+.usertable {
+  overflow: hidden;
+}
+
+.serviceid {
+  width: 150px !important;
+}
+
+.paymentparts {
+  width: 130px !important;
+}
+
+.ratesps {
+  width: 150px !important;
+}
+
+.service_provider_namescol {
+  width: 350px !important;
+}
+
+.dtimecol {
+  width: 190px !important;
+}
+
+.giveratting {
+  background: #1d7a8c;
+  border: none !important;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fff !important;
+  transition: all .3s ease;
+  /* padding: 11px 25px; */
+  border-radius: 50px;
+  opacity: 0.8;
+}
+
+.ratespr {
+  background: #1d7a8c;
+  opacity: 0.8;
+}
+.ratesp {
+  background: #1d7a8c;
+opacity: 0.8;    }
+.ratesp:hover {
+  background: #1d7a8c;
+  transition: 0.3s all;
+  opacity: 1.0;
+
+}
+
+.giveratting:hover {
+  transition: all .3s ease;
+  opacity: 1.0;
+}
+
+#btnExport {
+  opacity: 0.9;
+}
+
+#btnExport:hover {
+  opacity: 1.0;
+}
+
+.ratingtxt {
+  width: 130px;
+}
+.serviceproviderblocks{
+width: 160px;
+}
+.fa-star:hover{
+  cursor: pointer;
+}
+@media screen and (max-width:750px) {
+
+.serviceproviderblocks{
+width: auto;
+}
+}
 @media screen and (max-width:700px) {
-  #tblservicehistory_wrapper{
-    display: none;
-  }
-  #tblservicehistory{
-      display: none;
-    }
-  .table-card{
-    display: block;
-  }
-
-}
-@media screen and (max-width:500px) {
-  .table-card{
-    max-width: 400px;
-  }
-}
-@media screen and (max-width:400px) {
-
-  .table-card{
-    max-width: 300px;
+  #iframeloading {
+      top: -22% !important;
+      left: -41% !important;
+      height: 100%;
   }
 }
