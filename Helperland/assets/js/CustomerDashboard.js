@@ -49,6 +49,8 @@ $(document).ready(function () {
                 $('.petornot').html(data[12]);
                 $('.reschedulebuttons').html(data[13]);
                 $('.cancelbuttons').html(data[14]);
+                $('.spdetails1').html(data[20]);
+                $('.spdetails2').html(data[20]);
 
                 // var obj = jQuery.parseJSON(data);
                 // alert(data[0]);
