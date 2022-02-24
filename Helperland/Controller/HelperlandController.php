@@ -535,6 +535,7 @@ class HelperlandController
             $result = $this->model->AddService($array);
             $serviceprovider = $this->model->GetActiveServiceProvider();
             if ($result) {
+                $addressid = $result;
                 include('BookServiceClientConfirmationMail.php');
                 if (sizeof($id) > 0) {
                     $sp = $this->model->GetUsersServiceprovider($id);
@@ -800,7 +801,7 @@ class HelperlandController
                         if ($status == 'Pending') {
                             $serviceprovider = '';
                         }
-                        if ($status == 'Approoved') {
+                        if ($status == 'Approoved' || $status == 'Reschedule') {
                             $serviceproviderid = $row['ServiceProviderId'];
                             $spalldetails = $this->model->GetUsers($serviceproviderid);
                             if (count($spalldetails)) {
@@ -865,16 +866,17 @@ class HelperlandController
                                 }
                             }
                         }
-
+                        $actioncolumn ="";
                         if ($status == 'Reschedule') {
-                            $serviceprovider = '<p class="text-success serviceproviderblocks">You Have Requested to Change SP. New SP Will be Provided Soon.</p>';
+                            $actioncolumn  = '<p class="text-success">You have rescheduled service request. Your SP will accept it soon.</p>';
+                            // $serviceprovider = '<p class="text-success serviceproviderblocks">You Have Requested to Change SP. New SP Will be Provided Soon.</p>';
                         }
                         $paymentcolumn = '<td>
                                 <div class="payment">
                                     <span class="euro">€</span>' . $payment . '
                                 </div>
                             </td>';
-
+            if($status != 'Reschedule'){
                         $actioncolumn =  ' <td class="actionblock">
                             <div class="row actionblocks">
                                 <div class="col-lg-6 col-md-6 col-6">
@@ -885,7 +887,7 @@ class HelperlandController
                                 </div>
                             </div>
                         </td>';
-
+}
                         $results = array();
                         $results['blocks'] = $control;
                         $results['serviceid'] = $serviceidcolumn;
@@ -938,8 +940,9 @@ class HelperlandController
                     $haspets = $row['HasPets'];
                     $addressid = $row['AddressId'];
                     $status = $row['Status'];
-
+                    $userid = $row['UserId'];
                     $totalrequiredtime = $totaltime;
+                    $serviceproviderid = $row['ServiceProviderId'];
 
                     $starttime =  date("H:i", strtotime($starttime));
 
@@ -1009,7 +1012,93 @@ class HelperlandController
                     if ($haspets == 1) {
                         $pets =  '<span><img src="./assets/Image/included.png"></span> I have pets at home';
                     }
+                    $serviceprovider = '';
+                    if (empty($serviceproviderid)) {
+                        $serviceprovider = '';
+                    }
+                    if (!empty($serviceproviderid)) {
+                        $spalldetails = $this->model->GetUsers($serviceproviderid);
+                        if ($status == 'Approoved' || $status == 'Completed' || $status == "Cancelled") {
+                     
+                        if (count($spalldetails)) {
+                            foreach ($spalldetails as $sp) {
+                                $spfirstname = $sp['FirstName'];
+                                $splastname = $sp['LastName'];
+                                $spratings = $this->model->GetSPRattings($serviceproviderid);
+                                $countsps = $this->model->GetSPAllCount($userid, $serviceproviderid);
+                                if (count($countsps)) {
+                                    foreach ($countsps as $spcount) {
+                                        $counts =  $spcount['COUNT(`ServiceProviderId`)'];
+            
+                                if (count($spratings[0])) {
+                                    $sprate = 0;
+                                    $count = $spratings[1];
+                                    foreach ($spratings[0] as $sprating) {
+                                        $sprate = ($sprate + $sprating['Ratings']);
+                                    }
+                                    // $sprate = $sprate+$sprate;
+                                    $sprate = round(($sprate / $count), 2);
+                                    $spratings = round($sprate);
+                                    $valu = $spratings;
+                                    if ($valu != 0) {
+                                        $val = '';
+                                        $values = '';
+                                        for ($i = 1; $i <= $valu; $i++) {
 
+                                            $values = $values .  '<i class="fa fa-star " style="color:rgb(236, 185, 28);"></i>';
+                                            // $values = $val.'' .$val;
+
+                                        }
+                                        if ($valu <= 5) {
+                                            for ($count = ($spratings + 1); $count <= 5; $count++) {
+                                                $values = $values . '<i class="fa fa-star "></i>';
+                                            }
+                                        }
+                                    }
+                                    if ($valu = 0) {
+                                        $values = '';
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            $values = $values .  '<i class="fa fa-star " "></i>';
+                                        }
+                                    }
+
+                                    $values = $values;
+                                } else {
+                                    $values = "";
+                                    $sprate = 0;
+                                    for ($i = 1; $i <= 5; $i++) {
+                                        $values = $values .  '<i class="fa fa-star "  style="margin-right:4px;"></i>';
+                                    }
+                                }
+                                $serviceprovider = '
+                                <div class="totaldetils">
+                                <h4>Service Provider Details
+                                </h4>
+                               <div class="row serviceproviderblocks">
+                                   <div class="col service-provider-imgs"><img src="./assets/image/forma-1-copy-19.png" class="service-provider-img"></div>
+                                   <div class="col ml-3">
+                                       <div class="row service-provider">' . $spfirstname . ' ' . $splastname . '</div>
+                                       <div class="row star">
+
+                                       ' . $values . '
+                                       </div>
+                                       <span class="info">' . $sprate . '</span>
+
+                                   </div>
+                               </div>
+                               <p class="mt-2">'.$counts.' Cleaning</p>     
+                               </div>
+                           ';
+                            }
+                        }}}}else{
+                            $serviceprovider = '<p class="text-success serviceproviderblocks">You Have Requested to Change SP. New SP Will be Provided Soon.</p>';
+
+                        }
+                    }
+
+                    if ($status == 'Reschedule') {
+                        $serviceprovider = '<p class="text-success serviceproviderblocks">You Have Requested to Change SP. New SP Will be Provided Soon.</p>';
+                    }
                     // $totalresult = array();
                     // $totalresult['pets'] = $pets;
                     // $totalresult['date'] = $date;
@@ -1053,7 +1142,7 @@ class HelperlandController
                     $commenttextara =  '                    <textarea class="form-control mb-3 cancelreason" id="exampleFormControlTextarea1" rows="3"></textarea>
                 ';
                     $selectnewdateandtime = '<p id="' . $totalrequiredtime . '">Select New Date & Time</p>';
-                    $output = [$date, $starttime, $totalltimes, $totalrequiredtime, $serviceid, $extraservices, $payment, $serviceaddress, $billingaddress, $mobile, $email, $comments, $pets, $reschedule, $cancel, $updatebutton, $cancelbtn, $selectyourtime, $commenttextara, $selectnewdateandtime];
+                    $output = [$date, $starttime, $totalltimes, $totalrequiredtime, $serviceid, $extraservices, $payment, $serviceaddress, $billingaddress, $mobile, $email, $comments, $pets, $reschedule, $cancel, $updatebutton, $cancelbtn, $selectyourtime, $commenttextara, $selectnewdateandtime,$serviceprovider];
                 }
             }
             echo json_encode($output);
