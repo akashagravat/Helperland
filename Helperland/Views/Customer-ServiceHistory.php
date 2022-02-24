@@ -11,11 +11,11 @@ if (!isset($_SESSION['username'])) {
 
 ?>
 
-<link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=111">
+<link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=2111">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 
-<link rel="stylesheet" href="./assets/css/Customer-Dashboard.css">
+<link rel="stylesheet" href="./assets/css/Customer-Dashboard.css?v=91">
 
 <title>Service History</title>
 
@@ -59,7 +59,7 @@ if (!isset($_SESSION['username'])) {
     </div>
     <!-- Booking Details Modal -->
     <div class="modal fade" id="bookingdetails" tabindex="-1" role="dialog" aria-labelledby="bookingdetails" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="exampleModalLongTitle">Service Details
@@ -69,6 +69,9 @@ if (!isset($_SESSION['username'])) {
                     </button>
                 </div>
                 <div class="modal-body">
+                <div class="float-right spdetails1 ">
+                        </div>
+                <div class="custalldetails ">
 
                     <p class="datesandtimes"><span class="bookdate">25/11/2021</span> <span class="bookstarttime">08:00 </span> - <span class="bookendtime">11:00</span></p>
                     <p class="title-text totalrequiredtime"><b>Duration: </b> <span class="totalduration"> 3 </span> Hrs</p>
@@ -95,9 +98,10 @@ if (!isset($_SESSION['username'])) {
                     </div>
 
                     <hr class="reschedulehr">
+                    <div class="float-right spdetails2 ">
+                        </div>
 
-
-
+                </div>
 
                 </div>
 
@@ -200,7 +204,7 @@ if (!isset($_SESSION['username'])) {
     <?php
     include('footer.php');
     ?>
-    <script src="./assets/js/Customer-ServiceHistory.js?v=1121"></script>
+    <script src="./assets/js/Customer-ServiceHistory.js?v=123211"></script>
     <?php include('CustomerPageAjax.php');?>  
 </body>
 

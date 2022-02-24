@@ -18,8 +18,7 @@ if (!isset($_SESSION['username'])) {
 <link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=29">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="./assets/css/Customer-Dashboard.css?v=235">
-
+<link rel="stylesheet" href="./assets/css/Customer-Dashboard.css?v=2220">
 <title>Customer Dashboard</title>
 
 </head>
@@ -170,7 +169,7 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Booking Details Modal -->
     <div class="modal fade" id="bookingdetails" tabindex="-1" role="dialog" aria-labelledby="bookingdetails" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="exampleModalLongTitle">Service Details
@@ -180,7 +179,9 @@ if (!isset($_SESSION['username'])) {
                     </button>
                 </div>
                 <div class="modal-body">
-
+                <div class="float-right spdetails1 ">
+                        </div>
+                        <div class="custalldetails ">
                     <p class="datesandtimes"><span class="bookdate">25/11/2021</span> <span class="bookstarttime">08:00 </span> - <span class="bookendtime">11:00</span></p>
                     <p class="title-text totalrequiredtime"><b>Duration: </b> <span class="totalduration"> 3 </span> Hrs</p>
                     <hr class="reschedulehr">
@@ -204,8 +205,10 @@ if (!isset($_SESSION['username'])) {
                         <span><img src="./assets/Image/not-included.png"></span> I have pets at home
 
                     </div>
-
                     <hr class="reschedulehr">
+
+                    <div class="float-right spdetails2 ">
+                        </div>
 
                     <span class="reschedulebuttons">
                         <button type="submit" class="btn  rescheduleconfirms" title="Reschedule" data-toggle="modal" data-target="#rescheduletime" data-dismiss="modal"><img src="./assets/Image/reschedule-icon-small.png" class="mr-2">Reschedule</button>
@@ -218,7 +221,9 @@ if (!isset($_SESSION['username'])) {
 
 
                 </div>
-
+             
+                </div>
+             
             </div>
         </div>
     </div>
@@ -264,7 +269,7 @@ if (!isset($_SESSION['username'])) {
     include('footer.php');
     ?>
     <script src="./assets/js/Customer-ServiceHistory.js"></script>
-    <script src="./assets/js/CustomerDashboard.js?v=12932"></script>
+    <script src="./assets/js/CustomerDashboard.js?v=12993932"></script>
     <?php include('CustomerPageAjax.php');?>  
  
 
