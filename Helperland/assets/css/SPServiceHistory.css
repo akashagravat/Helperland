@@ -1,0 +1,151 @@
+div.dt-buttons {
+    float: right;
+    margin-right: 8%;
+    margin-bottom: 2%;
+    
+    }
+    button.dt-button{
+    padding: 6px 10px;
+    font-size: 14px;
+    background: #1d7a8c ;
+    border: none ;
+    font-size: 16px ;
+    line-height: 24px ;
+    color: #fff;
+    transition: all .3s ease;
+    padding: 11px 25px;
+    border-radius: 50px ;
+}
+button.dt-button:hover{
+background: #146371 !important;
+    border: none;
+    outline: 0 !important;
+    box-shadow: none;
+    opacity: 1;
+}
+    .vertical-nav {
+        margin-left: 1%;
+    }
+
+    .payment {
+        /* width: 39px; */
+        height: 29px;
+        color: #1D7A8C;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .usertable {
+        display: initial;
+    }
+
+    .wrapper {
+        overflow: auto;
+    }
+
+    .specialmodtext {
+        cursor: pointer;
+    }
+
+    .dataTables_wrapper {
+
+        width: 75%;
+    }
+
+    .btn-completed {
+        background: #1d7a8c;
+        border: none !important;
+        font-size: 16px;
+        /* line-height: 24px; */
+        color: #fff !important;
+        transition: all .3s ease;
+        /* padding: 11px 25px; */
+        border-radius: 50px;
+        opacity: 0.8;
+
+    }
+
+    .cancelled {
+        width: 82px;
+        border-radius: 0%;
+        font-size: 13px;
+        color: #FFFFFF;
+        background-color: #FF6B6B;
+
+    }
+
+    .specialmodtext:hover {
+        opacity: 0.8;
+    }
+
+    .usertable {
+        overflow: hidden;
+        display: initial;
+    }
+
+    .welcome {
+        margin-bottom: 20px;
+    }
+
+    .completed {
+        width: 82px;
+        border-radius: 0%;
+        font-size: 13px;
+        color: #FFFFFF;
+        background-color: #67B644;
+    }
+
+    .btn-completed:hover {
+        transition: 0.3s all;
+        opacity: 1.0;
+
+    }
+
+    .date,
+    .time {
+        width: max-content;
+    }
+
+    @media screen and (max-width:1300px) {
+
+        .dataTables_wrapper {
+
+            width: auto;
+        }
+    }
+
+    @media screen and (max-width:1000px) {
+        .dataTables_wrapper {
+            width: 94%;
+        }
+    }
+
+    .btn-cancel {
+        opacity: 0.9;
+    }
+
+    .btn-cancel:hover {
+        transition: 0.3s all;
+        opacity: 1;
+
+    }
+    .table-caption{
+        width: 200px;
+    padding-top: 16px;
+    /* margin: auto; */
+    left: 30%;
+    z-index : 1;
+    position: absolute;
+    display: initial;
+    }
+
+    @media screen and (max-width:750px){
+        button.dt-button {
+    float: right;
+}
+.table-caption {
+  
+    left: 10%;
+  
+}
+    }

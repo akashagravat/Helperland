@@ -1,0 +1,13 @@
+.spnames {
+    max-width: 127px;
+    margin: auto;
+    /* margin: auto; */
+    font-size: 20px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    /* padding-left: 10px; */
+}
+.favblockbutton {
+    width: 110px;
+    margin: auto;
+}

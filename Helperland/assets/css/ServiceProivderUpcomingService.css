@@ -44,6 +44,9 @@ body {
   display: flex;
   justify-content: space-around;
 }
+header{
+  height: 65px;
+}
 
 .navbar .navbar-nav .wbg a {
   font-size: 17px;
@@ -207,12 +210,12 @@ table .date, table .time {
   padding: 0px;
 }
 
-thead {
+/* thead {
   background-color: #F9F9F9;
   position: sticky;
   z-index: -1;
 
-}
+} */
 
 td {
   font-size: 16px;
@@ -505,26 +508,82 @@ table .serviceid, table .distance {
 }
 
 
-@media screen and (max-width:700px) {
-  .servicetable {
-    display: none;
-  }
+.vertical-nav {
+  margin-left: 1%;
+}
 
-  .table-card {
-    display: block;
-  }
+.payment {
+  /* width: 39px; */
+  height: 29px;
+  color: #1D7A8C;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.usertable {
+  display: initial;
+}
+
+.wrapper {
+  overflow: auto;
+}
+
+.specialmodtext {
+  cursor: pointer;
+}
+
+.dataTables_wrapper {
+
+  width: 75%;
+}
+
+.btn-completed {
+  background: #1d7a8c;
+  border: none !important;
+  font-size: 16px;
+  /* line-height: 24px; */
+  color: #fff !important;
+  transition: all .3s ease;
+  /* padding: 11px 25px; */
+  border-radius: 50px;
+  opacity: 0.8;
 
 }
 
-@media screen and (max-width:500px) {
-  .table-card {
-    max-width: 400px;
+.btn-completed:hover {
+  transition: 0.3s all;
+  opacity: 1.0;
+
+}
+
+.date,
+.time {
+  width: max-content;
+}
+
+@media screen and (max-width:1300px) {
+
+  .dataTables_wrapper {
+
+    width: auto;
   }
 }
 
-@media screen and (max-width:400px) {
-
-  .table-card {
-    max-width: 300px;
+@media screen and (max-width:1000px) {
+  .dataTables_wrapper {
+    width: 100%;
   }
+}
+
+.btn-cancel {
+  opacity: 0.9;
+}
+
+.btn-cancel:hover {
+  transition: 0.3s all;
+  opacity: 1;
+
+}
+main{
+  margin-bottom: 2%;
 }

@@ -1,0 +1,120 @@
+.vertical-nav {
+    margin-left: 1%;
+}
+
+.dataTables_wrapper {
+
+    width: 75%;
+}
+
+.date,
+.time {
+    width: max-content;
+}
+
+th {
+    padding-left: 1.5% !important;
+}
+
+@media screen and (max-width:1300px) {
+    .dataTables_wrapper {
+        width: auto;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .dataTables_wrapper {
+        width: 94%;
+        margin-right: 1%;
+    }
+}
+
+.colname {
+    width: 35% !important;
+    padding-left: 0px !important;
+}
+
+.spserviceid {
+    width: 20% !important;
+}
+
+.spdatecolm {
+    width: 30% !important;
+}
+
+.addressp {
+    width: auto;
+}
+
+.payment {
+    width: auto;
+
+}
+
+.address {
+    padding: 0px;
+}
+
+.specialmodtext:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.time-conflict {
+    padding-left: 0px !important;
+    /* width: 126% !important; */
+    /* display: block; */
+}
+
+.time_conflict {
+    width: 200px;
+}
+
+.btn-accept {
+    background: #1d7a8c;
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+
+    border-radius: 50px;
+    opacity: 0.8;
+}
+
+.btn-accept:hover,
+.btn-accept-green:hover {
+    opacity: 1;
+}
+
+.btn-accept-green {
+    background: rgba(103, 182, 68, 255);
+    border: none !important;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff !important;
+    transition: all .3s ease;
+    padding: 9px 22px;
+    border-radius: 50px;
+    opacity: 0.9;
+
+}
+
+.table-caption {
+    width: 800px;
+    margin: auto;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 17px;
+}
+
+@media screen and (max-width:1000px) {
+    .table-caption {
+        width: auto;
+        margin-left: 10%;
+
+    }
+
+}
