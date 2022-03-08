@@ -1241,7 +1241,14 @@ class HelperlandController
                 ';
                     //data-toggle="modal" data-target="#bookingdetails" name="'.$serviceid.'"
                     $selectnewdateandtime = '<p id="' . $totalrequiredtime . '">Select New Date & Time</p>';
-                    $output = [$date, $starttime, $totalltimes, $totalrequiredtime, $serviceid, $extraservices, $payment, $serviceaddress, $billingaddress, $mobile, $email, $comments, $pets, $reschedule, $cancel, $updatebutton, $cancelbtn, $selectyourtime, $commenttextara, $selectnewdateandtime, $serviceprovider, $custmernames, $acceptbtn, $cancelupcomingbtn, $map];
+                    if($status == "Completed"){
+                        $finalview = "";
+                    }
+                    if($status == "Approoved"){
+                        $finalview =  $cancelupcomingbtn;
+                    }
+                 
+                    $output = [$date, $starttime, $totalltimes, $totalrequiredtime, $serviceid, $extraservices, $payment, $serviceaddress, $billingaddress, $mobile, $email, $comments, $pets, $reschedule, $cancel, $updatebutton, $cancelbtn, $selectyourtime, $commenttextara, $selectnewdateandtime, $serviceprovider, $custmernames, $acceptbtn, $cancelupcomingbtn, $map,$finalview];
                 }
             }
             echo json_encode($output);
@@ -2884,7 +2891,8 @@ class HelperlandController
                         $val = '';
                         $values = '';
                         for ($i = 1; $i <= $valu; $i++) {
-
+                            ?>
+                            <?php
                             $values = $values .  '<i class="fa fa-star " style="color:rgb(236, 185, 28);"></i>';
                             // $values = $val.'' .$val;
 
@@ -2901,8 +2909,9 @@ class HelperlandController
                             $values = $values .  '<i class="fa fa-star " "></i>';
                         }
                     }
-
                     $values = $values;
+                                   
+                             // $values = "<script language=javascript>rating</script>";
                     if ($sprates >= 4 && $sprates <= 5) {
                         $txt = "Very Good";
                     } else if ($sprates >= 3 && $sprates < 4) {
@@ -2957,7 +2966,9 @@ class HelperlandController
                             }
                             $totaltimes = number_format(($var1 . '.' . $var2), 2);
                             $endtime = str_replace(".", ":", $totaltimes);
-                            $cnt = $ratings[1];
+                   
+                             $cnt = $ratings[1];
+                           
                             $out1 = '  <div class="ratig mb-5">
                                       <div class="ratingsall">
             
@@ -4287,4 +4298,78 @@ class HelperlandController
           }
         }
     }
+
+
+    public function GetSpDates($parameter){
+       
+            $email = $parameter;
+            $result = $this->model->ResetKey($email);
+            $userid = $result[3];
+            $result =  $this->model->GetUpcomingServiceHistoryAll($userid);
+            $json['data'] = array();
+            if(count($result)){
+                foreach($result as $row){
+                    $serviceid = $row['ServiceRequestId'];
+                    $servicestartdate = $row['ServiceStartDate'];
+                    $servicestarttime = $row['ServiceTime'];
+                    $status = $row['Status'];
+                    $totaltime = $row['TotalHours'];
+                    list($day, $month, $year) = explode("/", $servicestartdate);
+                    $date = $year.'-'.$month.'-'.$day;
+                    // $date = date("Y-m-d", $dates);
+                    $starttime =  date("H:i", strtotime($servicestarttime));
+
+                    $startime = str_replace(":", ".", $starttime);
+
+                    $hoursq = intval($startime);
+                    $realPartq =  $startime - $hoursq;
+                    $minutesq = intval($realPartq * 60);
+                    if ($minutesq == 18) {
+                        $minutesq = 5;
+                    } else {
+                        $minutesq = 0;
+                    }
+                    $startime =  $hoursq . "." . $minutesq;
+
+                    // $startime =$hours.'.'.$mins; 
+
+                    $hours = intval($totaltime);
+                    $realPart = $totaltime - $hours;
+                    $minutes = intval($realPart * 60);
+                    if ($minutes == 30) {
+                        $minutes = 5;
+                    } else {
+                        $minutes = 0;
+                    }
+                    $totaltimes = $hours . "." . $minutes;
+                    $totaltimes = number_format(($startime + $totaltimes), 2);
+                    $var1 = intval($totaltimes);
+                    $var2 = $totaltimes - $var1;
+                    if ($var2 == 0.50) {
+                        $var2 = 30;
+                    } else {
+                        $var2 = 00;
+                    }
+                    $totaltimes = number_format(($var1 . '.' . $var2), 2);
+                    $totalltimes = str_replace(".", ":", $totaltimes);
+                   
+                    // $resultall = array();
+                    // $resultall['starttime'] =  $starttime;
+                    // $resultall['end'] =  $totalltimes;
+                    // $resultall['title'] = $starttime .'-'.$totalltimes;
+                    // $resultall['start'] = "2022-03-02";
+                    $resultall[] = array(
+                        'title' => $starttime.'-'.$totalltimes,
+                        'start'=>$date,
+                        'id'=>$serviceid,
+                    );
+                    // array_push($json['data'],$resultall);
+                }
+
+            }
+            echo  json_encode($resultall);
+                               
+           
+        }
+
 }
