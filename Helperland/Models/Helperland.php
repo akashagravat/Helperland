@@ -62,9 +62,20 @@ class Helperland
     }
     public function Activation($resetkey)
     {
+        $sql = "select * from user where ResetKey = '$resetkey'";
+        $stmts =  $this->conn->prepare($sql);
+        $result = $stmts->execute();
+        $row  = $stmts->fetch(PDO::FETCH_ASSOC);
+        $usertype = $row['UserTypeId'];
+        if($usertype == 1){
+           $update = "UPDATE user SET isActive = 'No', `Status` = 'Active' WHERE ResetKey='$resetkey'";
+           $stmt =  $this->conn->prepare($update);
+           $result = $stmt->execute();
+           }else{
         $update = "UPDATE user SET isActive = 'Yes' WHERE ResetKey='$resetkey'";
         $stmt =  $this->conn->prepare($update);
         $result = $stmt->execute();
+    }
         if ($result) {
             $_SESSION['status_msg'] = "Congratulation, Your Account verification is successfull!! ";
             $_SESSION['status_txt'] = "You Can Login Now";
@@ -670,6 +681,217 @@ class Helperland
         // $results  = $stmt->rowCount();
 
         return $result;
+    }
+
+    public function Alluser(){
+        $sql = "SELECT * FROM `user`";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // $results  = $stmt->rowCount();
+
+        return $result;
+    }
+
+    public function Allusers($usertypeid){
+        $sql = "SELECT DISTINCT CONCAT(`FirstName`,' ',`LastName`) AS UserName FROM `user` WHERE UserTypeId = $usertypeid";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // $results  = $stmt->rowCount();
+
+        return $result;
+    }
+
+    public function ActivateDeactivate($array){
+        $sql = 'UPDATE `user` SET `IsActive`= :isactive,`ModifiedDate`= :modifieddate , `ModifiedBy`= :modifiedby WHERE `UserId` = :userid';
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute($array);
+        $count = $stmt->rowCount();
+            return array($count);
+    
+    }
+
+    public function selectdistinctuser(){
+        $sql = "SELECT DISTINCT CONCAT(`FirstName`,' ',`LastName`) AS UserName FROM `user` ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // $sqls = "SELECT DISTINCT `RoleId` FROM `user`";
+        // $stmts =  $this->conn->prepare($sqls);
+        // $stmts->execute();
+        // $results  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return array($result);
+    }
+
+
+    public function Selectuser($username){
+        $sql = "SELECT * FROM `user` WHERE CONCAT(`FirstName`,' ',`LastName`) = '$username'";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function selrole($role){
+        $sql = "SELECT * FROM `user` WHERE `RoleId` = '$role' ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+     public function selmobile($mobile)
+    {
+        $sql = "SELECT * FROM `user` WHERE `Mobile` = $mobile";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function selzip($zipcode)
+    {
+        $sql = "SELECT * FROM `user` WHERE `ZipCode` = $zipcode";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function seluserrole($selecteduser, $role){
+        $sql = "SELECT * FROM `user` WHERE `RoleId` = '$role' && CONCAT(`FirstName`,' ',`LastName`) = '$selecteduser' ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function seluserphone($selecteduser, $phone){
+        $sql = "SELECT * FROM `user` WHERE `Mobile` = $phone && CONCAT(`FirstName`,' ',`LastName`) = '$selecteduser' ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function seluserzip($selecteduser, $zipcode){
+        $sql = "SELECT * FROM `user` WHERE `ZipCode` = $zipcode && CONCAT(`FirstName`,' ',`LastName`) = '$selecteduser' ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function selrolephone($role, $phone){
+        $sql = "SELECT * FROM `user` WHERE `Mobile` = $phone && `RoleId` = '$role' ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function selrolezip($role, $zipcode){
+        $sql = "SELECT * FROM `user` WHERE `ZipCode` = $zipcode && `RoleId` = '$role' ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+  
+    public function seluserrolezip($selecteduser,$role, $zipcode){
+        $sql = "SELECT * FROM `user` WHERE `ZipCode` = $zipcode && CONCAT(`FirstName`,' ',`LastName`) = '$selecteduser' && `RoleId` = '$role' ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+   
+    }
+
+    public function seluserrolephone($selecteduser,$role, $phone){
+        $sql = "SELECT * FROM `user` WHERE `Mobile` = $phone && CONCAT(`FirstName`,' ',`LastName`) = '$selecteduser' && `RoleId` = '$role' ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function seluserphonezip($selecteduser,$phone, $zipcode){
+        $sql = "SELECT * FROM `user` WHERE `Mobile` = $phone && CONCAT(`FirstName`,' ',`LastName`) = '$selecteduser' &&`ZipCode` = $zipcode ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function selrolephonezip($role,$phone, $zipcode){
+        $sql = "SELECT * FROM `user` WHERE `Mobile` = $phone &&  `RoleId` = '$role' &&`ZipCode` = $zipcode ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result; 
+    }
+    
+    public function selzipphone($phone, $zipcode){
+        $sql = "SELECT * FROM `user` WHERE `Mobile` = $phone  &&`ZipCode` = $zipcode ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result; 
+    }
+    public function seluserrolephonezip($selecteduser,$role,$phone, $zipcode){
+        $sql = "SELECT * FROM `user` WHERE `Mobile` = $phone && CONCAT(`FirstName`,' ',`LastName`) = '$selecteduser' &&`ZipCode` = $zipcode && `RoleId` = '$role'";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function GetAllServiceRequests(){
+        $sql = "SELECT servicerequest.`UserId`,servicerequest.`ServiceRequestId`,servicerequest.`ServiceStartDate`,servicerequest.Status,servicerequest.ServiceTime,servicerequest.ServiceProviderId,servicerequest.TotalHours,useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.City,useraddress.State,useraddress.PostalCode,user.FirstName,user.LastName,user.UserProfilePicture FROM `servicerequest` LEFT JOIN user ON servicerequest.`UserId` = user.UserId JOIN useraddress ON servicerequest.AddressId = useraddress.AddressId ORDER BY servicerequest.`ServiceRequestId` DESC";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result; 
+    }
+    public function SearchServiceid($val){
+        $sql = "SELECT servicerequest.`UserId`,servicerequest.`ServiceRequestId`,servicerequest.`ServiceStartDate`,servicerequest.Status,servicerequest.ServiceTime,servicerequest.ServiceProviderId,servicerequest.TotalHours,useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.City,useraddress.State,useraddress.PostalCode,user.FirstName,user.LastName,user.UserProfilePicture FROM `servicerequest` LEFT JOIN user ON servicerequest.`UserId` = user.UserId JOIN useraddress ON servicerequest.AddressId = useraddress.AddressId $val  ORDER BY servicerequest.`ServiceRequestId` DESC";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result; 
+    }
+
+    public function GetSearchSP($val){
+        $sql = "SELECT servicerequest.`UserId`,servicerequest.`ServiceRequestId`,servicerequest.`ServiceStartDate`,servicerequest.Status,servicerequest.ServiceTime,servicerequest.ServiceProviderId,servicerequest.TotalHours,useraddress.AddressLine1,useraddress.AddressLine2,useraddress.City,useraddress.City,useraddress.State,useraddress.PostalCode,user.FirstName,user.LastName,user.UserProfilePicture FROM `servicerequest` LEFT JOIN user ON servicerequest.`ServiceProviderId` = user.UserId JOIN useraddress ON servicerequest.AddressId = useraddress.AddressId $val ORDER BY servicerequest.`ServiceRequestId` DESC";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result; 
+    }
+
+    public function UpdateAdminAddress($array){
+        $sql = "UPDATE `useraddress` SET `AddressLine1`= :street ,`AddressLine2`= :houseno,`City`= :location,`State`=:state,`PostalCode`= :pincode WHERE `AddressId`= :addressid";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute($array);
+        $result  = $stmt->rowCount();
+        return array($result); 
+    }
+
+    public function GetServiceDetails($serviceid){
+        $sql = "SELECT * FROM `servicerequest` WHERE  `ServiceRequestId` = $serviceid";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result; 
+    }
+
+    public function GiveRefund($array){
+        $sql = "UPDATE `servicerequest` SET `RefundedAmount`= :refundamount,`Callcenternote`=:callcenternote,`Adminreschedulenote`=:whyrefund,`Status`=:status,`ModifiedDate`=:modifieddate,`ModifiedBy`=:modifiedby,`RecordVersion`=:recordversion WHERE `ServiceRequestId` = :serviceid ";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute($array);
+        $result  = $stmt->rowCount();
+        return array($result); 
     }
 
 }
