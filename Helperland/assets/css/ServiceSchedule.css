@@ -1,0 +1,110 @@
+.vertical-nav {
+    height: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+    .fc td,
+    .fc th {
+        border-style: solid;
+        border-width: 1px;
+        padding: 0;
+        cursor: pointer;
+        vertical-align: top;
+    }
+
+    .fc-theme-standard .fc-col-header th {
+        background: rgb(249, 249, 249);
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        padding: 15px 0px;
+    }
+
+    .fc-direction-ltr .fc-button-group>.fc-completed-button:not(:last-child) {
+        border-top-right-radius: 0;
+        background: none;
+        color: #464646;
+        border: none;
+        box-shadow: none;
+        border-bottom-right-radius: 0;
+
+        font-size: 14px;
+        line-height: 44px;
+
+        padding-left: 22px;
+    }
+
+    .fc-h-event .fc-event-title-container {
+        cursor: pointer;
+        border-radius: 0px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .fc-direction-ltr .fc-button-group>.fc-upcoming-button:not(:first-child) {
+        border-top-right-radius: 0;
+        background: none;
+        color: #464646;
+        border: none;
+
+        font-size: 14px;
+        line-height: 44px;
+
+        padding-left: 22px;
+        box-shadow: none;
+        border-bottom-right-radius: 0;
+    }
+
+    .fc-direction-ltr .fc-button-group>.fc-completed-button:not(:last-child):before {
+        content: "";
+        position: absolute;
+        height: 17px;
+        width: 17px;
+        background: #efefef;
+        display: block;
+        left: 0;
+        top: 50%;
+        margin-top: -9px;
+        border: 1px solid #e1e1e1;
+    }
+
+    .fc-direction-ltr .fc-button-group>.fc-prev-button:not(:last-child),
+    .fc-direction-ltr .fc-button-group>.fc-next-button:not(:first-child) {
+        border-top-right-radius: 0;
+        background: rgb(255, 255, 255);
+        box-shadow: none;
+        border: 1px solid rgb(225, 225, 225);
+        height: 44px;
+        width: 46px;
+        position: relative;
+        transition: all 0.3s ease 0s;
+        border-radius: 0px !important;
+        color: black;
+        /* border: none; */
+        /* background: none; */
+        border-bottom-right-radius: 0;
+    }
+
+    .fc-direction-ltr .fc-button-group>.fc-upcoming-button:not(:first-child):before {
+        content: "";
+        position: absolute;
+        height: 17px;
+        width: 17px;
+        background: #1d7a8c;
+        display: block;
+        left: 0;
+        top: 50%;
+        margin-top: -9px;
+    }
+
+    /* fc-upcoming-button */
+    .fc .fc-completed-button:not(:disabled):active:focus {
+        box-shadow: none;
+
+    }
+
+    .fc .fc-upcoming-button:not(:disabled):active:focus {
+        box-shadow: none;
+
+    }
