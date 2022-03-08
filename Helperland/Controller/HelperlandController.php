@@ -584,6 +584,7 @@ class HelperlandController
                     $avtarimg = $row['UserProfilePicture'];
                     $natinallity = $row['NationalityId'];
                     $gender = $row['Gender'];
+                    $isactives = $row['IsActive'];
                     $address = $this->model->GetAddress($email);
                     if (count($address)) {
                         foreach ($address as $addr) {
@@ -593,7 +594,7 @@ class HelperlandController
                             $cityval = $addr['City'];
                         }
                     }
-                    if ($statusactive == "Active") {
+                    if ($isactives == "Yes") {
                         $isactive = 1;
                     } else {
                         $isactive = 0;
@@ -1041,10 +1042,12 @@ class HelperlandController
                     }
                     if (!empty($serviceproviderid)) {
                         $spalldetails = $this->model->GetUsers($serviceproviderid);
-                        if ($status == 'Approoved' || $status == 'Completed' || $status == "Cancelled") {
+
+                        if ($status == 'Approoved' || $status == 'Completed' || $status == 'Reschedule' || $status == "Cancelled") {
 
                             if (count($spalldetails)) {
                                 foreach ($spalldetails as $sp) {
+                                    $picture = $sp['UserProfilePicture'];
                                     $spfirstname = $sp['FirstName'];
                                     $splastname = $sp['LastName'];
                                     $spratings = $this->model->GetSPRattings($serviceproviderid);
@@ -1093,13 +1096,22 @@ class HelperlandController
                                                     $values = $values .  '<i class="fa fa-star "  style="margin-right:4px;"></i>';
                                                 }
                                             }
+                                            if (strlen($picture) != 0) {
+                                                // $pictures = "http://localhost/helper/assets/image/car.png";
+                                                $image = str_replace("http://localhost/helper/", "./", $picture);
+                                                $imgs = '<img  src="' . $image . '" class="service-provider-img">';
+                                            } else {
+                                                // $pictures = "./assets/image/car.png";
+
+                                                $imgs = '<img src="./assets/image/avatar-hat.png" class="service-provider-img">';
+                                            }
                                             $serviceprovider = '
                                 <div class="totaldetils">
                                 <h4>Service Provider Details
                                 </h4>
                                <div class="row serviceproviderblocks">
-                                   <div class="col service-provider-imgs"><img src="./assets/image/forma-1-copy-19.png" class="service-provider-img"></div>
-                                   <div class="col ml-3">
+                                            ' . $imgs . '
+                               <div class="col ml-3">
                                        <div class="row service-provider">' . $spfirstname . ' ' . $splastname . '</div>
                                        <div class="row star">
 
@@ -1116,14 +1128,10 @@ class HelperlandController
                                     }
                                 }
                             }
-                        } else {
-                            $serviceprovider = '<p class="text-success serviceproviderblocks">You Have Requested to Change SP. New SP Will be Provided Soon.</p>';
                         }
                     }
 
-                    if ($status == 'Reschedule') {
-                        $serviceprovider = '<p class="text-success serviceproviderblocks">You Have Requested to Change SP. New SP Will be Provided Soon.</p>';
-                    }
+
                     // $totalresult = array();
                     // $totalresult['pets'] = $pets;
                     // $totalresult['date'] = $date;
@@ -1163,8 +1171,8 @@ class HelperlandController
 
                 </select>
                 <span class="timingerr text-danger"></span>';
-                    $mapaddress = $address1.' '. $postalcode;
-             $map = '   <iframe width="100%" height="400" src="https://maps.google.com/maps?q='.$mapaddress.'&output=embed"></iframe>';
+                    $mapaddress = $address1 . ' ' . $postalcode;
+                    $map = '   <iframe width="100%" height="400" src="https://maps.google.com/maps?q=' . $mapaddress . '&output=embed"></iframe>';
 
                     $customerdetails =  $this->model->GetUsers($userid);
                     if (count($customerdetails)) {
@@ -1186,7 +1194,7 @@ class HelperlandController
                         $countsall = $resultsp[0];
                         // $servicerequestid = $resultsp[1];
 
-                        if ($countsall == 1) {
+                        if ($countsall >= 1) {
                             $acceptbtn = '
                                     <button type="submit" class="btn  btn-accept-green"   id=' . $serviceid . ' title="Accept Service Request"  data-dismiss="modal" disabled="disabled" style="cursor:not-allowed;"><img src="./assets/Image/included.png" class="mr-2">Accept</button>
                                     ';
@@ -1214,7 +1222,7 @@ class HelperlandController
                                 $cancelupcomingbtn = '        
                                 <button class="btn btn-completed " id="' . $serviceid . '"   name="' . $serviceid . '"  data-dismiss="modal" title="Completed"><i class="fa fa-check mr-2"></i>Completed </button> ';
                             } else {
-                               
+
                                 $cancelupcomingbtn = '<button type="submit" class="btn  cancelconfirm" id=' . $serviceid . ' title="Cancel" data-toggle="modal" data-target="#cancelmodal" data-dismiss="modal"><img src="./assets/Image/close-white.png" style="    width: 15px;
                             height: 15px;" class="mr-2" >Cancel</button>';
                             }
@@ -1233,7 +1241,7 @@ class HelperlandController
                 ';
                     //data-toggle="modal" data-target="#bookingdetails" name="'.$serviceid.'"
                     $selectnewdateandtime = '<p id="' . $totalrequiredtime . '">Select New Date & Time</p>';
-                    $output = [$date, $starttime, $totalltimes, $totalrequiredtime, $serviceid, $extraservices, $payment, $serviceaddress, $billingaddress, $mobile, $email, $comments, $pets, $reschedule, $cancel, $updatebutton, $cancelbtn, $selectyourtime, $commenttextara, $selectnewdateandtime, $serviceprovider, $custmernames, $acceptbtn, $cancelupcomingbtn,$map];
+                    $output = [$date, $starttime, $totalltimes, $totalrequiredtime, $serviceid, $extraservices, $payment, $serviceaddress, $billingaddress, $mobile, $email, $comments, $pets, $reschedule, $cancel, $updatebutton, $cancelbtn, $selectyourtime, $commenttextara, $selectnewdateandtime, $serviceprovider, $custmernames, $acceptbtn, $cancelupcomingbtn, $map];
                 }
             }
             echo json_encode($output);
@@ -1264,7 +1272,7 @@ class HelperlandController
                     $modifiedby  = $emails['Email'];
                 }
             }
-            $modifieddate = date('Y-m-d H:i:s');;
+            $modifieddate = date('Y-m-d H:i:s');
             $status = "Pending";
             if (!empty($spid)) {
                 $status = "Reschedule";
@@ -2348,37 +2356,38 @@ class HelperlandController
 
 
                     $result = array();
-                    if($haspet == 1){
-                    if($pets == 1){
-                        $result = array();
-                    $result['blocks'] = "";
-                    $result['serviceid'] = $serviceids;
-                    $result['dates'] = $dates;
-                    $result['customerdetails'] = $userdetails;
-                    $result['payment'] = $paymnetbook;
-                    $result['timeconflict'] = $timeconflict;
-                    $result['action'] = $action;}else{
+                    if ($haspet == 1) {
+                        if ($pets == 1) {
+                            $result = array();
+                            $result['blocks'] = "";
+                            $result['serviceid'] = $serviceids;
+                            $result['dates'] = $dates;
+                            $result['customerdetails'] = $userdetails;
+                            $result['payment'] = $paymnetbook;
+                            $result['timeconflict'] = $timeconflict;
+                            $result['action'] = $action;
+                        } else {
+                            $result = array();
+                            $result['blocks'] = "";
+                            $result['serviceid'] = "";
+                            $result['dates'] = "";
+                            $result['customerdetails'] = "";
+                            $result['payment'] = "";
+                            $result['timeconflict'] = "";
+                            $result['action'] = "";
+                        }
+                    }
+                    if ($haspet == 0) {
+
                         $result = array();
                         $result['blocks'] = "";
-                        $result['serviceid'] = "";
-                        $result['dates'] = "";
-                        $result['customerdetails'] = "";
-                        $result['payment'] = "";
-                        $result['timeconflict'] = "";
-                        $result['action'] = "";
+                        $result['serviceid'] = $serviceids;
+                        $result['dates'] = $dates;
+                        $result['customerdetails'] = $userdetails;
+                        $result['payment'] = $paymnetbook;
+                        $result['timeconflict'] = $timeconflict;
+                        $result['action'] = $action;
                     }
-                }
-                if($haspet == 0){
-                   
-                        $result = array();
-                    $result['blocks'] = "";
-                    $result['serviceid'] = $serviceids;
-                    $result['dates'] = $dates;
-                    $result['customerdetails'] = $userdetails;
-                    $result['payment'] = $paymnetbook;
-                    $result['timeconflict'] = $timeconflict;
-                    $result['action'] = $action;
-                }
                     array_push($json['data'], $result);
                 }
             }
@@ -2778,58 +2787,60 @@ class HelperlandController
                             }
                         }
 
-                        if($paymentstatus == 1){
+                        if ($paymentstatus == 1) {
                             $results = array();
                             $results['blocks'] = $control;
                             $results['serviceid'] = $serviceidcolumn;
                             $results['date'] = $datecolumn;
                             $results['payment'] = $paymentcolumn;
                             $results['details'] = $userdetails;
-    
+
                             $results['status'] = $userstatus;
                         }
-                        if($paymentstatus == 2){
+                        if ($paymentstatus == 2) {
                             if ($status == "Completed") {
-                            $results = array();
-                            $results['blocks'] = $control;
-                            $results['serviceid'] = $serviceidcolumn;
-                            $results['date'] = $datecolumn;
-                            $results['payment'] = $paymentcolumn;
-                            $results['details'] = $userdetails;
-    
-                            $results['status'] = $userstatus;
-                        }else{
-                            $results = array();
-                            $results['blocks'] = "";
-                            $results['serviceid'] = "";
-                            $results['date'] = "";
-                            $results['payment'] ="";
-                            $results['details'] = "";
-    
-                            $results['status'] = "";
-                        }}
-                        
-                        
-                        if($paymentstatus == 3){
+                                $results = array();
+                                $results['blocks'] = $control;
+                                $results['serviceid'] = $serviceidcolumn;
+                                $results['date'] = $datecolumn;
+                                $results['payment'] = $paymentcolumn;
+                                $results['details'] = $userdetails;
+
+                                $results['status'] = $userstatus;
+                            } else {
+                                $results = array();
+                                $results['blocks'] = "";
+                                $results['serviceid'] = "";
+                                $results['date'] = "";
+                                $results['payment'] = "";
+                                $results['details'] = "";
+
+                                $results['status'] = "";
+                            }
+                        }
+
+
+                        if ($paymentstatus == 3) {
                             if ($status == "Cancelled") {
-                            $results = array();
-                            $results['blocks'] = $control;
-                            $results['serviceid'] = $serviceidcolumn;
-                            $results['date'] = $datecolumn;
-                            $results['payment'] = $paymentcolumn;
-                            $results['details'] = $userdetails;
-    
-                            $results['status'] = $userstatus;
-                        }else{
-                            $results = array();
-                            $results['blocks'] = "";
-                            $results['serviceid'] = "";
-                            $results['date'] = "";
-                            $results['payment'] ="";
-                            $results['details'] = "";
-    
-                            $results['status'] = "";
-                        }}
+                                $results = array();
+                                $results['blocks'] = $control;
+                                $results['serviceid'] = $serviceidcolumn;
+                                $results['date'] = $datecolumn;
+                                $results['payment'] = $paymentcolumn;
+                                $results['details'] = $userdetails;
+
+                                $results['status'] = $userstatus;
+                            } else {
+                                $results = array();
+                                $results['blocks'] = "";
+                                $results['serviceid'] = "";
+                                $results['date'] = "";
+                                $results['payment'] = "";
+                                $results['details'] = "";
+
+                                $results['status'] = "";
+                            }
+                        }
                         array_push($json['data'], $results);
                     }
                 }
@@ -2840,7 +2851,7 @@ class HelperlandController
         }
     }
 
-   public function GetSPratings()
+    public function GetSPratings()
     {
         if (isset($_POST)) {
             $username = $_POST['username'];
@@ -3019,45 +3030,42 @@ class HelperlandController
                             if ($selectbtn == 5) {
                                 $output['ratings'] = $out5;
                             }
-                           
-                            // $output = [$out1];
-                                array_push($json['data'],$output);       
-                        }
-                     
-                    
-                    }
-            
-                }
-                  }
-                  echo json_encode($json);  
 
+                            // $output = [$out1];
+                            array_push($json['data'], $output);
+                        }
+                    }
+                }
             }
+            echo json_encode($json);
+        }
     }
 
-    public function GetWorkedCustomer(){
-        if(isset($_POST)){
-          $username =  $_POST['username'];
-          $result = $this->model->ResetKey($username);
-          $userid = $result[3];
-          $getcust =  $this->model->WorkedCust($userid);
-          $json['data'] = array();
-            if(count($getcust)){
-                foreach($getcust as $cust){
-                   $custfname =  $cust['FirstName'];
+    public function GetWorkedCustomer()
+    {
+        if (isset($_POST)) {
+            $username =  $_POST['username'];
+            $result = $this->model->ResetKey($username);
+            $userid = $result[3];
+            $getcust =  $this->model->WorkedCust($userid);
+            $json['data'] = array();
+            if (count($getcust)) {
+                foreach ($getcust as $cust) {
+                    $custfname =  $cust['FirstName'];
                     $custlname =  $cust['LastName'];
                     $custid = $cust['UserId'];
-                $resultall = array();
+                    $resultall = array();
                     $values = $this->model->CheckValueInFavourite($userid, $custid);
-                        $isblock = $values[1];
-                    if($values == 0){
-                        $blockbtn = '<button type="button" class="btn btn-block-unblock " name = "'.$userid.'" id="' . $custid . '">Block</button>';
+                    $isblock = $values[1];
+                    if ($values == 0) {
+                        $blockbtn = '<button type="button" class="btn btn-block-unblock " name = "' . $userid . '" id="' . $custid . '">Block</button>';
 
-                        $resultall['serviceprovider'] = '';                    }else{
-                        if($isblock == 1){
-                            $blockbtn = '<button type="button" class="btn btn-block-unblock " name = "'.$userid.'" id="' . $custid . '">UnBlock</button>';
-
-                        }else{
-                            $blockbtn = '<button type="button" class="btn btn-block-unblock " name = "'.$userid.'" id="' . $custid . '">Block</button>';
+                        $resultall['serviceprovider'] = '';
+                    } else {
+                        if ($isblock == 1) {
+                            $blockbtn = '<button type="button" class="btn btn-block-unblock " name = "' . $userid . '" id="' . $custid . '">UnBlock</button>';
+                        } else {
+                            $blockbtn = '<button type="button" class="btn btn-block-unblock " name = "' . $userid . '" id="' . $custid . '">Block</button>';
                         }
                         $resultall['serviceprovider'] = '  <td>
                         <div class="block-customer odd">
@@ -3073,11 +3081,1210 @@ class HelperlandController
               
                     </td>';
                     }
-                    array_push($json['data'],$resultall);
+                    array_push($json['data'], $resultall);
                 }
             }
             echo json_encode($json);
         }
     }
 
+
+    public function AdminUser()
+    {
+        if (isset($_POST)) {
+            $users = $this->model->Alluser();
+            $json['data'] = array();
+            if (count($users)) {
+                foreach ($users as $us) {
+                    $userid = $us['UserId'];
+                    $firstname  = $us['FirstName'];
+                    $lastname  = $us['LastName'];
+                    $role = $us['RoleId'];
+                    $date = $us['CreatedDate'];
+                    $dates = date("d/m/Y", strtotime($date));
+
+                    $usertype = $us['RoleId'];
+                    $phone = $us['Mobile'];
+                    $zipcode = $us['ZipCode'];
+                    $isactive = $us['IsActive'];
+
+                    $dates = '
+                    <div class="date" ><img src="./assets/image/calendar2.png" class="calender mr-2"><b>' . $dates . '</b></div>
+                    ';
+                    if ($isactive == "Yes") {
+                        $userstatus = '
+                        <div class="action"><button class="btn active">Active</button></div>
+                        ';
+                        $action = ' 
+                        <div class="action card-title">
+
+                            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                            <div class="dropdown-item deactivateuser" id="' . $userid . '">Deactivate</div>
+                            
+
+                        </div>';
+                    }
+                    if ($isactive == "No") {
+                        $userstatus = '
+                        <div class="action"><button class="btn inactive">InActive</button></div>
+                        ';
+
+                        $action = ' 
+                        <div class="action card-title">
+
+                            <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                            <div class="dropdown-item activateuser" id="' . $userid . '">Activate</div>
+                        </div>';
+                    }
+
+                    $cardview = '<div class="card table-card mt-4">
+                        <div class="card-body">
+                    
+
+                            <div class="username">
+                                <div class="card-title">' . $firstname . ' ' . $lastname . '</div>
+                            </div>
+                            <div class="usertype">
+                                <div class="card-title">' . $role . ' </div>
+                            </div>
+                            <div class="role">
+                                <div class="card-title">' . $dates . ' </div>
+                            </div>
+                            <div class="postal-code">
+                                <div class="card-title">' . $phone . '</div>
+                            </div>
+                            <div class="city">
+                                <div class="card-title">' . $zipcode . '</div>
+                            </div>
+                            
+                            <div class="user-status">
+                                <div class="action card-title">' . $userstatus . '</div>
+                            </div>
+                            <div class="user-action">
+                                <div class="action card-title">
+                                        ' . $action . '
+                                </div>
+                            </div>
+                    
+                        </div>
+                    </div>';
+                    $result = array();
+                    $result['username'] = $firstname . ' ' . $lastname;
+                    $result['blocks'] = "";
+
+                    $result['role'] = $role;
+                    $result['dtregister'] = $dates;
+                    $result['usertype'] = $role;
+                    $result['phone'] = $phone;
+                    $result['pincode'] = $zipcode;
+                    $result['status'] = $userstatus;
+                    $result['action'] = $action;
+                    $result['cardview'] =   $cardview;
+
+                    array_push($json['data'], $result);
+                }
+            }
+            echo json_encode($json);
+        }
+    }
+
+    public function ActivateDeactivate()
+    {
+        if (isset($_POST)) {
+            $username =  $_POST['username'];
+            $status =  $_POST['status'];
+            $userid =  $_POST['uid'];
+
+            $modifieddate = date('Y-m-d H:i:s');
+            $modifiedby = $username;
+
+            $array = [
+                'isactive' => $status,
+                'modifieddate' => $modifieddate,
+                'modifiedby' => $modifiedby,
+                'userid' => $userid,
+            ];
+            $results =  $this->model->ActivateDeactivate($array);
+            $count = $results[0];
+            if ($count == 1) {
+                echo 1;
+            } else {
+                echo 0;
+            }
+        }
+    }
+
+    public function GetRoleAndUser()
+    {
+        if (isset($_POST)) {
+            $users = $this->model->selectdistinctuser();
+            if (count($users[0])) {
+                foreach ($users[0] as $us) {
+                    $usernames =  $us['UserName'];
+                    // $userids = $us['UserId'];
+
+                    $user = '<option >' . $usernames . '</option>';
+                    // if(count($users[1])){
+                    //     foreach($users[1] as $roles){
+                    //         $role = $roles['RoleId'];
+                    //         $role = '<option value="'.$role.'" >'.$role.'</option>';
+                    //     }
+                    // }
+                    // $output = [$user ];
+                    echo $user;
+                }
+            }
+            //    echo json_encode($output);
+        }
+    }
+
+    public function InsertUserAdmin()
+    {
+        if (isset($_POST)) {
+            $resetkey = bin2hex(random_bytes(15));
+            $email = $_POST['email'];
+            $count = $this->model->EmailExists($email);
+            // echo '<script>alert('.$count.');</script>';
+            if ($count == 0) {
+                $array = [
+                    'firstname' => $_POST['firstname'],
+                    'lastname' => $_POST['lastname'],
+                    'email' => $email,
+                    'mobile' => $_POST['mobile'],
+                    'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
+                    'usertypeid' => 0,
+                    'roleid' => 'Customer',
+                    'resetkey' => $resetkey,
+                    'creationdt' => date('Y-m-d H:i:s'),
+                    'status' => 'New',
+                    'isactive' => 'No',
+                    'isregistered' => 'yes',
+                ];
+                $result = $this->model->InsertCustomer_SP($array);
+                $_SESSION['status_msg'] = $result[0];
+                $_SESSION['status_txt'] = $result[1];
+                $_SESSION['status'] = $result[2];
+                unset($_SESSION['status_msg']);
+                unset($_SESSION['status_txt']);
+                unset($_SESSION['status']);
+
+                include('ActivateAccount.php');
+                echo 1;
+            } else {
+                echo 0;
+            }
+        }
+    }
+
+
+    public function searchAdmin()
+    {
+        if (isset($_POST)) {
+            $selecteduser = $_POST['seluser'];
+            $role = $_POST['role'];
+            $phone = $_POST['phone'];
+            $zipcode = $_POST['zipcode'];
+
+            if ($selecteduser != '' && $role == '' && $phone == '' && $zipcode == '') {
+                $result = $this->model->Selectuser($selecteduser);
+            }
+            if ($role != '' && $selecteduser == ''  && $phone == '' && $zipcode == '') {
+                $result = $this->model->selrole($role);
+            }
+            if ($phone != '' && $selecteduser == '' && $role == '' && $zipcode == '') {
+                $result = $this->model->selmobile($phone);
+            }
+            if ($zipcode != '' && $selecteduser == '' && $role == '' && $phone == '') {
+                $result = $this->model->selzip($zipcode);
+            }
+            if ($selecteduser != '' && $role != '' && $phone == '' && $zipcode == '') {
+                $result = $this->model->seluserrole($selecteduser, $role);
+            }
+            if ($selecteduser != '' && $role == '' && $phone != '' && $zipcode == '') {
+                $result = $this->model->seluserphone($selecteduser, $phone);
+            }
+            if ($selecteduser != '' && $role == '' && $phone == '' && $zipcode != '') {
+                $result = $this->model->seluserzip($selecteduser, $zipcode);
+            }
+            if ($selecteduser != '' && $role != '' && $phone == '' && $zipcode != '') {
+                $result = $this->model->seluserrolezip($selecteduser, $role, $zipcode);
+            }
+            if ($selecteduser != '' && $role != '' && $phone != '' && $zipcode == '') {
+                $result = $this->model->seluserrolephone($selecteduser, $role, $phone);
+            }
+            if ($selecteduser != '' && $role == '' && $phone != '' && $zipcode != '') {
+                $result = $this->model->seluserphonezip($selecteduser, $phone, $zipcode);
+            }
+            if ($selecteduser != '' && $role != '' && $phone != '' && $zipcode != '') {
+                $result = $this->model->seluserrolephonezip($selecteduser, $role, $phone, $zipcode);
+            }
+            if ($selecteduser == '' && $role != '' && $phone != '' && $zipcode == '') {
+                $result = $this->model->selrolephone($role, $phone);
+            }
+            if ($selecteduser == '' && $role != '' && $phone == '' && $zipcode != '') {
+                $result = $this->model->selrolezip($role, $zipcode);
+            }
+            if ($selecteduser == '' && $role != '' && $phone != '' && $zipcode != '') {
+                $result = $this->model->selrolephonezip($role, $phone, $zipcode);
+            }
+            if ($selecteduser == '' && $role == '' && $phone != '' && $zipcode != '') {
+                $result = $this->model->selzipphone($phone, $zipcode);
+            }
+            $json['data'] = array();
+            if (count($result)) {
+                foreach ($result as $us) {
+                    $userid = $us['UserId'];
+                    $firstname  = $us['FirstName'];
+                    $lastname  = $us['LastName'];
+                    $role = $us['RoleId'];
+                    $date = $us['CreatedDate'];
+                    $dates = date("d/m/Y", strtotime($date));
+
+                    $usertype = $us['RoleId'];
+                    $phone = $us['Mobile'];
+                    $zipcode = $us['ZipCode'];
+                    $isactive = $us['IsActive'];
+
+                    $dates = '
+                <div class="date" ><img src="./assets/image/calendar2.png" class="calender mr-2"><b>' . $dates . '</b></div>
+                ';
+                    if ($isactive == "Yes") {
+                        $userstatus = '
+                    <div class="action"><button class="btn active">Active</button></div>
+                    ';
+                        $action = ' 
+                    <div class="action card-title">
+
+                        <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        </a>
+                        <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                        <div class="dropdown-item deactivateuser" id="' . $userid . '">Deactivate</div>
+                        
+
+                    </div>';
+                    }
+                    if ($isactive == "No") {
+                        $userstatus = '
+                    <div class="action"><button class="btn inactive">InActive</button></div>
+                    ';
+
+                        $action = ' 
+                    <div class="action card-title">
+
+                        <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        </a>
+                        <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                        <div class="dropdown-item activateuser" id="' . $userid . '">Activate</div>
+                    </div>';
+                    }
+
+                    $cardview = '<div class="card table-card mt-4">
+                    <div class="card-body">
+                
+
+                        <div class="username">
+                            <div class="card-title">' . $firstname . ' ' . $lastname . '</div>
+                        </div>
+                        <div class="usertype">
+                            <div class="card-title">' . $role . ' </div>
+                        </div>
+                        <div class="role">
+                            <div class="card-title">' . $dates . ' </div>
+                        </div>
+                        <div class="postal-code">
+                            <div class="card-title">' . $phone . '</div>
+                        </div>
+                        <div class="city">
+                            <div class="card-title">' . $zipcode . '</div>
+                        </div>
+                        
+                        <div class="user-status">
+                            <div class="action card-title">' . $userstatus . '</div>
+                        </div>
+                        <div class="user-action">
+                            <div class="action card-title">
+                                    ' . $action . '
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>';
+                    $result = array();
+                    $result['username'] = $firstname . ' ' . $lastname;
+                    $result['blocks'] = "";
+
+                    $result['role'] = $role;
+                    $result['dtregister'] = $dates;
+                    $result['usertype'] = $role;
+                    $result['phone'] = $phone;
+                    $result['pincode'] = $zipcode;
+                    $result['status'] = $userstatus;
+                    $result['action'] = $action;
+                    $result['cardview'] =   $cardview;
+
+                    array_push($json['data'], $result);
+                }
+            }
+            echo json_encode($json);
+        }
+    }
+
+    public function GetAllServiceRequest()
+    {
+        if (isset($_POST)) {
+            $serviceid = $_POST['serviceid'];
+            $seluser = $_POST['seluser'];
+            $selsp = $_POST['selsp'];
+            $statusall = $_POST['statusall'];
+            $strtdt = $_POST['startdate'];
+            $enddt = $_POST['enddate'];
+            if ($statusall == "New") {
+                $statusall = "Pending";
+            } else if ($statusall == "Pending") {
+                $statusall = "Approoved";
+            } else {
+                $statusall = $statusall;
+            }
+            // serviceid
+            // 2part
+            if ($serviceid != "" && $seluser == "" && $selsp == "" && $statusall == "" && $strtdt == "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($serviceid != "" && $seluser != "" && $selsp == "" && $statusall == "" && $strtdt == "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && CONCAT(user.FirstName , ' ',user.LastName) = '$seluser'";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($serviceid != "" && $seluser == "" && $selsp == "" && $statusall != "" && $strtdt == "" && $enddt == "") {
+
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid &&  `servicerequest`.`status` = '$statusall'";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($serviceid != "" && $seluser == "" && $selsp == "" && $statusall == "" && $strtdt != "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y')";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($serviceid != "" && $seluser == "" && $selsp == "" && $statusall == "" && $strtdt == "" && $enddt != "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y')";
+                $result = $this->model->SearchServiceid($val);
+            }
+            //3part(1)
+            if ($serviceid != "" && $seluser != "" && $selsp == "" && $statusall != "" && $strtdt == "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && CONCAT(user.FirstName , ' ',user.LastName) = '$seluser' && `servicerequest`.`status` = '$statusall'  ";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($serviceid != "" && $seluser != "" && $selsp == "" && $statusall == "" && $strtdt != "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && CONCAT(user.FirstName , ' ',user.LastName) = '$seluser' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y') ";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($serviceid != "" && $seluser != "" && $selsp == "" && $statusall == "" && $strtdt == "" && $enddt != "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && CONCAT(user.FirstName , ' ',user.LastName) = '$seluser' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->SearchServiceid($val);
+            }
+            // 3part(2)
+            if ($serviceid != "" && $seluser == "" && $selsp == "" && $statusall != "" && $strtdt != "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && `servicerequest`.`status` = '$statusall' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y') ";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($serviceid != "" && $seluser != "" && $selsp == "" && $statusall != "" && $strtdt == "" && $enddt != "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && `servicerequest`.`status` = '$statusall' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->SearchServiceid($val);
+            }
+            //4part(1)
+            if ($serviceid != "" && $seluser != "" && $selsp == "" && $statusall != "" && $strtdt != "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && CONCAT(user.FirstName , ' ',user.LastName) = '$seluser' && `servicerequest`.`status` = '$statusall' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->SearchServiceid($val);
+            }
+
+            if ($serviceid != "" && $seluser != "" && $selsp == "" && $statusall != "" && $strtdt == "" && $enddt != "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && CONCAT(user.FirstName , ' ',user.LastName) = '$seluser' && `servicerequest`.`status` = '$statusall' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y') ";
+                $result = $this->model->SearchServiceid($val);
+            }
+
+            if ($serviceid != "" && $seluser != "" && $selsp == "" && $statusall != "" && $strtdt != "" && $enddt != "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && CONCAT(user.FirstName , ' ',user.LastName) = '$seluser' && `servicerequest`.`status` = '$statusall' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y')  && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->SearchServiceid($val);
+            }
+
+
+            //with sp
+            if ($serviceid != "" && $seluser == "" && $selsp != "" && $statusall == "" && $strtdt == "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`ServiceRequestId` = $serviceid && CONCAT(user.FirstName , ' ',user.LastName) = '$selsp'";
+                $result = $this->model->GetSearchSP($val);
+            }
+            if ($serviceid == "" && $seluser == "" && $selsp != "" && $statusall != "" && $strtdt == "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`status` = '$statusall' && CONCAT(user.FirstName , ' ',user.LastName) = '$selsp'";
+                $result = $this->model->GetSearchSP($val);
+            }
+
+            if ($serviceid == "" && $seluser == "" && $selsp != "" && $statusall == "" && $strtdt != "" && $enddt == "") {
+                $val = "WHERE  CONCAT(user.FirstName , ' ',user.LastName) = '$selsp' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y') ";
+                $result = $this->model->GetSearchSP($val);
+            }
+
+            if ($serviceid == "" && $seluser == "" && $selsp != "" && $statusall == "" && $strtdt == "" && $enddt != "") {
+                $val = "WHERE  CONCAT(user.FirstName , ' ',user.LastName) = '$selsp' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->GetSearchSP($val);
+            }
+
+            if ($serviceid == "" && $seluser == "" && $selsp != "" && $statusall != "" && $strtdt == "" && $enddt != "") {
+                $val = "WHERE  `servicerequest`.`status` = '$statusall' && CONCAT(user.FirstName , ' ',user.LastName) = '$selsp' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->GetSearchSP($val);
+            }
+            if ($serviceid != "" && $seluser == "" && $selsp != "" && $statusall == "" && $strtdt == "" && $enddt != "") {
+                $val = "WHERE  `servicerequest`.`ServiceRequestId` = $serviceid  && CONCAT(user.FirstName , ' ',user.LastName) = '$selsp' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->GetSearchSP($val);
+            }
+
+            if ($serviceid != "" && $seluser == "" && $selsp != "" && $statusall == "" && $strtdt != "" && $enddt == "") {
+                $val = "WHERE  `servicerequest`.`ServiceRequestId` = $serviceid  && CONCAT(user.FirstName , ' ',user.LastName) = '$selsp' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y') ";
+                $result = $this->model->GetSearchSP($val);
+            }
+
+            if ($serviceid != "" && $seluser == "" && $selsp != "" && $statusall == "" && $strtdt != "" && $enddt != "") {
+                $val = "WHERE  `servicerequest`.`ServiceRequestId` = $serviceid  && CONCAT(user.FirstName , ' ',user.LastName) = '$selsp' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y')  && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->GetSearchSP($val);
+            }
+
+
+            if ($serviceid != "" && $seluser == "" && $selsp != "" && $statusall != "" && $strtdt != "" && $enddt != "") {
+                $val = "WHERE  `servicerequest`.`ServiceRequestId` = $serviceid && `servicerequest`.`status` = '$statusall' && CONCAT(user.FirstName , ' ',user.LastName) = '$selsp' && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y')  && str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y') ";
+                $result = $this->model->GetSearchSP($val);
+            }
+
+            if ($seluser != "" && $serviceid == ""  && $selsp == "" && $statusall == "" && $strtdt == "" && $enddt == "") {
+                $val = "WHERE CONCAT(user.FirstName , ' ',user.LastName) = '$seluser'";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($selsp != "" && $seluser == "" && $serviceid == ""  && $statusall == "" && $strtdt == "" && $enddt == "") {
+                $val = "WHERE CONCAT(user.FirstName , ' ',user.LastName) = '$selsp'";
+                $result = $this->model->GetSearchSP($val);
+            }
+            if ($statusall != "" && $seluser == "" && $serviceid == ""  && $selsp == "" && $strtdt == "" && $enddt == "") {
+                $val = "WHERE `servicerequest`.`status` = '$statusall'";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($strtdt != "" && $enddt == "" && $seluser == "" && $serviceid == ""  && $selsp == "" && $statusall == "") {
+                $val = "WHERE str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') >= str_to_date('$strtdt','%d/%m/%Y')";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($enddt != "" && $strtdt == "" && $seluser == "" && $serviceid == ""  && $selsp == "" && $statusall == "") {
+                $val = "WHERE str_to_date(`servicerequest`.`ServiceStartDate`,'%d/%m/%Y') <= str_to_date('$enddt','%d/%m/%Y')";
+                $result = $this->model->SearchServiceid($val);
+            }
+            if ($serviceid == "" && $seluser == "" && $selsp == "" && $statusall == "" && $strtdt == "" && $enddt == "") {
+                $result = $this->model->GetAllServiceRequests();
+            }
+            $json['data'] = array();
+            if (count($result)) {
+                foreach ($result as $row) {
+                    $serviceid = $row['ServiceRequestId'];
+                    $servicedt = $row['ServiceStartDate'];
+                    $starttime = $row['ServiceTime'];
+                    $totaltime = $row['TotalHours'];
+                    $street = $row['AddressLine1'];
+                    $houseno = $row['AddressLine2'];
+
+                    $postalcode = $row['PostalCode'];
+                    $firstname = $row['FirstName'];
+                    $lastname = $row['LastName'];
+                    $city = $row['City'];
+                    $userid = $row['UserId'];
+                    $status = $row['Status'];
+
+                    $serviceproviderid = $row['ServiceProviderId'];
+                    $serviceprovider = "";
+                    if ($serviceproviderid != '') {
+                        $spalldetails = $this->model->GetUsers($serviceproviderid);
+                        if (count($spalldetails)) {
+                            foreach ($spalldetails as $sp) {
+                                $spfirstname = $sp['FirstName'];
+                                $splastname = $sp['LastName'];
+                                $picture = $sp['UserProfilePicture'];
+                                $spratings = $this->model->GetSPRattings($serviceproviderid);
+                                if (count($spratings[0])) {
+                                    $sprate = 0;
+                                    $count = $spratings[1];
+                                    foreach ($spratings[0] as $sprating) {
+                                        $sprate = ($sprate + $sprating['Ratings']);
+                                    }
+                                    // $sprate = $sprate+$sprate;
+                                    $sprate = round(($sprate / $count), 2);
+                                    $spratings = round($sprate);
+                                    $valu = $spratings;
+                                    if ($valu != 0) {
+                                        $val = '';
+                                        $values = '';
+                                        for ($i = 1; $i <= $valu; $i++) {
+
+                                            $values = $values .  '<i class="fa fa-star " style="color:rgb(236, 185, 28);"></i>';
+                                            // $values = $val.'' .$val;
+
+                                        }
+                                        if ($valu <= 5) {
+                                            for ($count = ($spratings + 1); $count <= 5; $count++) {
+                                                $values = $values . '<i class="fa fa-star "></i>';
+                                            }
+                                        }
+                                    }
+                                    if ($valu = 0) {
+                                        $values = '';
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            $values = $values .  '<i class="fa fa-star " "></i>';
+                                        }
+                                    }
+
+                                    $values = $values;
+                                } else {
+                                    $values = "";
+                                    $sprate = 0;
+                                    for ($i = 1; $i <= 5; $i++) {
+                                        $values = $values .  '<i class="fa fa-star "  style="margin-right:4px;"></i>';
+                                    }
+                                }
+                                if (strlen($picture) != 0) {
+                                    // $pictures = "http://localhost/helper/assets/image/car.png";
+                                    $image = str_replace("http://localhost/helper/", "./", $picture);
+                                    $imgs = '<img  src="' . $image . '" class="service-provider-img">';
+                                } else {
+                                    // $pictures = "./assets/image/car.png";
+
+                                    $imgs = '<img src="./assets/image/avatar-hat.png" class="service-provider-img">';
+                                }
+                                $serviceprovider = '<td class="service_provider_names">
+                           <div class="row serviceproviderblocks">
+                                ' . $imgs . '
+                               <div class="col ml-3">
+                                   <div class="row service-provider">' . $spfirstname . ' ' . $splastname . '</div>
+                                   <div class="row star">
+
+                                   ' . $values . '
+                                   </div>
+                                   <span class="info">' . $sprate . '</span>
+
+                               </div>
+                           </div>
+                       </td>';
+                            }
+                        }
+                    }
+                    $starttime =  date("H:i", strtotime($starttime));
+                    $startime = str_replace(":", ".", $starttime);
+                    $hoursq = intval($startime);
+                    $realPartq =  $startime - $hoursq;
+                    $minutesq = intval($realPartq * 60);
+                    if ($minutesq == 18) {
+                        $minutesq = 5;
+                    } else {
+                        $minutesq = 0;
+                    }
+                    $startime =  $hoursq . "." . $minutesq;
+
+                    $hours = intval($totaltime);
+                    $realPart = $totaltime - $hours;
+                    $minutes = intval($realPart * 60);
+                    if ($minutes == 30) {
+                        $minutes = 5;
+                    } else {
+                        $minutes = 0;
+                    }
+                    $totaltimes = $hours . ":" . $minutes;
+                    $totaltimes = str_replace(":", ".", $totaltimes);
+
+                    $totaltimes = number_format(($startime +  $totaltimes), 2);
+                    $var1 = intval($totaltimes);
+                    $var2 = $totaltimes - $var1;
+                    if ($var2 == 0.50) {
+                        $var2 = 30;
+                    } else {
+                        $var2 = 00;
+                    }
+                    $totaltimes = number_format(($var1 . '.' . $var2), 2);
+                    $totaltimes = str_replace(".", ":", $totaltimes);
+
+
+                    $endtime =  $totaltimes;
+
+                    $dates = ' <div scope="row" >
+                        <div class="col date specialmodtext" data-toggle="modal" data-target="#bookingdetails" id="' . $userid . '" name="' . $serviceid . '" title="View Service Details"><img src="./assets/image/calendar2.png" class="calender mr-2">' . $servicedt . '</div>
+                        <div class="col time specialmodtext" data-toggle="modal" data-target="#bookingdetails" id="' . $userid . '" name="' . $serviceid . '" title="View Service Details"><img src="./assets/image/layer-712.png" class="clock mr-2">' . $starttime . ' - ' . $endtime . '</div>
+                    </div>';
+
+                    $userdetails = '     <div class="row addressp">
+                    <div class="col-12 specialmodtext"data-toggle="modal" data-target="#bookingdetails" id="' . $userid . '"  name="' . $serviceid . '" title="View Service Details">' . $firstname . ' ' . $lastname . ' </div>
+                    <div class="col-12 address specialmodtext" data-toggle="modal" data-target="#bookingdetails" id="' . $userid . '"  name="' . $serviceid . '" title="View Service Details"><img src="./assets/image/layer-719.png" class="home">' . $street . ' ' . $houseno . ',' . $postalcode . ' ' . $city . '</div>
+                </div>';
+                    $action = '';
+
+                    $serviceids = '<p class="specialmodtext"data-toggle="modal" data-target="#bookingdetails" id="' . $userid . '"  name="' . $serviceid . '" title="View Service Details">' . $serviceid . '</p>';
+                    if ($status == 'Pending') {
+                        $statues = '<button class="btn new">New</button>';
+                    }
+                    if ($status == 'Approoved') {
+                        $statues = '<button class="btn pending">Pending</button>';
+                    }
+                    if ($status == 'Reschedule') {
+                        $statues = '<button class="btn new">Reschedule</button>';
+                    }
+                    if ($status == 'Refunded') {
+                        $statues = '<button class="btn cancelled">Refunded</button>';
+                    }
+                    if ($status == 'Completed') {
+                        $statues = '<button class="btn completed">Completed</button>';
+                    }
+                    if ($status == 'Cancelled') {
+                        $statues = '<button class="btn cancelled">Cancelled</button>';
+                    }
+
+                    if ($status == 'Completed' || $status == 'Cancelled' || $status == 'Refunded') {
+                        $action = '     
+                            <div class="action ">
+        
+                                  <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                              </a>
+                              <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                                <a class="dropdown-item refundtool"id="' . $serviceid . '" data-toggle="modal" data-target="#refundmodal"  style="cursor:pointer;">Refund</a>
+                                <a class="dropdown-item" href="#">Escalate </a>
+                                <a class="dropdown-item" href="#">History Log</a>
+                                <a class="dropdown-item" href="#">Download Invoice </a>
+                                    </div>
+                                    ';
+                    }
+                    if ($status == 'Pending' || $status == 'Approoved' || $status == 'Reschedule') {
+                        $action = '     
+                            <div class="action ">
+        
+                                  <a class="dropdown-toggle Actions " href="#" id="navbarDropdowns" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                              </a>
+                              <div class="dropdown-menu tooltiptext" aria-labelledby="navbarDropdowns">
+                              <a class="dropdown-item editsall" id="' . $serviceid . '" data-toggle="modal" data-target="#editmodal" style="cursor:pointer;">Edit & Reschedule</a>
+                              <a class="dropdown-item refundtool" id="' . $serviceid . '" data-toggle="modal" data-target="#refundmodal"  style="cursor:pointer;">Refund</a>
+                              <a class="dropdown-item" href="#">Cancel </a>
+                              <a class="dropdown-item" href="#">Change SP</a>
+                              <a class="dropdown-item" href="#">Escalate </a>
+                              <a class="dropdown-item" href="#">History Log</a>
+                              <a class="dropdown-item" href="#">Download Invoice </a>                             
+                                     </div>
+                                    ';
+                    }
+
+                    $cardview = '
+                    <div class="card table-card mt-4">
+                 <div class="serviceid pl-3">
+                      <div class="card-title specialmodtext"data-toggle="modal" data-target="#bookingdetails" id="' . $userid . '"  name="' . $serviceid . '" title="View Service Details">' . $serviceid . ' </div>
+                    </div>
+                    <div class="servicedt card-title pl-3">
+                        ' . $dates . '
+                    </div>
+                    <div class="service_address pl-3">
+                            ' . $userdetails . '
+                    </div>
+                    <div class="card-title row servicepeoviders pl-5">
+                       ' . $serviceprovider . '
+                    </div>
+                    <div class="user-status pl-3">
+                            ' . $statues . '
+                    </div>
+                    <div class="user-action">
+                        ' . $action . ' 
+                    </div>
+                    </div>';
+                    $res = array();
+                    $res['serviceid'] = $serviceids;
+                    $res['date'] = $dates;
+                    $res['serviceprovider'] = $serviceprovider;
+                    $res['customer'] = $userdetails;
+                    $res['status'] = $statues;
+                    $res['action'] = $action;
+                    $res['blocks'] = '';
+                    $res['cardview'] = $cardview;
+
+
+                    array_push($json['data'], $res);
+                }
+            }
+        }
+        echo json_encode($json);
+    }
+
+    public function AdminUserGet()
+    {
+        if (isset($_POST)) {
+            $user =  $this->model->Allusers(0);
+
+            if (count($user)) {
+                foreach ($user as $us) {
+
+                    $cname = $us['UserName'];
+                    $userval = '<option >' . $cname . '</option>';
+                    echo $userval;
+                }
+            }
+            // echo json_encode($output);
+        }
+    }
+    public function AdminSPGet()
+    {
+        if (isset($_POST)) {
+
+            $sp =  $this->model->Allusers(1);
+            if (count($sp)) {
+                foreach ($sp as $sps) {
+                    $sname = $sps['UserName'];
+                    $spval = '<option >' . $sname . '</option>';
+                    echo $spval;
+                }
+            }
+            // echo json_encode($output);
+        }
+    }
+
+    public function GetSearchServiceRequest()
+    {
+        if (isset($_POST)) {
+            $serviceid = $_POST['serviceid'];
+            if ($serviceid != "") {
+                $this->model->SearchServiceid($serviceid);
+            }
+        }
+    }
+
+    public function GetEditAddress()
+    {
+        if (isset($_POST)) {
+            $serviceid = $_POST['serviceid'];
+            $result = $this->model->GetServiceHistoryUser($serviceid);
+            if (count($result)) {
+                foreach ($result as $row) {
+                    $date = $row['ServiceStartDate'];
+                    $starttime = $row['ServiceTime'];
+                    $totaltime = $row['TotalHours'];
+                    $payment = $row['TotalCost'];
+                    $serviceid = $row['ServiceRequestId'];
+                    $extraservices = $row['ExtraServices'];
+                    $comments = $row['Comments'];
+                    $haspets = $row['HasPets'];
+                    $addressid = $row['AddressId'];
+                    $status = $row['Status'];
+                    $userid = $row['UserId'];
+                    $totalrequiredtime = $totaltime;
+                    $serviceproviderid = $row['ServiceProviderId'];
+                    // $addressid
+                    $startimes = date("H:i", strtotime($starttime));
+                    $strattime = str_replace(":", '.', $startimes);
+                    // 8.30
+                    // 8.0
+
+                    $firstpart = '  <div class="form-row">
+                    <div class="col-md-6 ">
+                      <label for="dates">Date</label>
+                      <input type="text" id="dates" class="form-control mb-2" placeholder="Enter Date" value="' . $date . '"  />
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="time">Time</label>
+                      <select id="time" name="' . $totaltime . '"class="form-control times">
+                    <option value="' . $strattime . '">' . $startimes . '</option>
+                        <option value="8">08:00</option>
+                        <option value="8.30">08:30</option>
+                        <option value="9">09:00</option>
+                        <option value="8.30">09:30</option>
+                        <option value="10">10:00</option>
+                        <option value="8.30">10:30</option>
+                        <option value="11">11:00</option>
+                        <option value="8.30">11:30</option>
+                        <option value="12">12:00</option>
+                        <option value="8.30">12:30</option>
+                        <option value="13">13:00</option>
+                        <option value="8.30">13:30</option>
+                        <option value="14">14:00</option>
+                        <option value="8.30">14:30</option>
+                        <option value="15">15:00</option>
+                        <option value="8.30">15:30</option>
+                        <option value="16">16:00</option>
+                        <option value="8.30">16:30</option>
+                        <option value="17">17:00</option>
+                        <option value="8.30">17:30</option>
+                        <option value="18">18:00</option>
+                        <option value="8.30">18:30</option>
+                        <option value="19">19:00</option>
+                        <option value="8.30">19:30</option>
+                        <option value="20">20:00</option>
+                        <option value="8.30">20:30</option>
+                        <option value="21">21:00</option>
+                        <option value="8.30">21:30</option>
+
+
+                      </select>
+                    </div>
+                    <span class="timingerr text-danger"></span>
+                  </div>
+                  <h5 class="mt-2 mb-3 services" id="' . $addressid . '">Service Address</h5>';
+                    $address = $this->model->GetSpecificAddress($addressid);
+                    if (count($address)) {
+                        foreach ($address as $adr) {
+                            $street = $adr['AddressLine1'];
+                            $houseno = $adr['AddressLine2'];
+                            $city = $adr['City'];
+                            $state = $adr['State'];
+                            $pincode = $adr['PostalCode'];
+
+                            $serviceaddress = '
+                           <div class="serviceaddress">
+                           <div class="form-row">
+                             <div class="col-md-6">
+                               <label for="street">Street name</label>
+                               <input type="text" class="form-control mb-2" id="street" value="' . $street . '" placeholder="Street">
+                                <span class="street-msg">
+                               </div>
+                             <div class="col-md-6">
+                               <label for="houseno">House number</label>
+                               <input type="number" class="form-control mb-2" id="houseno"value="' . $houseno . '" placeholder="House number">
+                               <span class="house-msg">
+                            
+                               </div>
+                           </div>
+               
+                           <div class="form-row">
+                             <div class="col-md-6">
+                               <label for="postal">Postal Code</label>
+                               <input type="text" class="form-control mb-2" id="postal" value="' . $pincode . '" placeholder="Postal">
+                               <span class="postal_number">
+                             
+                               </div>
+                             <div class="form-group col-md-6">
+                               <label class="location">Location</label>
+                               <select id="location" class="located form-control">
+                               <option value="' . $city . '">' . $city . '</option>
+                               </select>
+
+                             </div>
+
+                           </div>
+                         </div>';
+
+
+                            $invoicingaddress = '
+                                   <h5 class="mt-2 mb-3">Invoicing Address</h5>
+
+                         <div class="invoicing">
+                         <div class="form-row">
+                           <div class="col-md-6">
+                             <label for="streets">Street name</label>
+                             <input type="text" class="form-control mb-2" id="streets" value="' . $street . '" placeholder="Street">
+                             <span class="streets-msg">
+                          
+                             </div>
+                           <div class="col-md-6">
+                             <label for="housenos">House number</label>
+                             <input type="number" class="form-control mb-2" id="housenos" value="' . $houseno . '" placeholder="House number">
+                             <span class="housenos-msg">
+                          
+                             </div>
+                         </div>
+             
+                         <div class="form-row">
+                           <div class="col-md-6">
+                             <label for="postals">Postal Code</label>
+                             <input type="text" class="form-control mb-2" id="postals" value="' . $pincode . '" placeholder="PostalCode">
+                             <span class="postals-msg">
+                         
+                             </div>
+                           <div class="form-group col-md-6">
+                             <label class="location">Location</label>
+                             <select id="locations" class="located form-control">
+                             <option value="' . $city . '">' . $city . '</option>
+                             </select>
+                           </div>
+                         </div>
+                       </div>';
+                        }
+                    }
+                    $buttonaddress = '
+                    
+          <div class="form-group ">
+          <label for="whyreschedule">Why do you want to reschedule service request?</label>
+          <textarea class="form-control" id="whyreschedule" placeholder="Why do you want to reschedule service request?" rows="3" style="height: auto;"></textarea>
+                    <span class="whyreschedule text-danger"></span>
+          </div>
+        <div class="form-group ">
+          <label for="callcenteremp">Call Center EMP Notes</label>
+          <textarea class="form-control" id="callcenteremp" placeholder="Enter Notes" rows="3" style="height: auto;"></textarea>
+          <span class="empnotes text-danger"></span>
+       
+          </div>
+        <div class="form-row">
+
+          <button type="submit" class="btn btn-reschedule form-control" id="' . $serviceid . '" disabled="disabled" data-dismiss="modal">Update</button>
+        </div>';
+
+
+                    $output = $firstpart . '' . $serviceaddress . '' . $invoicingaddress . '' . $buttonaddress;
+                    echo $output;
+                }
+            }
+        }
+    }
+
+    public function Rescheduleadmin()
+    {
+        if (isset($_POST)) {
+            $newdate = $_POST["newdate"];
+            $newtime =  $_POST["newtime"];
+            $street =  $_POST["street"];
+            $postal =  $_POST["postal"];
+            $houseno =  $_POST["houseno"];
+            $location =  $_POST["locations"];
+            $serviceid =  $_POST["serviceid"];
+            $addressid =  $_POST["addressid"];
+            $getstate = $this->model->CityLocation($postal);
+            $state = $getstate[1];
+            $result = $this->model->GetServiceHistoryUser($serviceid);
+            if (count($result)) {
+                foreach ($result as $row) {
+                    $recordversion = $row['RecordVersion'];
+                    $userid = intval($row['UserId']);
+                    $spid = $row['ServiceProviderId'];
+                }
+            }
+            $useremail = $this->model->GetUsers($userid);
+
+            if (count($useremail)) {
+                foreach ($useremail as $emails) {
+                    $useremail  = $emails['Email'];
+                }
+            }
+            $status = "Pending";
+            if (!empty($spid)) {
+                $status = "Reschedule";
+            }
+            $modifieddate = date('Y-m-d H:i:s');
+            $modifiedby = "Admin";
+            $recordversion = $recordversion + 1;
+
+            $updateaddressarray = [
+
+                'street' => $street,
+                'houseno' => $houseno,
+                'location' => $location,
+                'state' => $state,
+                'pincode' => $postal,
+                'addressid' => $addressid,
+
+            ];
+            $array = [
+                'newdate' => $newdate,
+                'newtime' => $newtime,
+                'modifieddate' => $modifieddate,
+                'modifiedby' => $modifiedby,
+                'recordversion' => $recordversion,
+                'status' => $status,
+                'serviceid' => $serviceid,
+
+            ];
+            // echo "work";
+            $updateaddress = $this->model->UpdateAdminAddress($updateaddressarray);
+            $counts = $updateaddress[0];
+            $updatedresult = $this->model->RescheduleServiceRequest($array);
+            if (!empty($spid)) {
+                $Spemail = $this->model->GetUsers($spid);
+                if (count($Spemail)) {
+                    foreach ($Spemail as $spemail) {
+                        $email  = $spemail['Email'];
+                    }
+                }
+            }
+
+            $count = $updatedresult[0];
+            if ($count == 1 || $counts == 1) {
+                $clientemail =  $useremail;
+                $subjectmsg = " Reschedule";
+
+                $mailbody = "
+            New Date And Time is : <span style='color:red;'>$newdate  $newtime </span>
+            <br>
+            More Reschedule Details You can show from Customer Dashboard Section.
+           <br>
+            When Service Provider Accept Your Reschedule Request Than You can show SP Details
+            <br><div style='color:green;'>Service Request Reschedule By<span style='color:red;'> Admin  </span></div>
+            ";
+                $mailbodymsg = "
+            New Date And Time is : <span style='color:red;'>$newdate  $newtime </span>
+            <br>
+            More Details you can show from ServiceHistory Section.
+            <br>
+            Please Check Service Details And Accept The Service Request for Service ID :" . $serviceid . "<br><div style='color:green;'>Service Request Reschedule By<span style='color:red;'> Admin  </span></div>";
+
+                $servicemailid = $serviceid;
+                include("Views/ClientRescheduleCancelMail.php");
+                if (!empty($spid)) {
+                    $spemail = $email;
+
+                    include("Views/ServiceProviderRescheduleCancelMail.php");
+                }
+                if (empty($spid)) {
+                    $serviceproviders = $this->model->GetActiveServiceProvider();
+                    if (count($serviceproviders)) {
+                        foreach ($serviceproviders as $row) {
+                            $spemail = $row['Email'];
+                            include("Views/ServiceProviderRescheduleCancelMail.php");
+                        }
+                    }
+                }
+                echo 1;
+            } else {
+                echo 0;
+            }
+        }
+    }
+
+    public function GetRefundDetails()
+    {
+        if (isset($_POST)) {
+            $serviceid =  $_POST['serviceid'];
+            $servicerequest =  $this->model->GetServiceDetails($serviceid);
+            if (count($servicerequest)) {
+                foreach ($servicerequest as $sr) {
+                    $serviceid =   $sr['ServiceRequestId'];
+                    $totalcost =  number_format($sr['TotalCost'], 2);
+                    $refundedamount =   number_format($sr['RefundedAmount'], 2);
+
+                    $balanceamount = number_format((floatval($totalcost) - floatval($refundedamount)), 2);
+
+                    $output = ' <div class="form-row">
+                                <div class="paymentblock">
+                                <div class="mx-2">
+                                    <p>Paid Amount</p>
+                                    <p class="paidamount">' . $totalcost . ' €</p>
+                    
+                                </div>
+                                <div class="mx-2">
+                                    <p>Refunded Amount</p>
+                                    <p class="refundedamount">' . $refundedamount . ' €</p>
+                    
+                                </div>
+                                <div class="mx-2">
+                                    <p>In Balance Amount</p>
+                                    <p class="balanceamount">' . $balanceamount . ' €</p>
+                    
+                                </div>
+                                </div>
+                    
+                            </div>
+                            <div class="form-row ">
+                                <div class="col-md-6">
+                                <label>Amount</label>
+                                <div style="display: flex;">
+                                    <input type="number" class="form-control addprice tagnm pricesinput">
+                                    <select class="form-control tagnm percentages">
+                                    <option value="Percentage" selected>Percentage</option>
+                                    <option value="Fixed">Fixed</option>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                <label>Calculate</label>
+                                <div style="display: flex;">
+                                    <button type="button" class="btn calculatebtn tagnm">Calculate</button>
+                                    <input type="text" class="form-control calculateval tagnm" disabled style="cursor: not-allowed;">
+                                </div>
+                                </div>
+                    
+                                <span class="priceerr text-danger"></span>
+                                </div>
+                            <div class="form-group mt-2">
+                                <label for="whyrefund">Why do you want to reschedule service request?</label>
+                                <textarea class="form-control" id="whyrefund" placeholder="Why do you want to reschedule service request?" rows="3" style="height: auto;"></textarea>
+                            </div>
+                            <div class="form-group ">
+                                <label for="callcenteremps">Call Center EMP Notes</label>
+                                <textarea class="form-control" id="callcenteremps" placeholder="Enter Notes" rows="3" style="height: auto;"></textarea>
+                            </div>
+                            <div class="form-row">
+                    
+                                <button type="submit" id="' . $serviceid . '" class="btn refundamount form-control" disabled="disabled" data-dismiss="modal">Refund</button>
+                            </div>';
+                    echo $output;
+                }
+            }
+        }
+    }
+
+    public function GiveRefund(){
+        if(isset($_POST)){
+           $serviceid = $_POST['serviceid'];
+          $whyrefund =  $_POST['whyrefund'];
+          $callcenternote = $_POST['callcenternote'];
+          $refundamount = $_POST['refundamount'];
+            $status = "Refunded";
+            $result = $this->model->GetServiceHistoryUser($serviceid);
+            if (count($result)) {
+                foreach ($result as $row) {
+                    $recordversion = $row['RecordVersion'];
+                    $userid = intval($row['UserId']);
+                    $spid = $row['ServiceProviderId'];
+                    $refundamounts =  $row['RefundedAmount'];
+                }
+            }
+            $refundamount = number_format((floatval($refundamount) + floatval( $refundamounts)),2);
+            $useremail = $this->model->GetUsers($userid);
+
+            if (count($useremail)) {
+                foreach ($useremail as $emails) {
+                    $useremail  = $emails['Email'];
+                }
+            }
+            
+            $modifieddate = date('Y-m-d H:i:s');
+            $modifiedby = "Admin";
+            $recordversion = $recordversion + 1;
+          $array = [
+              "refundamount" => $refundamount,
+              "callcenternote" => $callcenternote,
+              "whyrefund" => $whyrefund,
+              "status" => $status,
+              "modifieddate" => $modifieddate,
+              "modifiedby" => $modifiedby,
+              "recordversion"=>$recordversion,
+              "serviceid" => $serviceid,
+              
+          ];
+          $refundconfirm = $this->model->GiveRefund($array);
+          $count = $refundconfirm[0];
+          if($count == 1){
+            $clientemail =  $useremail;
+            $subjectmsg = " Refunded";
+
+            $mailbody = "
+        Your Refund Amount is <span style='color:red;'>$refundamount</span> for servicerequest id <span style='color:red;'>$serviceid</span> 
+        <br>
+      
+       <br>
+        <br><div style='color:green;'>Service Request Refunded By<span style='color:red;'> Admin  </span></div>
+        ";
+         
+       
+            include("Views/ClientRescheduleCancelMail.php");
+
+              echo 1;
+          } else{
+              echo 0;
+          }
+        }
+    }
 }
