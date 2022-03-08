@@ -894,4 +894,11 @@ class Helperland
         return array($result); 
     }
 
+    public function  GetUpcomingServiceHistoryAll($userid){
+        $sql = "SELECT * FROM `servicerequest`   WHERE `servicerequest`.`ServiceProviderId` = $userid  && (`servicerequest`.`Status`='Approoved' || `servicerequest`.`Status`='Completed')";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;        
+    }
 }
