@@ -62,10 +62,23 @@ $(".mobile-nav .navserviceschedule").addClass('active')
             },
 
 
-            events: {
-                url: "http://localhost/helper/?controller=Helperland&function=GetSpDates&parameter=" + username,
+                   eventSources: [{
 
-            },
+
+                    url: "http://localhost/helper/?controller=Helperland&function=GetSpDates&parameter=" + username,
+                    color: '#1d7a8c',   
+
+                },
+                {
+
+
+                    url: "http://localhost/helper/?controller=Helperland&function=GetSpDatesall&parameter=" + username,
+                    color: '#efefef',   
+                    textColor: 'black'
+
+                },
+            ],
+
 
         });
         calendar.render();
