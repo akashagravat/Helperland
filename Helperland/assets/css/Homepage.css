@@ -349,7 +349,15 @@ h3 {
     border-radius: 50%;
 }
 
+.what-our-customer-say .profiles h4 {
+  
+    margin-top: 0px;
+}
+#ForgotModal h4, #LoginModal h4 {
+   
+    margin-top: 0px;
 
+}
 
 .ctext {
     margin-top: 25.01px;
@@ -745,4 +753,81 @@ input:invalid {
 
 .form-check-label {
     margin-left: 4px;
+}
+.banner {
+    padding-top: 318px;
+    background-image: url('../image/Landing-Page-background-image.png');
+    background-size: cover;
+}
+
+
+.banner ul {
+    list-style-type: none;
+    padding-left: 55px;
+    margin-bottom: 15px;
+}
+
+.banner ul li {
+    position: relative;
+    color: #fff;
+    padding-left: 28px;
+    margin-bottom: 5px;
+    line-height: 1.38;
+}
+
+.banner ul li:last-child {
+    margin-bottom: 0;
+}
+
+.banner ul li:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 5px;
+    width: 13px;
+    height: 10px;
+    background-image: url('../image/ic-check.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/*---------------------------------
+------------- Preloader------------ 
+-----------------------------------*/
+
+#preloader {
+	background: rgb(55 187 221 / 25%);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 9999;
+}
+
+#pre-status, .preload-placeholder {
+	background-image: url(./../Image/preloader.gif);
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 296px;
+	left: 38%;
+	margin: -20px 0 0 -20px;
+	position: absolute;
+	top: 32%;
+	width: 296px;
+}
+
+.preload-placeholder {
+	background: none;
+	left: 0;
+	margin: 0;
+	text-align: center;
+	top: 65%;
+}
+
+@media only screen and (max-width: 600px) {
+	#pre-status, .preload-placeholder {
+		left: 20%;
+		top: 25%;
+	}
 }

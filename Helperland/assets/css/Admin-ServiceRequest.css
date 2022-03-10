@@ -997,7 +997,13 @@ table .serviceid, table .distance {
           padding-left: 4%;
         }
       }
-    
+      .main-item{
+        overflow: hidden;
+      }
+      .table-card {
+        width: 100% !important;
+        /* max-width: 400px; */
+    }
       .totaldetils {
         height: 60vh;
         border-left: 1px solid #e1e1e1;
@@ -1037,7 +1043,7 @@ table .serviceid, table .distance {
       }
     
       #dates {
-        background: url("./assets/image/admin-calendar-blue.png") no-repeat 12px;
+        background: url("../image/admin-calendar-blue.png") no-repeat 12px;
         padding-left: 40px;
         background-color: #ffffff;
       }
@@ -1204,15 +1210,15 @@ table .serviceid, table .distance {
       
       }
       @media screen and (max-width:500px) {
-        .table-card{
+        /* .table-card{
           max-width: 400px;
-        }
+        } */
       }
       @media screen and (max-width:400px) {
       
-        .table-card{
+        /* .table-card{
           max-width: 300px;
-        }
+        } */
       }
     
     

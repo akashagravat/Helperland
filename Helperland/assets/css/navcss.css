@@ -1,0 +1,77 @@
+.warrenty:hover,.blog:hover,.Contact:hover,.pricelink:hover{
+    border: 1px solid #FFFFFF80;
+border-radius: 20px;
+color: #FFFFFF;
+transition: 0.3s all;
+}
+.pricelink .nav-link{
+	/* margin-top: 2px; */
+    /* padding-top: 3px; */
+    padding-left: 13px !important;
+    margin-right: 0px !important;
+}
+
+/*---------------------------------
+------------- Preloader------------ 
+-----------------------------------*/
+
+#preloader {
+	background: rgb(55 187 221 / 25%);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 9999;
+}
+
+#pre-status, .preload-placeholder {
+	background-image: url(./../Image/preloader.gif);
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 296px;
+	left: 38%;
+	margin: -20px 0 0 -20px;
+	position: absolute;
+	top: 32%;
+	width: 296px;
+}
+
+.preload-placeholder {
+	background: none;
+	left: 0;
+	margin: 0;
+	text-align: center;
+	top: 65%;
+}
+
+@media only screen and (max-width: 600px) {
+	#pre-status, .preload-placeholder {
+		left: 20%;
+		top: 25%;
+	}
+}
+
+.mainnav  .nav-link {
+color: #FFFFFF !important;
+}
+.mainnav  .nav-item .pricelink ,.mainnav  .nav-item  .warrenty ,.mainnav   .nav-item  .blog,.mainnav  .nav-item  .Contact {
+margin-right: 20px;
+}
+.mainnav .nav-link:hover{
+color: #FFFFFF !important;
+transition: 0.3s all;
+}
+.mainnav .active{
+border: 1px solid #FFFFFF80;
+border-radius: 20px;
+color: #FFFFFF !important;
+transition: 0.3s all;
+}
+.mainnav .active{
+    border: 1px solid #FFFFFF80;
+    border-radius: 20px;
+    color: #FFFFFF !important;
+    transition: 0.3s all;
+    
+}

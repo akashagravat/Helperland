@@ -70,22 +70,22 @@ table thead {
 }
 
 .serviceproviderimgs {
-    border-radius: 50%;
+    /* border-radius: 50%; */
     margin: auto;
-    max-width: 69px;
+    max-width: 77px;
     margin-right: 40%;
     height: 62px;
     padding-left: 12px;
     margin-bottom: 15px;
     /* background: #AAAAAA; */
     padding-top: 13px;
-    border: 1px solid #AAAAAA;
+    /* border: 1px solid #AAAAAA; */
+}
+.service-provider-img {
+    width: 69px !important;
+    height: 62px !important;
 }
 
-.serviceproviderimg {
-    width: 46px;
-    height: 31px;
-}
 
 .btn-favourite-unfavourite {
     background: #1d7a8c;
@@ -138,10 +138,24 @@ color: silver;
 width: 15px;
 height: 16px;
 }
+
+
 @media screen and (max-width:700px) {
     #iframeloading {
         top: -22% !important;
         left: -41% !important;
         height: 100%;
+    }
+  }
+
+
+  @media screen and (max-width:800px){
+    .table tbody .odd {
+        float: none;
+        /* width: 125px; */
+    }
+    .table tbody .even {
+        float: none;
+        /* width: 125px; */
     }
   }

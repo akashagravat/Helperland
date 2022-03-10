@@ -793,18 +793,59 @@ input[type=number] {
 
 .service-provider-img {
     width: 50px;
-    height: 32px;
+    height: 50px;
+}
+/*---------------------------------
+------------- Preloader------------ 
+-----------------------------------*/
+
+#preloader {
+	background: rgb(55 187 221 / 25%);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 9999;
+}
+
+#pre-status, .preload-placeholder {
+	background-image: url(./../Image/preloader.gif);
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 296px;
+	left: 38%;
+	margin: -20px 0 0 -20px;
+	position: absolute;
+	top: 32%;
+	width: 296px;
+}
+
+.preload-placeholder {
+	background: none;
+	left: 0;
+	margin: 0;
+	text-align: center;
+	top: 65%;
+}
+
+
+@media only screen and (max-width: 600px) {
+	#pre-status, .preload-placeholder {
+		left: 20%;
+		top: 25%;
+	}
 }
 
 .service-provider-imgs {
     margin-left: auto;
     margin-right: auto;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     max-width: 70px;
     height: 70px;
     padding-left: 8px;
     padding-top: 15px;
-    border: 1px solid #AAAAAA;
+    /* border: 1px solid #AAAAAA; */
 }
 
 .service-provider-name {

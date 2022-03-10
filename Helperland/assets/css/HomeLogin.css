@@ -76,6 +76,30 @@ body {
     position: absolute;
     right: 15px;
 }
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+}
+.dropdown-menu::after{
+    position: absolute;
+    top: 0;
+    content: "";
+    border-width: 0 8px 12px 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    top: -12px;
+    right: 35px;
+}
+.dropdown-menu {
+    background: #fff;
+    min-width: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    transition: all .3s ease;
+}
 
 .navbar .user {
     font-size: 22px;

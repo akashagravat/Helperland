@@ -152,3 +152,6 @@ table.dataTable.no-footer {
         margin-top: 25%;
     }
 }
+.wrapper {
+    overflow: hidden;
+}

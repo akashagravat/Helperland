@@ -1,0 +1,91 @@
+.vertical-nav {
+    margin-left: 1%;
+    /* height: 840px; */
+}
+
+.customerdashboard .nav-tabs a {
+    width: 50%;
+    text-align: center;
+    padding: 15px 0;
+}
+
+#account_status {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    margin: 0 0 25px;
+}
+
+#account_status span {
+    color: #67b644;
+    font-weight: 400;
+}
+
+.customerdashboard {
+    overflow: auto;
+    padding-left: 15px;
+    margin-right: 1%;
+}
+
+label {
+    display: block;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.basictitle {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dcdcdc;
+    font-weight: 700;
+    margin: 0 0 15px;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+#nationallity {
+    display: inline-block;
+    padding: 12px 4px;
+    height: 46px;
+    padding-top: 10px;
+    padding-left: 2px;
+    /* width: 25%; */
+}
+
+.radiovalues {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+input[name="Gender"] {
+    width: 17px;
+    height: 14px;
+}
+
+.avtarimg {
+    margin-top: 10px;
+}
+
+.avatarimgs {
+    height: 85px;
+    border-radius: 85px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.avtarimg .active {
+    border: 3px solid #1D7A8c;
+    transition: 0.3s all;
+}
+
+.avtarimage {
+    display: inline-block;
+}
+
+.avtarimage img:hover {
+    cursor: pointer;
+}
