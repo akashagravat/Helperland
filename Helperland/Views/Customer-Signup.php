@@ -20,13 +20,7 @@ $base_url="http://localhost/helper/";
     </div>
   <div class="container mt-5 customerform ">
   <div class="userregistration validation-form" >
-    <p class="text-center bg-danger mb-4 text-white">
-    <?php
-      if(isset($_SESSION['err'])){
-        echo $_SESSION['err'];
-      }
-    ?>
-    </p>
+
     <form  method="post" id="signup" action=<?= $base_url."./?controller=helperland&function=InsertUser"?>>
         <div class="form-row">
           <div class="form-group col-md-6">
@@ -42,7 +36,7 @@ $base_url="http://localhost/helper/";
   
         <div class="form-row">
             <div class="form-group col-md-6">
-              <input type="email" class="form-control check_email" id="useremail" name="email" placeholder="E-mail address">
+              <input type="email" class="form-control check_email" id="useremail" name="email" placeholder="E-mail address"  autocomplete="off">
               <div class="email-msg float-left"></div>
               <div class="error-email float-right"></div> 
 
@@ -60,7 +54,7 @@ $base_url="http://localhost/helper/";
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password"  autocomplete="off">
        <div class="password-msg"></div>
         </div>
         <div class="form-group col-md-6">

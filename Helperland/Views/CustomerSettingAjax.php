@@ -1,6 +1,74 @@
 <script>
     $(document).ready(function() {
         username = "<?php echo $_SESSION['username']; ?>";
+     $('.save-details').on("click", function(e) {
+        e.preventDefault();
+
+        if (($('#dateofbirth').val() == "Day" || $('#dateofmonth').val() == "Month" || $(
+                '#birthyear').val() == "Year" || $('#language').val() == "") || $('#details').find('.invalid-input').length > 0) {
+            $('.errors').show();
+            $('.errors').text('Please Enter All Details');
+            setTimeout(function() {
+                $(".errors").hide();
+            }, 5000);
+        } else {
+
+
+            $('#preloader').show();
+            firstname = $('#firstname').val();
+            lastname = $('#lastname').val();
+            email = $('#emailaddress').val();
+            mobile = $('#mobilenumber').val();
+            date = $('#dateofbirth').val();
+            month = $('#dateofmonth').val();
+            year = $('#birthyear').val();
+            language = $('#language').val();
+            birthdate = year + "-" + month + "-" + date;
+            $(".lastname").removeClass('valid-input');
+            $(".firstName").removeClass('valid-input');
+            $("#mobilenumber").removeClass('valid-input');
+
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/helper/?controller=Helperland&function=AddCustomerDetails",
+                data: {
+                    'firstname': firstname,
+                    'lastname': lastname,
+                    'email': email,
+                    'mobile': mobile,
+                    'birthdate': birthdate,
+                    'language': language,
+                },
+
+                dataType: "json",
+                success: function(data) {
+                    $('#preloader').hide();
+                    if (data == 1) {
+                        Swal.fire({
+                            title: 'Your Details Has Been Updated Successfully',
+                            text: '',
+                            icon: 'success',
+                            confirmButtonText: 'Done'
+                        })
+                    }
+                    if (data == 0) {
+                        Swal.fire({
+                            title: 'Your Details Not Updated',
+                            text: 'Please Try Again',
+                            icon: 'alert',
+                            confirmButtonText: 'Done'
+                        })
+                    }
+                    GetUserDetails();
+
+
+
+                }
+            });
+        }
+    });
+
         GetUserDetails();
 
         function GetUserDetails() {
@@ -37,7 +105,7 @@
                     $(".passworderror").hide();
                 }, 5000);
             } else {
-                $("#iframeloading").show();
+                $("#preloader").show();
                 currentpassword = $("#currentpassword").val();
                 newpassword = $("#newpassword").val();
                 newconfirmpassword = $("#confirmpassword").val();
@@ -55,7 +123,7 @@
                         'modifiedby': modifiedby,
                     },
                     success: function(data) {
-                        $("#iframeloading").hide();
+                        $("#preloader").hide();
                         if (data == 1) {
                             $("#newpassword").val("");
                             $("#newpassword").removeClass('valid-input');
@@ -104,7 +172,7 @@
 
                 username = "<?php echo $_SESSION['username']; ?>";
             <?php } ?>
-            $("#iframeloading").show();
+            $("#preloader").show();
 
             $.ajax({
                 type: 'POST',
@@ -121,7 +189,7 @@
 
                 success: function(data) {
                     if (data == 1) {
-                        $("#iframeloading").hide();
+                        $("#preloader").hide();
                         Swal.fire({
                             title: 'Address has been Added Successfully',
                             text: '',
@@ -131,7 +199,7 @@
 
                         // GetAddress();
                     } else {
-                        $("#iframeloading").hide();
+                        $("#preloader").hide();
                         $('.addnewerror').show();
                         $('.addnewerror').text("Please Enter All Fields");
                         setTimeout(function() {
@@ -152,7 +220,7 @@
         AddressTable();
 
         function AddressTable() {
-            $('#iframeloading').show();
+            $('#preloader').show();
             table = $('#addresstable').DataTable({
                 "dom": '<"top">rt<"bottom"flpi><"clear">',
                 // "bPaginate": false,
@@ -210,7 +278,7 @@
 
 
             }).ajax.reload();
-            $('#iframeloading').hide();
+            $('#preloader').hide();
             table.processing(true);
 
         }

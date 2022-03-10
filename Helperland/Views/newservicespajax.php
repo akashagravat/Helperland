@@ -9,10 +9,13 @@ $(document).ready(function() {
                     } else {
                         check = 0;
                     }
-                    $("#SPdashboardtable").DataTable().ajax.reload();
+                    $('#SPdashboardtable').dataTable().fnClearTable();
+      $('#SPdashboardtable').dataTable().fnDestroy();
+      data();
                 });
-              
-
+              data();
+			  
+                function  data() {  
                 table = $("#SPdashboardtable").DataTable({
                     "dom": '<"top">rt<"bottom"flpi><"clear">',
                     // responsive: true,
@@ -44,9 +47,9 @@ $(document).ready(function() {
                     "ajax": {
                         'type': 'POST',
                         'url': 'http://localhost/helper/?controller=Helperland&function=GetPendingBookedService',
-                        'data': function (d) {
-                            d.username = username;
-                            d.pets = check;
+                        'data': {
+                            "username" : username,
+                            "pets" : check,
                         },
                         // 'datasrc': 'data',
                         // contentType: 'application/json',
@@ -100,11 +103,11 @@ $(document).ready(function() {
 
 
                 }).ajax.reload();
-                table.processing(true);
-
+            }
+            table.processing(true);
                 $('#bookingdetails').on('click', '.btn-accept-green', function(e) {
                     e.preventDefault();
-                    $("#iframeloading").show();
+                    $("#preloader").show();
 
                     serviceid = $('.btn-accept-green').attr('id');
                     $.ajax({
@@ -116,7 +119,7 @@ $(document).ready(function() {
                         },
                         // dataType: "dataType",
                         success: function(data) {
-                            $("#iframeloading").hide();
+                            $("#preloader").hide();
                             // alert(data);
                             if (data == 1) {
                                 $("#SPdashboardtable").DataTable().ajax.reload();

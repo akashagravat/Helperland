@@ -12,8 +12,10 @@ if (!isset($_SESSION['username'])) {
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="./assets/css/Customer-Dashboard.css?v=21">
 <link rel="stylesheet" href="./assets/css/ServiceProivderUpcomingService.css?v=99">
-<link rel="stylesheet" href="./assets/css/sprating.css">
+<link rel="stylesheet" href="./assets/css/sprating.css?v=21">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
 <title>My Ratings</title>
 </head>
 
@@ -125,6 +127,10 @@ if (!isset($_SESSION['username'])) {
 
     <?php
     include('footer.php');
+    ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+    <?php
     include('./spratingajax.php');
     ?>
 

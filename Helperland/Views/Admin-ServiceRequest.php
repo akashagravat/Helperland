@@ -6,7 +6,7 @@ include('AdminHeader.php');
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="./assets/css/Admin-ServiceRequest.css?v=211">
+<link rel="stylesheet" href="./assets/css/Admin-ServiceRequest.css?v=13">
 
 </head>
 
@@ -325,8 +325,12 @@ include('AdminHeader.php');
   <?php
   include('./Adminfooter.php');
   ?>
-  <script src="./assets/js/Admin-ServiceRequest.js?v=122"></script>
+  <script src="./assets/js/Admin-ServiceRequest.js?v=19211"></script>
+  <script src="./assets/js/Preloader.js"></script>
+<?php 
+  include('./Adminservicerequestajax.php');
 
+?>
 
 </body>
 

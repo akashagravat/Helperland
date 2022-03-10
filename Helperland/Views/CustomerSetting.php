@@ -400,7 +400,7 @@ if (!isset($_SESSION['username'])) {
     <?php
     include('footer.php');
     ?>
-    <script src="./assets/js/CustomerSetting.js?v=8213"></script>
+    <script src="./assets/js/CustomerSetting.js?v=833"></script>
     <script src="./assets/js/Customer-ServiceHistory.js?v=9213"></script>
    <?php 
         include('CustomerSettingAjax.php');

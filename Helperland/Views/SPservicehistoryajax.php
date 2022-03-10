@@ -1,9 +1,14 @@
 <script>
-        $(document).ready(function() {
+$(document).ready(function() {
             username = "<?php echo $_SESSION['username'] ?>";
-          
+            pyst = 1;
             $("#pyst").on("change",function () {
-                $("#servicehisorytables").DataTable().ajax.reload();
+                pyst =  $(this).val();
+                $('#servicehisorytables').dataTable().fnClearTable();
+      $('#servicehisorytables').dataTable().fnDestroy();
+      data();
+    //   servicetable();
+                // $("#servicehisorytables").DataTable().ajax.reload();
               });
               data();
             function data(){
@@ -40,9 +45,9 @@
                 "ajax": {
                     'type': 'POST',
                     'url': 'http://localhost/helper/?controller=Helperland&function=GetSPHistory',
-                    'data': function(d){
-                        d.username = username;
-                        d.pyst = $('#pyst option:selected').val();
+                    'data': {
+                        "username" : username,
+                        "pyst" : pyst,
                     },
                     // 'datasrc': 'data',
                     // contentType: 'application/json',

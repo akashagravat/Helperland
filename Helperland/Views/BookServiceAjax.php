@@ -5,6 +5,9 @@
             var username = "<?php echo $_SESSION['username']; ?>";
 
         <?php } ?>
+        $('.payment-check').on("click",function(e){
+        e.preventDefault();
+    });
         // btn-checkavailability
         $(".btn-checkavailability").on("click", function() {
 
@@ -17,7 +20,7 @@
                 var postalerror = "";
                 $('#postal_number').text(postalerror);
                 var postal = $("#postalcode").val();
-                $("#iframeloading").show();
+                $("#preloader").show();
 
                 $.ajax({
                     type: 'POST',
@@ -28,7 +31,7 @@
                     },
 
                     success: function(data) {
-                        $("#iframeloading").hide();
+                        $("#preloader").hide();
                         if (data == 1) {
                             $(".setup-service .firsttab  .nav-link").removeClass('active');
                             $(".tab-content .firsttabs").removeClass('active');
@@ -138,9 +141,9 @@
                 var comments = $.trim($("#comments").val());
 
                 if ($('#petsornot').is(":checked")) {
-                    var pets = "yes";
+                    var pets = 1;
                 } else {
-                    var pets = "no";
+                    var pets = 0;
                 }
                 $(".setup-service .firsttab  .nav-link").removeClass('active');
                 $(".tab-content .firsttabs").removeClass('active');
@@ -163,7 +166,7 @@
                 // alert(Discount);
                 // alert("SubTotal =" + SubTotal +"Discount ="+ Discount +"Total Cost ="+ TotalCost);
             <?php } ?>
-        })
+        });
 
         $(".addresssave").on("click", function(e) {
             e.preventDefault();
@@ -176,7 +179,7 @@
 
                 var username = "<?php echo $_SESSION['username']; ?>";
             <?php } ?>
-            $("#iframeloading").show();
+            $("#preloader").show();
 
             $.ajax({
                 type: 'POST',
@@ -193,7 +196,7 @@
 
                 success: function(data) {
                     if (data == 1) {
-                        $("#iframeloading").hide();
+                        $("#preloader").hide();
 
                         $('.add-address').show();
                         $('#add_address').hide();
@@ -216,10 +219,10 @@
         })
 
         $('.yourdetailsbtn').click(function() {
-            $("#iframeloading").show();
+            $("#preloader").show();
 
             if ($("input[name='address_radio']:checked").length = 0) {
-                $("#iframeloading").hide();
+                $("#preloader").hide();
 
                 var adresserror = "Please Select Address";
                 $('.addresserror').text(adresserror);
@@ -247,7 +250,7 @@
                 $(".setup-service .fourthtab  .nav-link").addClass('active');
                 $(".tab-content .fourthtabs").addClass('active');
                 $(".tab-content .fourthtabs ").addClass('show');
-                $("#iframeloading").hide();
+                $("#preloader").hide();
 
             }
 
@@ -372,16 +375,11 @@
                 Extraservice = elements;
                 extrahours = extrahour;
 
-                selectedsp = ['0'];
-                $('.selectedsp').each(function () {
-                    if($('.selectbtn').hasClass('selectedsp')){
 
-                    selectedsp.push($(this).val());
-                      
-                    }
-
-                })
-            
+                selectedsp = "";
+                if ($('.selectbtn').hasClass('selectedsp')) {
+                    selectedsp = $('.selectedsp').val();
+                }
 
                 var servicehour = $('.basics span').text();
                 servicehours = parseFloat(servicehour);
@@ -405,12 +403,11 @@
                 comments = $.trim($("#comments").val());
 
                 if ($('#petsornot').is(":checked")) {
-                    pets = "yes";
+                    pets = 1;
                 } else {
-                    pets = "no";
+                    pets = 0;
                 }
                 Address = $('input[name="address_radio"]:checked').val();
-
                 AddServieRequest();
             }
 
@@ -423,7 +420,7 @@
 
                 username = "<?php echo $_SESSION['username']; ?>";
             <?php } ?>
-            $("#iframeloading").show();
+            $("#preloader").show();
 
             $.ajax({
                 type: 'POST',
@@ -434,7 +431,7 @@
                 },
                 // dataType: 'json',
                 success: function(data) {
-                    $("#iframeloading").hide();
+                    $("#preloader").hide();
                     $("#alladdress").html(data);
                     // $("#alladdress").html(data);
 
@@ -455,7 +452,7 @@
         GetAddress();
 
         function GetServiceProvider() {
-            $("#iframeloading").show();
+            $("#preloader").show();
 
             $.ajax({
                 type: 'POST',
@@ -465,7 +462,7 @@
                 },
                 // dataType: 'json',
                 success: function(data) {
-                    $("#iframeloading").hide();
+                    $("#preloader").hide();
                     // alert(data);
                     $('.favouriteserviceprovider').html(data);
                 }
@@ -480,7 +477,7 @@
 
                 var username = "<?php echo $_SESSION['username']; ?>";
             <?php } ?>
-            $("#iframeloading").show();
+            $("#preloader").show();
 
             $.ajax({
                 type: 'POST',
@@ -491,7 +488,7 @@
                 },
                 // dataType: 'json',
                 success: function(data) {
-                    $("#iframeloading").hide();
+                    $("#preloader").hide();
 
                     // alert(data);
                     $('.favouriteserviceprovider').html(data);
@@ -531,7 +528,7 @@
                 "haspets": pets,
                 "selectedsp": selectedsp,
             });
-            $("#iframeloading").show();
+            $("#preloader").show();
 
             $.ajax({
                 type: 'POST',
@@ -539,7 +536,7 @@
                 data: FinalSubmits,
                 // dataType: 'json',
                 success: function(data) {
-                    $("#iframeloading").hide();
+                    $("#preloader").hide();
 
                     if (data == 0) {
                         // alert('data not inserted');
@@ -556,7 +553,7 @@
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         }).then(function() {
-                            location.href = "Customer-Servicehistory.php";
+                            location.href = "CustomerDashboard.php";
 
                         });
                     }
@@ -566,5 +563,37 @@
         }
 
 
+    });
+    $('.favouriteserviceprovider').on("click", ".selectsp", function(e) {
+        e.preventDefault();
+        $('.selectbtn').text("Select");
+        $('.selectbtn').addClass('selectsp');
+
+        $('.selectbtn').removeClass('selectedsp');
+
+        $('.selectbtn').css({
+            "color": "#4F4F4F",
+            "border": "1px solid #4F4F4F",
+            "background-color": "#FFFFFF",
+        });
+        $(this).text("Selected");
+        $(this).addClass('selectedsp');
+        $('.selectedsp').css({
+            "background": "#1d7a8c",
+            "border": "none",
+            "color": "#fff",
+        });
+        $(this).removeClass('selectsp');
+    });
+    $('.favouriteserviceprovider').on("click", '.selectedsp', function(e) {
+        e.preventDefault();
+        $(this).text("Select");
+        $(this).addClass('selectsp');
+        $('.selectsp').css({
+            "color": "#4F4F4F",
+            "border": "1px solid #4F4F4F",
+            "background-color": "#FFFFFF",
+        });
+        $(this).removeClass('selectedsp');
     });
 </script>

@@ -15,10 +15,12 @@ if (!isset($_SESSION['username'])) {
     username = "<?php echo $_SESSION['username'] ?>";
 </script>
 
-<link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=29">
+<link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=31">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="./assets/css/Customer-Dashboard.css?v=2220">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+<link rel="stylesheet" href="./assets/css/Customer-Dashboard.css?v=2820">
 <title>Customer Dashboard</title>
 
 </head>
@@ -59,44 +61,14 @@ if (!isset($_SESSION['username'])) {
         <tbody>
             <tr>
                 <td></td>
-                <td class="serviceids">3213123</td>
+                <td class="serviceids"></td>
                 <td scope="row" class="dtime">
-                    <div class="col date"><img src="./assets/image/calendar2.png" class="calender">09/04/2018</div>
-                    <div class="col time"><img src="./assets/image/layer-712.png" class="clock">12:00 - 18:00</div>
                 </td>
                 <td class="service_provider_names" >
-                    <div class="row ">
-                        <div class="col service-provider-imgs"><img src="./assets/image/forma-1-copy-19.png" class="service-provider-img"></div>
-                        <div class="col ml-3">
-                            <div class="row service-provider">Lyum Watson</div>
-                            <div class="row star">
-
-
-                                <i class="fa fa-star s1"></i>
-                                <i class="fa fa-star s2"></i>
-                                <i class="fa fa-star s3"></i>
-                                <i class="fa fa-star s4"></i>
-                                <i class="fa fa-star s5"></i>
-                            </div>
-                            <span class="info"></span>
-
-                        </div>
-                    </div>
                 </td>
                 <td class="paymentblock">
-                    <div class="paymentbooked">
-                        <span class="euro">€</span>63
-                    </div>
                 </td>
                 <td class="actionblock">
-                    <div class="row actionblocks">
-                        <div class="col-lg-6 col-md-6 col-6">
-                            <button class="btn btn-primary">Reschedule</button>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-6">
-                            <button class="btn btn-success">Reschedule</button>
-                        </div>
-                    </div>
                 </td>
             </tr>
 
@@ -104,6 +76,14 @@ if (!isset($_SESSION['username'])) {
 
         </tbody>
     </table>
+    <!-- <table id="dashboardcardview">
+        <thead>
+            <th></th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table> -->
     </section>
     <!-- Reschedule Modal -->
     <div class="modal fade" id="rescheduletime" tabindex="-1" role="dialog" aria-labelledby="rescheduletime" aria-hidden="true">
@@ -269,7 +249,7 @@ if (!isset($_SESSION['username'])) {
     include('footer.php');
     ?>
     <script src="./assets/js/Customer-ServiceHistory.js"></script>
-    <script src="./assets/js/CustomerDashboard.js?v=12993932"></script>
+    <script src="./assets/js/CustomerDashboard.js?v=993932"></script>
     <?php include('CustomerPageAjax.php');?>  
  
 

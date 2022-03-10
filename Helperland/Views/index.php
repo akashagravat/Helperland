@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,17 +11,17 @@
     ?>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/Homepage.css">
+    <link rel="stylesheet" href="./assets/css/Homepage.css?v=2128">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/validation.css">
     
     <?php
     if (!isset($_SESSION['username'])) { ?>
-        <link rel="stylesheet" href="./assets/css/Homenav.css">
+        <link rel="stylesheet" href="./assets/css/Homenav.css?v=212112">
     <?php } ?>
     <?php
     if (isset($_SESSION['username'])) { ?>
-        <link rel="stylesheet" href="./assets/css/HomeLogin.css">
+        <link rel="stylesheet" href="./assets/css/HomeLogin.css?v=12">
     <?php } ?>
 
 
@@ -30,19 +29,29 @@
 </head>
 
 <body>
+    
+  <!-- Preloader Start-->
+  <div id="preloader">
+    <div id="pre-status">
+      <div class="preload-placeholder"></div>
+    </div>
+  </div>
+  <!-- Preloader End-->
     <div class="wrapper">
         <?php include('Homenav.php'); ?>
         <main>
             <section class="banner">
                 <ul class="dummy">
-                    <h1> Lorem ipsum text</h1>
+                    <h1> Don't Feel Like a housework?</h1>
 
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                    <li>Certified & insured Helper.</li>
+                    <li>Easy Booking Procedure</li>
+                    <li>Friendly Customer Service</li>
+                    <li>Secure Online Payment Method</li>
+
                 </ul>
                 <div class="headbtn text-center">
-                    <a class="book-btn" href="#" role="button">Let's Book a Cleaner</a>
+                    <a class="book-btn" href="BookService.php" role="button">Let's Book a Cleaner</a>
                 </div>
 
 
@@ -85,7 +94,7 @@
                     </div>
                 </div>
 
-                <a class="scroll-down" href="#why-helperland">
+                <a class="scroll-down" >
                     <div class="dwn">
 
                         <img src="./assets/image/ellipse-525.svg" class="eclipce">
@@ -141,11 +150,11 @@
                             <div class="form-check mb-2 my-sm-2">
                                 <?php if (isset($_COOKIE)) { ?>
                                     <input class="form-check-input" name="remember" type="checkbox" checked id="inlineFormCheck" />
-                                <?php } ?>
-                                <?php if (!isset($_COOKIE)) { ?>
+                                <?php } 
+                                else {?>
                                     <input class="form-check-input" name="remember" type="checkbox" id="inlineFormCheck" />
                                 <?php } ?>
-                                <label class="form-check-label" for="inlineFormCheck">
+                                <label class="form-check-label" for="inlineFormChecked">
                                     Remember me
                                 </label>
                             </div>
@@ -473,9 +482,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
     <script src="./assets/js/Script.js"></script>
-    <script src="alerts.php"></script>
-    <script src="./assets/js/Homepage.js"></script>
-    <?php if (isset($_SESSION)) { ?>
+    <script src="./assets/js/Homepage.js?v=491"></script>
+    <script src="./assets/js/Preloader.js"></script>
+
+    <?php if (isset($_SESSION['status'])) { ?>
     <script>
         $(document).ready(function() {
 
@@ -492,7 +502,7 @@
     unset($_SESSION['status_msg']);
     unset($_SESSION['status_txt']);
     unset($_SESSION['status']);
-}
+    }
 ?>
 
 </body>

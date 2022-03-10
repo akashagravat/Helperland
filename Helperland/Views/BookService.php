@@ -347,7 +347,7 @@ include('BookServiceHeader.php');
                     <div class="card-body">
                         <h5 class="card-title">Payment Summary</h5>
                         <div class="date-time-bed-bath">
-                            <p class="date-time"><span class="date_time">01/01/2018</span> @ <span class="times_date">2:00 PM </span> </p>
+                            <p class="date-time"><span class="date_time">01/01/2018</span> @ <span class="times_date">8:00</span> </p>
                             <p class="bed-bath"><span class="bed_num"> 1 bed </span> , <span class="bath_num">1
                                     bath.</span></p>
                         </div>
@@ -545,7 +545,7 @@ include('BookServiceHeader.php');
                         <div class="sidebar-menu payment" style="display: block;">
 
                             <div class="date-time-bed-bath">
-                                <p class="date-time"><span class="date_time_modal">01/01/2018</span> @ <span class="times_date_modal">2:00 PM </span> </p>
+                                <p class="date-time"><span class="date_time_modal">01/01/2018</span> @ <span class="times_date_modal">8:00</span> </p>
                                 <p class="bed-bath"><span class="bed_num_modal"> 1 bed </span> , <span class="bath_num_modal">1
                                         bath.</span></p>
                             </div>
@@ -1034,7 +1034,6 @@ include('BookServiceHeader.php');
 include('BookServicefooter.php');
 include('BookServiceAjax.php');
 ?>
-
 
 </body>
 

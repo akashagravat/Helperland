@@ -63,8 +63,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
     <script src="./assets/js/Script.js"></script>
-    
-    <script src="./assets/js/Bookservice.js?v=5233211"></script>
+    <script src="./assets/js/Preloader.js"></script>
+    <script src="./assets/js/Bookservice.js?v=22091"></script>
     
 <?php if (isset($_SESSION['status'])) { ?>
     <script>

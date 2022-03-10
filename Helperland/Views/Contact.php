@@ -62,11 +62,11 @@ $base_url = "http://localhost/helper/";
                 <?php } ?>
                 <div class="form-row">
                     <div class="col-md-6 mb-2">
-                        <input type="text" class="form-control" id="firstName" name="firstname" placeholder="First name">
+                        <input type="text" class="form-control" id="firstName" name="firstname"  placeholder="First name" required>
                         <div class="first-name-msg"></div>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name">
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name" required>
                         <div class="last-name-msg"></div>
                     </div>
                 </div>
@@ -76,17 +76,17 @@ $base_url = "http://localhost/helper/";
                             <div class="input-group-prepend">
                                 <div class="input-group-text">+49</div>
                             </div>
-                            <input type="text" class="form-control" id="mobilenum" name="mobile"  placeholder="Mobile Number" maxlength="10" size="10">
+                            <input type="text" class="form-control" id="mobilenum" name="mobile"  placeholder="Mobile Number" maxlength="10" size="10" required>
                         </div>
                         <div class="mobile-msg"></div>
                     </div>
                     <div class="col-md-6">
-                        <input type="email" class="form-control" id="useremail" name="email" placeholder="Email address">
+                        <input type="email" class="form-control" id="useremail" name="email" placeholder="Email address" required>
                         <div class="email-msg "></div>
                     </div>
                 </div>
                 <div class="form-row dropdowns">
-                    <select id="disabledSelect" class="form-control drop" name="sub">
+                    <select id="disabledSelect" class="form-control drop" name="sub" >
                         <option>Subject</option>
                         <option>Subscription</option>
                         <option>Feedback</option>
@@ -124,6 +124,16 @@ $base_url = "http://localhost/helper/";
     include('./footer.php');
     ?>
     <script src="./assets/js/CustomerSignUp.js"></script>
+    <script>
+       $(document).ready(function(){
+        $('.mainnav .nav-item').removeClass('active');
+            $('.Contact ').addClass('active');
+            $('.mobile-nav .nav-item ').removeClass('active');
+            $('.mobile-nav .navcontact ').addClass('active');
+       
+        });
+    </script>
+    </script>
 </body>
 
 </html>

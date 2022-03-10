@@ -38,7 +38,7 @@
               </a>
             </li>
             <li class="nav-item schedule">
-              <a href="#" class="nav-link ">
+              <a href="./SPServiceSchedule.php" class="nav-link ">
                 Service Schedule
               </a>
             </li>

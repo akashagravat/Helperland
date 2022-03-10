@@ -5,7 +5,7 @@ include('AdminHeader.php');
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
-<link rel="stylesheet" href="./assets/css/Admin-UserManagement.css?v=241">
+<link rel="stylesheet" href="./assets/css/Admin-UserManagement.css?v=2411">
 </head>
 
 <body>
@@ -180,9 +180,13 @@ include('AdminHeader.php');
   <?php
   include('./Adminfooter.php');
   ?>
-  <script src="./assets/js/AdminUserManagement.js?v=2199"></script>
+  <script src="./assets/js/AdminUserManagement.js?v=200129"></script>
   <script src="./assets/js/CustomerSignUp.js?v=231"></script>
- 
+  <script src="./assets/js/Preloader.js"></script>
+
+ <?php
+ include('./Adminusermanagementajax.php');
+ ?>
 </body>
 
 </html>

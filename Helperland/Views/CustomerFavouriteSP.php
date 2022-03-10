@@ -11,12 +11,12 @@ if (!isset($_SESSION['username'])) {
 
 ?>
 
-<link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=911">
+<link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=211">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 
 <link rel="stylesheet" href="./assets/css/Customer-Dashboard.css?v=912">
-<link rel="stylesheet" href="./assets/css/CustomerFavSP.css?v=212">
+<link rel="stylesheet" href="./assets/css/CustomerFavSP.css?v=2239">
 
 <title>Favourite Pros</title>
 <style>
@@ -52,7 +52,7 @@ if (!isset($_SESSION['username'])) {
     include('footer.php');
     include('CustomerPageAjax.php');
     ?>
-      <script src="./assets/js/CustomerFavSP.js"></script>
+      <script src="./assets/js/CustomerFavSP.js?v=2"></script>
 </body>
 
 </html>

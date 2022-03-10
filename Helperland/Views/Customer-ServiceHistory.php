@@ -11,7 +11,7 @@ if (!isset($_SESSION['username'])) {
 
 ?>
 
-<link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=2111">
+<link rel="stylesheet" href="./assets/css/Customer-ServiceHistory.css?v=2182">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 

@@ -1,3 +1,13 @@
+<?php
+include('header.php');
+$emails = $_SESSION['username'];
+$url = "http://localhost/helper/";
+$base_url = "http://localhost/helper/";
+// Session destroy and back button clicked  
+if (!isset($_SESSION['username'])) {
+    header('Location:' . $url);
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -17,25 +27,4 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/validation.css">
-    <link rel="stylesheet" href="./assets/css/navcss.css?v=21">
 
-
-
-    <?php
-    if (!isset($_SESSION)) {
-
-        session_start();
-    }
-    if (!isset($_SESSION['username'])) { ?>
-        <link rel="stylesheet" href="./assets/css/navbar.css">
-    <?php  } ?>
-    <?php if (isset($_SESSION['username'])) { ?>
-        <?php if ($_SESSION['usertype'] == 1 || $_SESSION['usertype'] == 0) { ?>
-        <link rel="stylesheet" href="./assets/css/loginnav.css?v=28">
-        <?php } ?>
-        <?php if ($_SESSION['usertype'] == 2) { ?>
-<link rel="stylesheet" href="./assets/css/Admin-UserManagement.css?v=12">
-
-<?php } ?>
-    <?php
-    } ?>

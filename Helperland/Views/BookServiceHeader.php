@@ -1,3 +1,4 @@
+
 <?php
 $base_url = "http://localhost/helper/";
 
@@ -35,36 +36,13 @@ $base_url = "http://localhost/helper/";
     <?php
     } ?>
 
-    <link rel="stylesheet" href="./assets/css/Bookservices.css?v=15121">
+    <link rel="stylesheet" href="./assets/css/Bookservices.css?v=9002101">
 
     <title>Book Service</title>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 
     <script>
-        function CheckSP() {
-
-
-            $('.selectsp').click(function() {
-                $('.selectsp').text("Selected");
-                $('.selectsp').addClass('selectedsp');
-                $('.selectedsp').css({
-                    "background": "#1d7a8c",
-                    "border": "none",
-                    "color": "#fff",
-                });
-                $('.selectedsp').removeClass('selectsp');
-            });
-            $('.selectedsp').click(function() {
-                $('.selectedsp').text("Select");
-                $('.selectedsp').addClass('selectsp');
-                $('.selectsp').css({
-                    "color": "#4F4F4F",
-                    "border": "1px solid #4F4F4F",
-                    "background-color": "#FFFFFF",
-                });
-                $('.selectsp').removeClass('selectedsp');
-            });
-        }
+ 
 
         function AddRadio() {
 
@@ -108,7 +86,14 @@ $base_url = "http://localhost/helper/";
 </head>
 
 <body>
-
+ <!-- Preloader Start-->
+ <div id="preloader">
+    <div id="pre-status">
+      <div class="preload-placeholder"></div>
+    </div>
+  </div>
+  <!-- Preloader End-->
+ 
     <header>
 
         <?php
@@ -195,8 +180,8 @@ $base_url = "http://localhost/helper/";
                                             <?php echo $_SESSION["firstname"]; ?>
                                         </div></a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">My Dashboard</a>
-                                    <a class="dropdown-item" href="#">My Settings</a>
+                                    <a class="dropdown-item" href="CustomerDashboard.php">My Dashboard</a>
+                                    <a class="dropdown-item" href="CustomerSetting.php">My Settings</a>
                                     <form method="POST" action=<?= $base_url . "./?controller=helperland&function=Logout" ?>>
                                         <button class="dropdown-item" name="logout" type="submit">Logout</button>
                                     </form>
@@ -240,12 +225,12 @@ $base_url = "http://localhost/helper/";
 
 
                             <li class="nav-item">
-                                <a href="#" class="nav-link ">
+                                <a href="CustomerDashboard.php" class="nav-link ">
                                     Dashboard
                                 </a>
                             </li>
                             <li class="nav-item active">
-                                <a href="#" class="nav-link ">
+                                <a href="Customer-ServiceHistory.php" class="nav-link ">
                                     Service History </a>
                             </li>
                             <li class="nav-item ">
@@ -271,7 +256,7 @@ $base_url = "http://localhost/helper/";
                                     Notifications </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link ">
+                                <a href="CustomerSetting.php" class="nav-link ">
                                     My Setting </a>
                             </li>
                             <li class="nav-item">
@@ -280,12 +265,12 @@ $base_url = "http://localhost/helper/";
                                 </form>
                             </li>
                             <li class="nav-item newnav">
-                                <a href="#" class="nav-link ">
+                                <a href="BookService.php" class="nav-link ">
                                     Book now
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link ">
+                                <a href="Price.php" class="nav-link ">
                                     Prices & services
                                 </a>
                             </li>
@@ -298,7 +283,7 @@ $base_url = "http://localhost/helper/";
                                     Blog </a>
                             </li>
                             <li class="nav-item ">
-                                <a href="#" class="nav-link ">
+                                <a href="Contact.php" class="nav-link ">
                                     Contact </a>
                             </li>
 

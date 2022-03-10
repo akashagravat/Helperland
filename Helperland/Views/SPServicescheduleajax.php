@@ -1,9 +1,9 @@
 <script>
-username = "<?php echo $_SESSION['username']; ?>";
-$(".vertical-nav .nav-item").removeClass('active');
-$(".vertical-nav .schedule").addClass('active');
-$(".mobile-nav .nav-item").removeClass('active')
-$(".mobile-nav .navserviceschedule").addClass('active')
+    username = "<?php echo $_SESSION['username']; ?>";
+    $(".vertical-nav .nav-item").removeClass('active');
+    $(".vertical-nav .schedule").addClass('active');
+    $(".mobile-nav .nav-item").removeClass('active')
+    $(".mobile-nav .navserviceschedule").addClass('active')
 
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -12,7 +12,7 @@ $(".mobile-nav .navserviceschedule").addClass('active')
 
             eventClick: function(calEvent) {
                 var eventObj = calEvent.event;
-
+                $("#preloader").show();
                 $.ajax({
                     type: "POST",
                     url: "http://localhost/helper/?controller=Helperland&function=GetSpecificServiceRequest",
@@ -38,6 +38,8 @@ $(".mobile-nav .navserviceschedule").addClass('active')
                         $('.spdetails2').html(data[24]);
                         $('.buttonall').html(data[25]);
                         $('.customername span').html(data[21]);
+                $("#preloader").hide();
+
                         $('.launch').click();
                     }
                 });
@@ -62,7 +64,7 @@ $(".mobile-nav .navserviceschedule").addClass('active')
             },
 
 
-                   eventSources: [{
+            eventSources: [{
 
 
                     url: "http://localhost/helper/?controller=Helperland&function=GetSpDates&parameter=" + username,
@@ -78,7 +80,6 @@ $(".mobile-nav .navserviceschedule").addClass('active')
 
                 },
             ],
-
 
         });
         calendar.render();

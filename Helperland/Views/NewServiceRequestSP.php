@@ -156,7 +156,7 @@ if (!isset($_SESSION['username'])) {
         <?php
         include('footer.php');
         ?>
-      <script src="./assets/js/newservicespajax.js"></script>
+      <script src="./assets/js/newservicespajax.js?v=21"></script>
       <?php
       include('./newservicespajax.php');?>
 

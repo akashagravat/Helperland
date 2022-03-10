@@ -249,6 +249,15 @@
     </div>
 
     <?php include("footer.php"); ?>
+    <script>
+       $(document).ready(function(){
+        $('.mainnav .nav-item').removeClass('active');
+            $('.pricelink').addClass('active');
+            $('.mobile-nav .nav-item ').removeClass('active');
+            $('.mobile-nav .navprice ').addClass('active');
+       
+        });
+    </script>
 </body>
 
 </html>
