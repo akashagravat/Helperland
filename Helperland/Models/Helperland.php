@@ -326,20 +326,20 @@ class Helperland
     }
     public function GetUsersServiceprovider($id)
     {
-        $idresult = array();
-        foreach ($id as $array) {
-            $sql = "SELECT Email FROM `user` WHERE UserId = {$array}";
+        // $idresult = array();
+       
+            $sql = "SELECT * FROM `user` WHERE UserId = $id";
             $stmt =  $this->conn->prepare($sql);
             $stmt->execute();
-            $result  = $stmt->fetch(PDO::FETCH_ASSOC);
-            array_push($idresult, $result);
-        }
-        return $idresult;
+            $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // array_push($idresult, $result);
+        // }
+        return $result;
     }
     public function AddService($array)
     {
-        $sql = "INSERT INTO servicerequest ( `UserId`, `ServiceStartDate`, `ServiceTime`, `ZipCode`,  `ServiceHourlyRate`, `ServiceHours`, `ExtraHours`, `TotalHours`, `TotalBed`, `TotalBath`, `SubTotal`, `Discount`, `TotalCost`, `EffectiveCost`, `ExtraServices`, `Comments`, `AddressId`, `PaymentTransactionRefNo`, `PaymentDue`, `HasPets`, `Status`, `CreatedDate`,  `PaymentDone`, `RecordVersion`)
-     VALUES (:userid ,:servicedate ,:servicetime, :zipcode,:servicehourlyrate ,:servicehours, :extrahours , :totalhours, :totalbed , :totalbath, :subtotal, :discount, :totalcost , :effectivecost, :extraservices, :comments, :addressid, :paymentrefno, :paymentdue, :pets, :status ,:createddate , :paymentdone, :recordversion)
+        $sql = "INSERT INTO servicerequest ( `UserId`, `ServiceStartDate`, `ServiceTime`, `ZipCode`,  `ServiceHourlyRate`, `ServiceHours`, `ExtraHours`, `TotalHours`, `TotalBed`, `TotalBath`, `SubTotal`, `Discount`, `TotalCost`, `EffectiveCost`, `ExtraServices`, `Comments`, `AddressId`, `PaymentTransactionRefNo`, `PaymentDue`, `HasPets`, `Status`, `CreatedDate`,  `PaymentDone`, `RecordVersion`,`ServiceProviderId`)
+     VALUES (:userid ,:servicedate ,:servicetime, :zipcode,:servicehourlyrate ,:servicehours, :extrahours , :totalhours, :totalbed , :totalbath, :subtotal, :discount, :totalcost , :effectivecost, :extraservices, :comments, :addressid, :paymentrefno, :paymentdue, :pets, :status ,:createddate , :paymentdone, :recordversion,:spid)
      ";
         $stmt =  $this->conn->prepare($sql);
         $stmt->execute($array);
@@ -376,7 +376,7 @@ class Helperland
 
     public function CancelServiceRequest($array)
     {
-        $sql = "UPDATE `servicerequest` SET `HasIssue` = :hasissue ,`ModifiedDate`= :modifieddate ,`ModifiedBy`= :modifiedby , `RecordVersion`= :recordversion , `Status` = :status WHERE `ServiceRequestId` = :serviceid";
+        $sql = "UPDATE `servicerequest` SET `HasIssue` = :hasissue ,`ModifiedDate`= :modifieddate ,`ModifiedBy`= :modifiedby , `RecordVersion`= :recordversion , `Status` = :status,`ServiceProviderId`=:spids WHERE `ServiceRequestId` = :serviceid";
         $stmt =  $this->conn->prepare($sql);
         $stmt->execute($array);
         $count = $stmt->rowCount();
@@ -502,7 +502,7 @@ class Helperland
 
     public function GetSPCompleted($userid)
     {
-        $sql = "SELECT DISTINCT servicerequest.`ServiceProviderId`,user.FirstName,user.LastName FROM `servicerequest`  JOIN user
+        $sql = "SELECT DISTINCT servicerequest.`ServiceProviderId`,user.FirstName,user.LastName,user.UserProfilePicture FROM `servicerequest`  JOIN user
         ON servicerequest.`ServiceProviderId` = user.UserId  WHERE servicerequest.Status = 'Completed' AND servicerequest.UserId = $userid";
         $stmt =  $this->conn->prepare($sql);
         $stmt->execute();
@@ -583,7 +583,7 @@ class Helperland
 
     public function GetPendingService()
     {
-        $sql = "SELECT * FROM `servicerequest`  JOIN user ON servicerequest.`UserId`= user.UserId JOIN useraddress ON useraddress.AddressId = servicerequest.`AddressId`  WHERE `servicerequest`.`Status` = 'Pending' ORDER BY `servicerequest`.`ServiceRequestId` DESC";
+        $sql = "SELECT * FROM `servicerequest`  JOIN user ON servicerequest.`UserId`= user.UserId JOIN useraddress ON useraddress.AddressId = servicerequest.`AddressId`  WHERE (`servicerequest`.`Status` = 'Pending' || `servicerequest`.`Status` = 'Reschedule') && `user`.`Status` = 'Active' ORDER BY `servicerequest`.`ServiceRequestId` DESC";
         $stmt =  $this->conn->prepare($sql);
         $stmt->execute();
         $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -663,8 +663,8 @@ class Helperland
         return $result;
     }
 
-    public function GetRating($targetid){
-        $sql = "SELECT * FROM `rating` WHERE `RatingTo` = $targetid";
+    public function GetRating($targetid,$whre,$order){
+        $sql = "SELECT servicerequest.ServiceRequestId ,rating.RatingFrom , rating.RatingTo, rating.Comments,rating.VisibleOnHomeScreen,user.FirstName,user.LastName,servicerequest.ServiceRequestId,servicerequest.ServiceStartDate,servicerequest.ServiceTime,servicerequest.TotalHours,rating.Ratings FROM `rating` JOIN user ON rating.RatingFrom = user.UserId JOIN servicerequest ON rating.ServiceRequestId = servicerequest.ServiceRequestId  WHERE rating.`RatingTo` = $targetid   $whre ORDER BY $order";
         $stmt =  $this->conn->prepare($sql);
         $stmt->execute();
         $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -895,10 +895,26 @@ class Helperland
     }
 
     public function  GetUpcomingServiceHistoryAll($userid){
-        $sql = "SELECT * FROM `servicerequest`   WHERE `servicerequest`.`ServiceProviderId` = $userid  && (`servicerequest`.`Status`='Approoved' || `servicerequest`.`Status`='Completed')";
+        $sql = "SELECT * FROM `servicerequest`   WHERE `servicerequest`.`ServiceProviderId` = $userid  &&  `servicerequest`.`Status`='Completed'";
         $stmt =  $this->conn->prepare($sql);
         $stmt->execute();
         $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;        
+    }
+    public function GetServiceSPHistoryCompleted($userid,$status)
+    {
+        $sql = "SELECT * FROM `servicerequest` WHERE `ServiceProviderId` = $userid && `Status`='$status' ORDER BY `ServiceRequestId` DESC";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function GetPendingServicePets(){
+        $sql = "SELECT * FROM `servicerequest`  JOIN user ON servicerequest.`UserId`= user.UserId JOIN useraddress ON useraddress.AddressId = servicerequest.`AddressId`  WHERE (`servicerequest`.`Status` = 'Pending' || `servicerequest`.`Status` = 'Reschedule') && `HasPets`= 1 &&  `user`.`Status` = 'Active' ORDER BY `servicerequest`.`ServiceRequestId` DESC";
+        $stmt =  $this->conn->prepare($sql);
+        $stmt->execute();
+        $result  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 }
