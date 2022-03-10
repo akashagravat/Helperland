@@ -100,7 +100,7 @@ $('#bookingdetails ').on('click', ".btn-completed", function() {
     e.preventDefault();
     serviceid = $(this).attr('id');
     cancelreason = $('.cancelreason').val();
-    $("#iframeloading").show();
+    $("#preloader").show();
     $.ajax({
       type: "POST",
       url: "http://localhost/helper/?controller=Helperland&function=CancelServiceRequestSP",
@@ -128,7 +128,7 @@ $('#bookingdetails ').on('click', ".btn-completed", function() {
           });
 
         }
-        $("#iframeloading").hide();
+        $("#preloader").hide();
 
         $("#servicetables").DataTable().ajax.reload();
       }

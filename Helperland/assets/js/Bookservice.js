@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    $('.booknow').addClass('active');
+    $('.mobile-nav .nav-item').removeClass('active');
+    $('.mobile-nav .newnav').addClass('active');
     $('input:radio').change(function () {//Clicking input radio
         var radioClicked = $(this).attr('id');
         unclickRadio();
@@ -143,7 +146,10 @@ $(document).ready(function () {
 
         if (totaltimesh >= 21) {
             $('.timingerr').text("Please Select less than 21 hour time");
+            $('.scheduleandplan').attr("disabled","disabled");
         } else {
+            $('.scheduleandplan').removeAttr("disabled");
+
             $('.timingerr').text("");
 
         }

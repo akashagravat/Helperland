@@ -25,9 +25,12 @@ $(document).ready(function () {
 
 
 window.addEventListener('scroll', function () {
+  $('.mobile-nav .nav-item').removeClass('active');
   let nav = document.querySelector('nav');
   let windowPosition = window.scrollY > 0;
   nav.classList.toggle('scrolling-active', windowPosition);
+
+  let navs = document.querySelector('.header-navigationbar nav');
 
 });
 
@@ -40,7 +43,9 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-
+  $('.scroll-down').on('click',function(e){
+    e.preventDefault();
+  window.scrollTo(0, 1000);});
   if (window.location.href.indexOf('#LoginModal') != -1) {
 
     $('#LoginModal').modal('show');

@@ -10,3 +10,4 @@ $(document).ready(function () {
             $(".navbar-nav .nav-item .active").css("color", "yellow");
         }
 });
+

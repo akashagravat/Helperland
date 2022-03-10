@@ -182,7 +182,7 @@ $(document).ready(function () {
 
 
     });
-  })
+  });
 
 
 });
@@ -238,6 +238,8 @@ $(document).ready(function () {
         $('.commentsall span').html(data[11]);
         $('.petornot').html(data[12]);
 
+        $('.spdetails1').html(data[20]);
+        $('.spdetails2').html(data[20]);
 
         // var obj = jQuery.parseJSON(data);
         // alert(data[0]);

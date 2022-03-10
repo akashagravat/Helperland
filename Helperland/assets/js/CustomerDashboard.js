@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('.shows select').select2();
     $('.nav-item').removeClass('active');
     $('#customerdashboard').addClass('active');
+    $(".mobile-nav .navdashboard").addClass('active');
     // Tommorow Date
     var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
     var tomday = tomorrow.getDate();
@@ -206,7 +207,7 @@ $(document).ready(function () {
         serviceid = $(this).attr('id');
         newtime = $('#selectime option:selected').text();
         newdate = $("#selectdate").val();
-        $("#iframeloading").show();
+        $("#preloader").show();
 
         $.ajax({
             type: "POST",
@@ -236,7 +237,7 @@ $(document).ready(function () {
                     });
 
                 }
-                $("#iframeloading").hide();
+                $("#preloader").hide();
                 
                 $("#dashboardtable").DataTable().ajax.reload();
                 // CustomerDashboard();
@@ -248,7 +249,7 @@ $(document).ready(function () {
         e.preventDefault();
         serviceid = $(this).attr('id');
         cancelreason = $('.cancelreason').val();
-        $("#iframeloading").show();
+        $("#preloader").show();
         $.ajax({
             type: "POST",
             url: "http://localhost/helper/?controller=Helperland&function=CancelServiceRequest",
@@ -276,7 +277,7 @@ $(document).ready(function () {
                     });
                     
                 }
-                $("#iframeloading").hide();
+                $("#preloader").hide();
                 
                 $("#dashboardtable").DataTable().ajax.reload();
             }

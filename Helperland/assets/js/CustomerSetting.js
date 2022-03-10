@@ -62,10 +62,13 @@ $(document).ready(function () {
             '#birthyear').val() == "Year")) {
             $('.date-error').addClass('invalid-msg').text("Enter Valid Birthdate");
             $('.save-details').addClass('disabled');
-
+            $('.spdetails').attr('disabled', 'disabled');
+            $('.spdetails').css('cursor', 'not-allowed');
         } else {
             $('.date-error').empty();
             $('.save-details').removeClass('disabled');
+            $('.spdetails').removeAttr('disabled');
+            $('.spdetails').css('cursor', 'pointer');
 
 
         }
@@ -94,6 +97,29 @@ $(document).ready(function () {
 
     });
 
+    //current password validation
+    $('#currentpassword').on('input', function () {
+        var password = $(this).val();
+            if(password == ""){
+                $('.current-password-msg').addClass('invalid-msg').text('Current Password is required');
+            $(this).addClass('invalid-input').removeClass('valid-input');  
+            }else{
+                $('.current-password-msg').empty();
+                $(this).addClass('valid-input').removeClass('invalid-input');
+            }
+    });
+    
+    $("#nationallity").on('click', function () {
+        if ($(this).val() == "") {
+            $('.nation-error').addClass('invalid-msg').text("Enter Valid Nationallity");
+            $('.spdetails').attr('disabled', 'disabled');
+            $('.spdetails').css('cursor', 'not-allowed');
+        }else{
+            $('.nation-error').removeClass('invalid-msg').text("");
+            $('.spdetails').removeAttr('disabled');
+            $('.spdetails').css('cursor', 'pointer');
+        }
+    });
 
     // Password Validation
     $('#newpassword').on('input', function () {
@@ -174,14 +200,14 @@ $(document).ready(function () {
     // Street Validation
     $('#street').on('input', function () {
         var lastName = $(this).val();
-        var validName = /^[a-zA-Z]*$/;;
+        var validName = /^[a-zA-Z ]*$/;;
         if (lastName.length == 0) {
             $('.street-msg').addClass('invalid-msg').text("Street is required");
             $(this).addClass('invalid-input').removeClass('valid-input');
 
         }
         else if (!validName.test(lastName)) {
-            $('.street-msg').addClass('invalid-msg').text('White Space and Number Are not Allowed');
+            $('.street-msg').addClass('invalid-msg').text('Number Are not Allowed');
             $(this).addClass('invalid-input').removeClass('valid-input');
         }
         else {
@@ -257,76 +283,10 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    $('.save-details').on("click", function(e) {
-        e.preventDefault();
-
-        if (($('#dateofbirth').val() == "Day" || $('#dateofmonth').val() == "Month" || $(
-                '#birthyear').val() == "Year" || $('#language').val() == "") || $('#details').find('.invalid-input').length > 0) {
-            $('.errors').show();
-            $('.errors').text('Please Enter All Details');
-            setTimeout(function() {
-                $(".errors").hide();
-            }, 5000);
-        } else {
-
-
-            $('#iframeloading').show();
-            firstname = $('#firstname').val();
-            lastname = $('#lastname').val();
-            email = $('#emailaddress').val();
-            mobile = $('#mobilenumber').val();
-            date = $('#dateofbirth').val();
-            month = $('#dateofmonth').val();
-            year = $('#birthyear').val();
-            language = $('#language').val();
-            birthdate = year + "-" + month + "-" + date;
-            $(".lastname").removeClass('valid-input');
-            $(".firstName").removeClass('valid-input');
-            $("#mobilenumber").removeClass('valid-input');
-
-
-            $.ajax({
-                type: "POST",
-                url: "http://localhost/helper/?controller=Helperland&function=AddCustomerDetails",
-                data: {
-                    'firstname': firstname,
-                    'lastname': lastname,
-                    'email': email,
-                    'mobile': mobile,
-                    'birthdate': birthdate,
-                    'language': language,
-                },
-
-                dataType: "json",
-                success: function(data) {
-                    $('#iframeloading').hide();
-                    if (data == 1) {
-                        Swal.fire({
-                            title: 'Your Details Has Been Updated Successfully',
-                            text: '',
-                            icon: 'success',
-                            confirmButtonText: 'Done'
-                        })
-                    }
-                    if (data == 0) {
-                        Swal.fire({
-                            title: 'Your Details Not Updated',
-                            text: 'Please Try Again',
-                            icon: 'alert',
-                            confirmButtonText: 'Done'
-                        })
-                    }
-                    GetUserDetails();
-
-
-
-                }
-            });
-        }
-    });
+ 
     $('#addresstable').on("click", "input[name=addressradio]", function() {
         checkedradio = $('input[name=addressradio]:checked').val();
-        $("#iframeloading").show();
+        $("#preloader").show();
         $.ajax({
             type: "POST",
             url: "http://localhost/helper/?controller=Helperland&function=ChangeDefaultAddress",
@@ -348,7 +308,7 @@ $(document).ready(function () {
                     }, 5000);
 
                 }
-                $("#iframeloading").hide();
+                $("#preloader").hide();
 
                 $('#addresstable').DataTable().ajax.reload();
 
@@ -453,7 +413,7 @@ $(document).ready(function () {
     });
     $("#addaddress").on("click", ".UpdateAddress", function() {
         // e.preventDefault();
-        $("#iframeloading").show();
+        $("#preloader").show();
 
         // alert('it work');
         addressid = $(this).attr('id');
@@ -476,7 +436,7 @@ $(document).ready(function () {
 
             success: function(data) {
                 if (data == 1) {
-                    $("#iframeloading").hide();
+                    $("#preloader").hide();
 
                     Swal.fire({
                         title: 'Your Address Has Been Updated Successfully',
@@ -487,7 +447,7 @@ $(document).ready(function () {
                     // GetAddress();
                 }
                 if (data == 0) {
-                    $("#iframeloading").hide();
+                    $("#preloader").hide();
                     Swal.fire({
                         title: 'Address has been not Updated',
                         text: 'Please Provide at least one new detail',
@@ -502,7 +462,7 @@ $(document).ready(function () {
     });
     $("#deleteaddress").on("click", ".deleteaddress", function(e) {
         e.preventDefault();
-        $("#iframeloading").show();
+        $("#preloader").show();
         // alert('it work');
         // alert('it work');
         addressid = $(this).attr('id');
@@ -515,7 +475,7 @@ $(document).ready(function () {
 
             success: function(data) {
                 if (data == 1) {
-                    $("#iframeloading").hide();
+                    $("#preloader").hide();
 
                     Swal.fire({
                         title: 'Your Address Has Been Deleted Successfully',
@@ -526,7 +486,7 @@ $(document).ready(function () {
                     // GetAddress();
                 }
                 if (data == 0) {
-                    $("#iframeloading").hide();
+                    $("#preloader").hide();
                     Swal.fire({
                         title: 'Address has been not Deleted',
                         text: 'Please Try Again',

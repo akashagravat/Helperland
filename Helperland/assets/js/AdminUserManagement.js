@@ -86,6 +86,7 @@ $(document).ready(function() {
       email = $("#useremail").val();
       mobile = $('input[name="mobile"]').val();
       password = $("#password").val();
+      $("#preloader").show();
       $.ajax({
         type: "POST",
         url: "http://localhost/helper/?controller=Helperland&function=InsertUserAdmin",
@@ -114,6 +115,8 @@ $(document).ready(function() {
               confirmButtonText: 'Done'
             });
           }
+      $("#preloader").hide();
+
           $("#tblusermanagement").DataTable().ajax.reload();
           $("#cardview").DataTable().ajax.reload();
 
@@ -125,37 +128,7 @@ $(document).ready(function() {
 
 
     Getuser();
-    $('#tblusermanagement').on('click', ".activateuser", function(e) {
-      e.preventDefault();
-      uid = $(this).attr('id');
-      stt = "Activate";
-      status = 'Yes';
-      activeinactive();
-    });
-
-    $('#tblusermanagement').on('click', ".deactivateuser", function(e) {
-      e.preventDefault();
-      uid = $(this).attr('id');
-      stt = "DeActivated";
-      status = 'No';
-      activeinactive();
-    });
-
-    $('#cardview').on('click', ".activateuser", function(e) {
-      e.preventDefault();
-      uid = $(this).attr('id');
-      stt = "Activate";
-      status = 'Yes';
-      activeinactive();
-    });
-
-    $('#cardview').on('click', ".deactivateuser", function(e) {
-      e.preventDefault();
-      uid = $(this).attr('id');
-      stt = "DeActivated";
-      status = 'No';
-      activeinactive();
-    });
+  
     urls = 'http://localhost/helper/?controller=Helperland&function=AdminUser';
     seluser = "";
     selectrole = '';
@@ -321,44 +294,13 @@ $(document).ready(function() {
     }).ajax.reload();}
     table.processing(true);
     tables.processing(true);
-
-    function activeinactive() {
-      $.ajax({
-        type: "POST",
-        url: "http://localhost/helper/?controller=Helperland&function=ActivateDeactivate",
-        data: {
-          'username': username,
-          'status': status,
-          'uid': uid,
-        },
-        // dataType: "dataType",
-        success: function(data) {
-          if (data == 1) {
-            Swal.fire({
-              title: 'User Account Status Updated Successfully',
-              text: '',
-              icon: 'success',
-              confirmButtonText: 'Done'
-            });
-            $("#tblusermanagement").DataTable().ajax.reload();
-            $("#cardview").DataTable().ajax.reload();
-
-          }
-          if (data == 0) {
-
-            Swal.fire({
-              title: 'User Account Status Not Updated',
-              text: '',
-              icon: 'error',
-              confirmButtonText: 'Done'
-            });
-            $("#tblusermanagement").DataTable().ajax.reload();
-            $("#cardview").DataTable().ajax.reload();
-
-          }
-        }
-      });
-    }
+    $("#addnewuser").on("input",function(e){
+      e.preventDefault();
+      if($(".valid-input").length == 6){
+        $("#submit-btn").removeAttr("disabled");
+        $('.registration ').removeAttr("disabled");
+      }
+        });
 
     function Getuser() {
       $.ajax({
