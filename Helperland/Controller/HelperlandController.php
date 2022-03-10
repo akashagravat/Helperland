@@ -282,7 +282,10 @@ class HelperlandController
                 include('ActivateAccount.php');
                 header('Location:' . $base_url);
             } else {
-                $_SESSION['err'] = "Email Already Exists";
+                $_SESSION['status_msg'] = "Email Already Exists";
+                $_SESSION['status_txt'] = "";
+                $_SESSION['status'] = "error";
+                // $_SESSION['err'] = "Email Already Exists";
                 header("Location:" . $baseurl);
             }
         }
@@ -436,14 +439,25 @@ class HelperlandController
                             $serviceproviderid = $target['UserId'];
                             $firstname = $target['FirstName'];
                             $lastname = $target['LastName'];
+                            $picture = $target['UserProfilePicture'];
+                            if (strlen($picture) != 0) {
+                                // $pictures = "http://localhost/helper/assets/image/car.png";
+                                $image = str_replace("http://localhost/helper/", "./", $picture);
+                                $imgs = '<img  src="' . $image . '" class="service-provider-img">';
+                            } else {
+                                // $pictures = "./assets/image/car.png";
+
+                                $imgs = '<img src="./assets/image/avatar-hat.png" class="service-provider-img">';
+                            }
+
                             if ($favourite == 1 && $blocked == 0) {
                                 $output = '
                     <div class="col-md-3 ">
                         <div class="service-provider-imgs">
-                            <img src="./assets/image/forma-1-copy-19.png" class="service-provider-img">
+                                ' . $imgs . '
                         </div>
                         <h5 class="service-provider-name">' . $firstname . ' ' . $lastname . '</h5>
-                        <button type="button" class="btn selectbtn selectsp"  value="' . $serviceproviderid . '" onclick ="CheckSP()" >Select</button>
+                        <button type="button" class="btn selectbtn selectsp"  value="' . $serviceproviderid . '" >Select</button>
                     </div>
                 ';
                                 echo $output;
@@ -482,12 +496,20 @@ class HelperlandController
             $paymentrefno = $_POST['paymentrefno'];
             $paymentdue = $_POST['paymentdue'];
             $haspets = $_POST['haspets'];
-            $status = 'Pending';
             $date = date('Y-m-d H:i:s');
             $paymentdone = 1;
             $recordversion = 1;
             $ids = $_POST['selectedsp'];
-            $id = array_slice($ids, 1);
+            if ($ids == "") {
+                $spids = NULL;
+                $status = 'Pending';
+            }
+            if ($ids != "") {
+                $spids = intval($ids);
+                $status = 'Approoved';
+            }
+
+            // $id = array_slice($ids, 1);
             // print_r($id);
             // echo $selectdate. ''. $servicetime. ''. $zipcode.''.$servicehourate.''.$servicehours.''
             // .$extrahour.''.$totalhour.''.$totalbed.''.$totalbath.''.$subtotal.''.$discount.''.$totalcost.''.$effectivecost.''.$extraservice.''. $comments.''
@@ -531,6 +553,7 @@ class HelperlandController
                 'createddate' => $date,
                 'paymentdone' => $paymentdone,
                 'recordversion' => $recordversion,
+                'spid' =>  $spids,
             ];
 
             $result = $this->model->AddService($array);
@@ -538,18 +561,22 @@ class HelperlandController
             if ($result) {
                 $addressid = $result;
                 include('BookServiceClientConfirmationMail.php');
-                if (sizeof($id) > 0) {
-                    $sp = $this->model->GetUsersServiceprovider($id);
+                if ($ids != "") {
+                    $finalid = intval($ids);
+                    $sp = $this->model->GetUsersServiceprovider($finalid);
+                    $addressid = $result;
+                    // echo $addressid;
                     if (count($sp)) {
                         // $email = $sp['Email'];
                         $addressid = $result;
 
                         foreach ($sp as $emails) {
                             $email = $emails['Email'];
-                            include('BookingMail.php');
+                            include('./Views/SPBookingDirectlyassigned.php');
                         }
                     }
                     echo $addressid;
+
                     // print_r($sp);
                 } else {
                     if (count($serviceprovider)) {
@@ -559,8 +586,9 @@ class HelperlandController
                             include('BookingMail.php');
                         }
                     }
-                    $addressid = $result;
+
                     echo $addressid;
+                    echo 1;
                 }
             } else {
                 echo 0;
@@ -827,6 +855,7 @@ class HelperlandController
                             $spalldetails = $this->model->GetUsers($serviceproviderid);
                             if (count($spalldetails)) {
                                 foreach ($spalldetails as $sp) {
+                                    $picture = $sp['UserProfilePicture'];
                                     $spfirstname = $sp['FirstName'];
                                     $splastname = $sp['LastName'];
                                     $spratings = $this->model->GetSPRattings($serviceproviderid);
@@ -870,9 +899,18 @@ class HelperlandController
                                             $values = $values .  '<i class="fa fa-star "  style="margin-right:4px;"></i>';
                                         }
                                     }
-                                    $serviceprovider = '<td class="service_provider_names">
+                                    if (strlen($picture) != 0) {
+                                        // $pictures = "http://localhost/helper/assets/image/car.png";
+                                        $image = str_replace("http://localhost/helper/", "./", $picture);
+                                        $imgs = '<img  src="' . $image . '" class="service-provider-img">';
+                                    } else {
+                                        // $pictures = "./assets/image/car.png";
+
+                                        $imgs = '<img src="./assets/image/avatar-hat.png" class="service-provider-img">';
+                                    }
+                                    $serviceprovider = '
                                    <div class="row serviceproviderblocks">
-                                       <div class="col service-provider-imgs"><img src="./assets/image/forma-1-copy-19.png" class="service-provider-img"></div>
+                                   ' . $imgs . '
                                        <div class="col ml-3">
                                            <div class="row service-provider">' . $spfirstname . ' ' . $splastname . '</div>
                                            <div class="row star">
@@ -883,7 +921,7 @@ class HelperlandController
 
                                        </div>
                                    </div>
-                               </td>';
+                               ';
                                 }
                             }
                         }
@@ -898,7 +936,7 @@ class HelperlandController
                                 </div>
                             </td>';
                         if ($status != 'Reschedule') {
-                            $actioncolumn =  ' <td class="actionblock">
+                            $actioncolumn =  ' 
                             <div class="row actionblocks">
                                 <div class="col-lg-6 col-md-6 col-6">
                                     <button class="btn reschedule" title="Reschedule" id="' . $serviceid . '" data-toggle="modal" data-target="#rescheduletime">Reschedule</button>
@@ -907,8 +945,28 @@ class HelperlandController
                                     <button class="btn cancel" title="Cancel" data-toggle="modal" id="' . $serviceid . '" data-target="#cancelmodal">Cancel</button>
                                 </div>
                             </div>
-                        </td>';
+                       ';
                         }
+
+                        $cardview = '
+                        <div class="card table-card mt-4">
+                     <div class="serviceid pl-3">
+                     ' . $serviceidcolumn . '    </div>
+                        <div class="servicedt card-title pl-3">
+                            ' . $datecolumn . '
+                        </div>
+                     
+                        <div class="card-title row servicepeoviders pl-5">
+                           ' . $serviceprovider . '
+                        </div>
+                        <div class="user-status pl-3">
+                                ' . $paymentcolumn . '
+                        </div>
+                        <div class="user-action">
+                            ' . $actioncolumn . ' 
+                        </div>
+                        </div>';
+
                         $results = array();
                         $results['blocks'] = $control;
                         $results['serviceid'] = $serviceidcolumn;
@@ -916,14 +974,15 @@ class HelperlandController
                         $results['serviceprovider'] = $serviceprovider;
                         $results['payment'] = $paymentcolumn;
                         $results['action'] = $actioncolumn;
+                        $results['cardview'] = $cardview;
 
                         array_push($json['data'], $results);
                     }
                 }
-                echo json_encode($json);
                 // $return = json_encode($output);
 
             }
+            echo json_encode($json);
         }
     }
 
@@ -1241,14 +1300,15 @@ class HelperlandController
                 ';
                     //data-toggle="modal" data-target="#bookingdetails" name="'.$serviceid.'"
                     $selectnewdateandtime = '<p id="' . $totalrequiredtime . '">Select New Date & Time</p>';
-                    if($status == "Completed"){
+                    $finalview = "";
+                    if ($status == "Completed") {
                         $finalview = "";
                     }
-                    if($status == "Approoved"){
+                    if ($status == "Approoved") {
                         $finalview =  $cancelupcomingbtn;
                     }
-                 
-                    $output = [$date, $starttime, $totalltimes, $totalrequiredtime, $serviceid, $extraservices, $payment, $serviceaddress, $billingaddress, $mobile, $email, $comments, $pets, $reschedule, $cancel, $updatebutton, $cancelbtn, $selectyourtime, $commenttextara, $selectnewdateandtime, $serviceprovider, $custmernames, $acceptbtn, $cancelupcomingbtn, $map,$finalview];
+
+                    $output = [$date, $starttime, $totalltimes, $totalrequiredtime, $serviceid, $extraservices, $payment, $serviceaddress, $billingaddress, $mobile, $email, $comments, $pets, $reschedule, $cancel, $updatebutton, $cancelbtn, $selectyourtime, $commenttextara, $selectnewdateandtime, $serviceprovider, $custmernames, $acceptbtn, $cancelupcomingbtn, $map, $finalview];
                 }
             }
             echo json_encode($output);
@@ -1375,6 +1435,7 @@ class HelperlandController
                 'modifiedby' => $modifiedby,
                 'recordversion' => $recordversion,
                 'status' => $status,
+                'spids' => $spid,
                 'serviceid' => $serviceid,
 
             ];
@@ -1630,11 +1691,20 @@ class HelperlandController
 
                                     $spfirstname = $sp['FirstName'];
                                     $splastname = $sp['LastName'];
+                                    $picture = $sp['UserProfilePicture'];
+                                    if (strlen($picture) != 0) {
+                                        // $pictures = "http://localhost/helper/assets/image/car.png";
+                                        $image = str_replace("http://localhost/helper/", "./", $picture);
+                                        $imgs = '<img  src="' . $image . '" class="service-provider-img">';
+                                    } else {
+                                        // $pictures = "./assets/image/car.png";
 
+                                        $imgs = '<img src="./assets/image/avatar-hat.png" class="service-provider-img">';
+                                    }
                                     $serviceprovider = '<td class="service_provider_names">
                                     <div class="row ">
-                                        <div class="col service-provider-imgs"><img src="./assets/image/forma-1-copy-19.png" class="service-provider-img"></div>
-                                        <div class="col ml-3">
+                                    ' . $imgs . '
+                                    <div class="col ml-3">
                                             <div class="row service-provider serviceproviderblocks">' . $spfirstname . ' ' . $splastname . '</div>
                                             <div class="row star ">
 
@@ -1695,10 +1765,10 @@ class HelperlandController
                         array_push($json['data'], $results);
                     }
                 }
-                echo json_encode($json);
                 // $return = json_encode($output);
 
             }
+            echo json_encode($json);
         }
     }
 
@@ -1753,10 +1823,21 @@ class HelperlandController
                                     }
 
                                     $values = $values;
+                                    $picture = $sp['UserProfilePicture'];
+                                    if (strlen($picture) != 0) {
+                                        // $pictures = "http://localhost/helper/assets/image/car.png";
+                                        $image = str_replace("http://localhost/helper/", "./", $picture);
+                                        $imgs = '<img  src="' . $image . '" class="service-provider-img">';
+                                    } else {
+                                        // $pictures = "./assets/image/car.png";
+
+                                        $imgs = '<img src="./assets/image/avatar-hat.png" class="service-provider-img">';
+                                    }
 
                                     $serviceprovider = '
                                     <div class="row ml-1">
-                                    <div class="col service-provider-imgs" ><img src="./assets/image/forma-1-copy-19.png" class="service-provider-img"></div>
+                               
+                                    ' . $imgs . '
                                     <div class="col ml-3" >
                                         <div class="row service-provider" style="width: 200px;" id="' . $serviceproviderid . '" name="' . $serviceid . '">' . $spfirstname . ' ' . $splastname . '</div>
                                         <div class="row star">
@@ -1960,11 +2041,22 @@ class HelperlandController
                                             <button type="button" class="btn btn-favourite-unfavourite mr-4" id="' . $spid . '">Favourite</button>';
                                         $blockbtn = '<button type="button" class="btn btn-block-unblock " id="' . $spid . '">Block</button>';
                                     }
+                                    $picture = $row['UserProfilePicture'];
+                                    if (strlen($picture) != 0) {
+                                        // $pictures = "http://localhost/helper/assets/image/car.png";
+                                        $image = str_replace("http://localhost/helper/", "./", $picture);
+                                        $imgs = '<img  src="' . $image . '" class="service-provider-img">';
+                                    } else {
+                                        // $pictures = "./assets/image/car.png";
+
+                                        $imgs = '<img src="./assets/image/avatar-hat.png" class="service-provider-img">';
+                                    }
 
                                     $result['serviceprovider'] = '  <td>
                                         <div class="block-customer odd">
                                             <div class="borderimg">
-                                                <div class=" serviceproviderimgs"><img src="./assets/image/forma-1-copy-19.png" class="serviceproviderimg">
+                                                <div class=" serviceproviderimgs">
+                                                ' . $imgs . '
                                                 </div>
                                                 <p class="spnames">' . $fname . '   ' . $lname . '</p>
                                                 <div class="ratings3 ">
@@ -2265,7 +2357,12 @@ class HelperlandController
             $uerid = $this->model->ResetKey($username);
             $userid = $uerid[3];
             $json['data'] = array();
-            $results = $this->model->GetPendingService();
+            if ($haspet == 0) {
+                $results = $this->model->GetPendingService();
+            }
+            if ($haspet == 1) {
+                $results = $this->model->GetPendingServicePets();
+            }
             if (count($results)) {
                 foreach ($results as $row) {
                     $serviceid = $row['ServiceRequestId'];
@@ -2284,6 +2381,7 @@ class HelperlandController
                     $pets = $row['HasPets'];
                     $serviceproviderid = $row['ServiceProviderId'];
 
+
                     $starttime =  date("H:i", strtotime($servicestarttime));
 
                     $startime = str_replace(":", ".", $starttime);
@@ -2297,6 +2395,7 @@ class HelperlandController
                         $minutesq = 0;
                     }
                     $startime =  $hoursq . "." . $minutesq;
+
 
                     // $startime =$hours.'.'.$mins; 
 
@@ -2361,40 +2460,15 @@ class HelperlandController
                 <span class="euro">€</span>' . $payment . '
             </div>';
 
-
                     $result = array();
-                    if ($haspet == 1) {
-                        if ($pets == 1) {
-                            $result = array();
-                            $result['blocks'] = "";
-                            $result['serviceid'] = $serviceids;
-                            $result['dates'] = $dates;
-                            $result['customerdetails'] = $userdetails;
-                            $result['payment'] = $paymnetbook;
-                            $result['timeconflict'] = $timeconflict;
-                            $result['action'] = $action;
-                        } else {
-                            $result = array();
-                            $result['blocks'] = "";
-                            $result['serviceid'] = "";
-                            $result['dates'] = "";
-                            $result['customerdetails'] = "";
-                            $result['payment'] = "";
-                            $result['timeconflict'] = "";
-                            $result['action'] = "";
-                        }
-                    }
-                    if ($haspet == 0) {
+                    $result['blocks'] = "";
+                    $result['serviceid'] = $serviceids;
+                    $result['dates'] = $dates;
+                    $result['customerdetails'] = $userdetails;
+                    $result['payment'] = $paymnetbook;
+                    $result['timeconflict'] = $timeconflict;
+                    $result['action'] = $action;
 
-                        $result = array();
-                        $result['blocks'] = "";
-                        $result['serviceid'] = $serviceids;
-                        $result['dates'] = $dates;
-                        $result['customerdetails'] = $userdetails;
-                        $result['payment'] = $paymnetbook;
-                        $result['timeconflict'] = $timeconflict;
-                        $result['action'] = $action;
-                    }
                     array_push($json['data'], $result);
                 }
             }
@@ -2655,6 +2729,7 @@ class HelperlandController
                     $recordversion = $row['RecordVersion'];
                     $userid = intval($row['UserId']);
                     $spid = intval($row['ServiceProviderId']);
+                    $servicestartdate = $row['ServiceStartDate'];
                 }
             }
             $recordversion = $recordversion + 1;
@@ -2665,14 +2740,22 @@ class HelperlandController
                     $modifiedby  = $emails['Email'];
                 }
             }
-            $modifieddate = date('Y-m-d H:i:s');;
-            $status = "Cancelled";
+            $modifieddate = date('Y-m-d H:i:s');
+            $todaydate = date('d-m-Y');
+            if (strtotime($servicestartdate) >= strtotime($todaydate)) {
+                $status = "Cancelled";
+                $spids = $spid;
+            } else {
+                $status = "Pending";
+                $spids = NULL;
+            }
             $array = [
                 'hasissue' => $hasissue,
                 'modifieddate' => $modifieddate,
                 'modifiedby' => $modifiedby,
                 'recordversion' => $recordversion,
                 'status' => $status,
+                'spids' => $spids,
                 'serviceid' => $serviceid,
 
             ];
@@ -2695,7 +2778,20 @@ class HelperlandController
             $paymentstatus = intval($_POST['pyst']);
             $result = $this->model->ResetKey($email);
             $userid = $result[3];
-            $result = $this->model->GetServiceSPHistory($userid);
+            if ($paymentstatus == 1) {
+                $result = $this->model->GetServiceSPHistory($userid);
+            }
+
+
+            if ($paymentstatus == 3) {
+                $servicestatus = "Cancelled";
+                $result = $this->model->GetServiceSPHistoryCompleted($userid, $servicestatus);
+            }
+            if ($paymentstatus == 2) {
+                $servicestatus = "Completed";
+
+                $result = $this->model->GetServiceSPHistoryCompleted($userid, $servicestatus);
+            }
             $json['data'] = array();
             if (count($result)) {
                 foreach ($result as $row) {
@@ -2794,67 +2890,22 @@ class HelperlandController
                             }
                         }
 
-                        if ($paymentstatus == 1) {
-                            $results = array();
-                            $results['blocks'] = $control;
-                            $results['serviceid'] = $serviceidcolumn;
-                            $results['date'] = $datecolumn;
-                            $results['payment'] = $paymentcolumn;
-                            $results['details'] = $userdetails;
+                        $results = array();
+                        $results['blocks'] = $control;
+                        $results['serviceid'] = $serviceidcolumn;
+                        $results['date'] = $datecolumn;
+                        $results['payment'] = $paymentcolumn;
+                        $results['details'] = $userdetails;
 
-                            $results['status'] = $userstatus;
-                        }
-                        if ($paymentstatus == 2) {
-                            if ($status == "Completed") {
-                                $results = array();
-                                $results['blocks'] = $control;
-                                $results['serviceid'] = $serviceidcolumn;
-                                $results['date'] = $datecolumn;
-                                $results['payment'] = $paymentcolumn;
-                                $results['details'] = $userdetails;
+                        $results['status'] = $userstatus;
 
-                                $results['status'] = $userstatus;
-                            } else {
-                                $results = array();
-                                $results['blocks'] = "";
-                                $results['serviceid'] = "";
-                                $results['date'] = "";
-                                $results['payment'] = "";
-                                $results['details'] = "";
-
-                                $results['status'] = "";
-                            }
-                        }
-
-
-                        if ($paymentstatus == 3) {
-                            if ($status == "Cancelled") {
-                                $results = array();
-                                $results['blocks'] = $control;
-                                $results['serviceid'] = $serviceidcolumn;
-                                $results['date'] = $datecolumn;
-                                $results['payment'] = $paymentcolumn;
-                                $results['details'] = $userdetails;
-
-                                $results['status'] = $userstatus;
-                            } else {
-                                $results = array();
-                                $results['blocks'] = "";
-                                $results['serviceid'] = "";
-                                $results['date'] = "";
-                                $results['payment'] = "";
-                                $results['details'] = "";
-
-                                $results['status'] = "";
-                            }
-                        }
                         array_push($json['data'], $results);
                     }
                 }
-                echo json_encode($json);
                 // $return = json_encode($output);
 
             }
+            echo json_encode($json);
         }
     }
 
@@ -2863,22 +2914,55 @@ class HelperlandController
         if (isset($_POST)) {
             $username = $_POST['username'];
             $selectbtn = intval($_POST['selects']);
+            $order = intval($_POST['order']);
+            if ($selectbtn == 1) {
+                $slect = "AND rating.RatingTo != '' ";
+            }
+            if ($selectbtn == 2) {
+                $slect = "AND rating.Ratings >= 4 ";
+            }
+            if ($selectbtn == 3) {
+                $slect = "AND rating.Ratings >= 3 AND  rating.Ratings < 4 ";
+            }
+            if ($selectbtn == 4) {
+                $slect = "AND rating.Ratings >= 2 AND  rating.Ratings < 3 ";
+            }
+            if ($selectbtn == 5) {
+                $slect = "AND rating.Ratings < 2 ";
+            }
+            if ($order == 1) {
+                $orderby = "user.FirstName ASC";
+            }
+            if ($order == 2) {
+                $orderby = "user.FirstName DESC";
+            }
+            if ($order == 3) {
+                $orderby = "servicerequest.ServiceStartDate DESC";
+            }
+            if ($order == 4) {
+                $orderby = "servicerequest.ServiceStartDate ASC";
+            }
+
+            if ($order == 5) {
+                $orderby = "rating.Ratings DESC";
+            }
+            if ($order == 6) {
+                $orderby = "rating.Ratings ASC";
+            }
+
             $result = $this->model->ResetKey($username);
             $userid = $result[3];
-            $ratings = $this->model->GetRating($userid);
+            // $whre = "rating.Ratings >= 4";
+            $ratings = $this->model->GetRating($userid, $slect, $orderby);
             $json['data'] = array();
             if (count($ratings[0])) {
                 foreach ($ratings[0] as $row) {
                     $serviceid = $row['ServiceRequestId'];
                     $ratingfrom = $row['RatingFrom'];
-                    $visible = $row['VisibleOnHomeScreen'];
+                    $visible = intval($row['VisibleOnHomeScreen']);
                     $spcomment  = $row['Comments'];
-                    $results = $this->model->GetUsers($ratingfrom);
-                    if (count($results)) {
-                        foreach ($results as $nm) {
-                            $custname = $nm['FirstName'] . ' ' . $nm['LastName'];
-                        }
-                    }
+                    $custname = $row['FirstName'] . ' ' . $row['LastName'];
+
                     // $custname = $results[0];
                     $sprate = $row['Ratings'];
                     $sprates = $row['Ratings'];
@@ -2891,8 +2975,6 @@ class HelperlandController
                         $val = '';
                         $values = '';
                         for ($i = 1; $i <= $valu; $i++) {
-                            ?>
-                            <?php
                             $values = $values .  '<i class="fa fa-star " style="color:rgb(236, 185, 28);"></i>';
                             // $values = $val.'' .$val;
 
@@ -2910,8 +2992,8 @@ class HelperlandController
                         }
                     }
                     $values = $values;
-                                   
-                             // $values = "<script language=javascript>rating</script>";
+
+                    // $values = "<script language=javascript>rating</script>";
                     if ($sprates >= 4 && $sprates <= 5) {
                         $txt = "Very Good";
                     } else if ($sprates >= 3 && $sprates < 4) {
@@ -2928,48 +3010,46 @@ class HelperlandController
                     if ($visible == 1) {
                         $comment = $spcomment;
                     }
-                    $servicedetails = $this->model->GetServiceHistoryUser($serviceid);
-                    if (count($servicedetails)) {
-                        foreach ($servicedetails as $sps) {
-                            $date = $sps['ServiceStartDate'];
-                            $starttime = $sps['ServiceTime'];
-                            $totaltime = $sps['TotalHours'];
-                            $starttime =  date("H:i", strtotime($starttime));
 
-                            $startime = str_replace(":", ".", $starttime);
-                            $hoursq = intval($startime);
-                            $realPartq =  $startime - $hoursq;
-                            $minutesq = intval($realPartq * 60);
-                            if ($minutesq == 18) {
-                                $minutesq = 5;
-                            } else {
-                                $minutesq = 0;
-                            }
-                            $startime =  $hoursq . "." . $minutesq;
+                    $date = $row['ServiceStartDate'];
+                    $starttime = $row['ServiceTime'];
+                    $totaltime = $row['TotalHours'];
+                    $starttime =  date("H:i", strtotime($starttime));
 
-                            $hours = intval($totaltime);
-                            $realPart = $totaltime - $hours;
-                            $minutes = intval($realPart * 60);
-                            if ($minutes == 30) {
-                                $minutes = 5;
-                            } else {
-                                $minutes = 0;
-                            }
-                            $totaltimes = $hours . "." . $minutes;
-                            $totaltimes = number_format(($startime + $totaltimes), 2);
-                            $var1 = intval($totaltimes);
-                            $var2 = $totaltimes - $var1;
-                            if ($var2 == 0.50) {
-                                $var2 = 30;
-                            } else {
-                                $var2 = 00;
-                            }
-                            $totaltimes = number_format(($var1 . '.' . $var2), 2);
-                            $endtime = str_replace(".", ":", $totaltimes);
-                   
-                             $cnt = $ratings[1];
-                           
-                            $out1 = '  <div class="ratig mb-5">
+                    $startime = str_replace(":", ".", $starttime);
+                    $hoursq = intval($startime);
+                    $realPartq =  $startime - $hoursq;
+                    $minutesq = intval($realPartq * 60);
+                    if ($minutesq == 18) {
+                        $minutesq = 5;
+                    } else {
+                        $minutesq = 0;
+                    }
+                    $startime =  $hoursq . "." . $minutesq;
+
+                    $hours = intval($totaltime);
+                    $realPart = $totaltime - $hours;
+                    $minutes = intval($realPart * 60);
+                    if ($minutes == 30) {
+                        $minutes = 5;
+                    } else {
+                        $minutes = 0;
+                    }
+                    $totaltimes = $hours . "." . $minutes;
+                    $totaltimes = number_format(($startime + $totaltimes), 2);
+                    $var1 = intval($totaltimes);
+                    $var2 = $totaltimes - $var1;
+                    if ($var2 == 0.50) {
+                        $var2 = 30;
+                    } else {
+                        $var2 = 00;
+                    }
+                    $totaltimes = number_format(($var1 . '.' . $var2), 2);
+                    $endtime = str_replace(".", ":", $totaltimes);
+
+                    $cnt = $ratings[1];
+
+                    $out1 = '  <div class="ratig mb-5">
                                       <div class="ratingsall">
             
                                         <div class="col firstcol">
@@ -2998,54 +3078,15 @@ class HelperlandController
                                     <div class="cname "><b>Customer Comment:</b></div>
                                     <div class="cname">' . $comment . '</div>
                                 </div>';
-                            $outs = "No Record Found";
-                            // $output = [$out1];
-                            $out2 = '';
-                            $out3 = '';
-                            $out4 = '';
-                            $out5 = '';
-                            $output = array();
+                    $outs = "No Record Found";
+                    // $output = [$out1];
 
-                            if ($sprates >= 4 && $sprates < 5) {
-                                $out2 = $out1;
-                            }
-                            if ($sprates >= 3 && $sprates < 4) {
-                                $out3 = $out1;
-                            }
-                            if ($sprates >= 2 && $sprates < 3) {
-                                $out4 = $out1;
-                            }
-                            if ($sprates < 2) {
-                                $out5 = $out1;
-                            }
+                    $output = array();
 
-                            if ($selectbtn == 1) {
-                                $output['ratings'] = $out1;
-                                //   echo  $out1;
-                            }
-                            if ($selectbtn == 2) {
-                                $output['ratings'] = $out2;
+                    $output['ratings'] = $out1;
 
-                                // echo  $out2;
-                            }
-                            if ($selectbtn == 3) {
-                                $output['ratings'] = $out3;
-
-                                // echo  $out3;
-                            }
-                            if ($selectbtn == 4) {
-                                $output['ratings'] = $out4;
-
-                                // echo  $out4;
-                            }
-                            if ($selectbtn == 5) {
-                                $output['ratings'] = $out5;
-                            }
-
-                            // $output = [$out1];
-                            array_push($json['data'], $output);
-                        }
-                    }
+                    // $output = [$out1];
+                    array_push($json['data'], $output);
                 }
             }
             echo json_encode($json);
@@ -3914,31 +3955,31 @@ class HelperlandController
                         <option value="8">08:00</option>
                         <option value="8.30">08:30</option>
                         <option value="9">09:00</option>
-                        <option value="8.30">09:30</option>
+                        <option value="9.30">09:30</option>
                         <option value="10">10:00</option>
-                        <option value="8.30">10:30</option>
+                        <option value="10.30">10:30</option>
                         <option value="11">11:00</option>
-                        <option value="8.30">11:30</option>
+                        <option value="11.30">11:30</option>
                         <option value="12">12:00</option>
-                        <option value="8.30">12:30</option>
+                        <option value="12.30">12:30</option>
                         <option value="13">13:00</option>
-                        <option value="8.30">13:30</option>
+                        <option value="13.30">13:30</option>
                         <option value="14">14:00</option>
-                        <option value="8.30">14:30</option>
+                        <option value="14.30">14:30</option>
                         <option value="15">15:00</option>
-                        <option value="8.30">15:30</option>
+                        <option value="15.30">15:30</option>
                         <option value="16">16:00</option>
-                        <option value="8.30">16:30</option>
+                        <option value="16.30">16:30</option>
                         <option value="17">17:00</option>
-                        <option value="8.30">17:30</option>
+                        <option value="17.30">17:30</option>
                         <option value="18">18:00</option>
-                        <option value="8.30">18:30</option>
+                        <option value="18.30">18:30</option>
                         <option value="19">19:00</option>
-                        <option value="8.30">19:30</option>
+                        <option value="19.30">19:30</option>
                         <option value="20">20:00</option>
-                        <option value="8.30">20:30</option>
+                        <option value="20.30">20:30</option>
                         <option value="21">21:00</option>
-                        <option value="8.30">21:30</option>
+                        <option value="21.30">21:30</option>
 
 
                       </select>
@@ -4236,12 +4277,13 @@ class HelperlandController
         }
     }
 
-    public function GiveRefund(){
-        if(isset($_POST)){
-           $serviceid = $_POST['serviceid'];
-          $whyrefund =  $_POST['whyrefund'];
-          $callcenternote = $_POST['callcenternote'];
-          $refundamount = $_POST['refundamount'];
+    public function GiveRefund()
+    {
+        if (isset($_POST)) {
+            $serviceid = $_POST['serviceid'];
+            $whyrefund =  $_POST['whyrefund'];
+            $callcenternote = $_POST['callcenternote'];
+            $refundamount = $_POST['refundamount'];
             $status = "Refunded";
             $result = $this->model->GetServiceHistoryUser($serviceid);
             if (count($result)) {
@@ -4252,7 +4294,7 @@ class HelperlandController
                     $refundamounts =  $row['RefundedAmount'];
                 }
             }
-            $refundamount = number_format((floatval($refundamount) + floatval( $refundamounts)),2);
+            $refundamount = number_format((floatval($refundamount) + floatval($refundamounts)), 2);
             $useremail = $this->model->GetUsers($userid);
 
             if (count($useremail)) {
@@ -4260,116 +4302,183 @@ class HelperlandController
                     $useremail  = $emails['Email'];
                 }
             }
-            
+
             $modifieddate = date('Y-m-d H:i:s');
             $modifiedby = "Admin";
             $recordversion = $recordversion + 1;
-          $array = [
-              "refundamount" => $refundamount,
-              "callcenternote" => $callcenternote,
-              "whyrefund" => $whyrefund,
-              "status" => $status,
-              "modifieddate" => $modifieddate,
-              "modifiedby" => $modifiedby,
-              "recordversion"=>$recordversion,
-              "serviceid" => $serviceid,
-              
-          ];
-          $refundconfirm = $this->model->GiveRefund($array);
-          $count = $refundconfirm[0];
-          if($count == 1){
-            $clientemail =  $useremail;
-            $subjectmsg = " Refunded";
+            $array = [
+                "refundamount" => $refundamount,
+                "callcenternote" => $callcenternote,
+                "whyrefund" => $whyrefund,
+                "status" => $status,
+                "modifieddate" => $modifieddate,
+                "modifiedby" => $modifiedby,
+                "recordversion" => $recordversion,
+                "serviceid" => $serviceid,
 
-            $mailbody = "
+            ];
+            $refundconfirm = $this->model->GiveRefund($array);
+            $count = $refundconfirm[0];
+            if ($count == 1) {
+                $clientemail =  $useremail;
+                $subjectmsg = " Refunded";
+
+                $mailbody = "
         Your Refund Amount is <span style='color:red;'>$refundamount</span> for servicerequest id <span style='color:red;'>$serviceid</span> 
         <br>
       
        <br>
         <br><div style='color:green;'>Service Request Refunded By<span style='color:red;'> Admin  </span></div>
         ";
-         
-       
-            include("Views/ClientRescheduleCancelMail.php");
 
-              echo 1;
-          } else{
-              echo 0;
-          }
+
+                include("Views/ClientRescheduleCancelMail.php");
+
+                echo 1;
+            } else {
+                echo 0;
+            }
         }
     }
 
 
-    public function GetSpDates($parameter){
-       
-            $email = $parameter;
-            $result = $this->model->ResetKey($email);
-            $userid = $result[3];
-            $result =  $this->model->GetUpcomingServiceHistoryAll($userid);
-            $json['data'] = array();
-            if(count($result)){
-                foreach($result as $row){
-                    $serviceid = $row['ServiceRequestId'];
-                    $servicestartdate = $row['ServiceStartDate'];
-                    $servicestarttime = $row['ServiceTime'];
-                    $status = $row['Status'];
-                    $totaltime = $row['TotalHours'];
-                    list($day, $month, $year) = explode("/", $servicestartdate);
-                    $date = $year.'-'.$month.'-'.$day;
-                    // $date = date("Y-m-d", $dates);
-                    $starttime =  date("H:i", strtotime($servicestarttime));
+    public function GetSpDates($parameter)
+    {
 
-                    $startime = str_replace(":", ".", $starttime);
+        $email = $parameter;
+        $result = $this->model->ResetKey($email);
+        $userid = $result[3];
+        $result =  $this->model->GetUpcomingServiceHistory($userid);
+        $json['data'] = array();
+        if (count($result)) {
+            foreach ($result as $row) {
+                $serviceid = $row['ServiceRequestId'];
+                $servicestartdate = $row['ServiceStartDate'];
+                $servicestarttime = $row['ServiceTime'];
+                $status = $row['Status'];
+                $totaltime = $row['TotalHours'];
+                list($day, $month, $year) = explode("/", $servicestartdate);
+                $date = $year . '-' . $month . '-' . $day;
+                // $date = date("Y-m-d", $dates);
+                $starttime =  date("H:i", strtotime($servicestarttime));
 
-                    $hoursq = intval($startime);
-                    $realPartq =  $startime - $hoursq;
-                    $minutesq = intval($realPartq * 60);
-                    if ($minutesq == 18) {
-                        $minutesq = 5;
-                    } else {
-                        $minutesq = 0;
-                    }
-                    $startime =  $hoursq . "." . $minutesq;
+                $startime = str_replace(":", ".", $starttime);
 
-                    // $startime =$hours.'.'.$mins; 
-
-                    $hours = intval($totaltime);
-                    $realPart = $totaltime - $hours;
-                    $minutes = intval($realPart * 60);
-                    if ($minutes == 30) {
-                        $minutes = 5;
-                    } else {
-                        $minutes = 0;
-                    }
-                    $totaltimes = $hours . "." . $minutes;
-                    $totaltimes = number_format(($startime + $totaltimes), 2);
-                    $var1 = intval($totaltimes);
-                    $var2 = $totaltimes - $var1;
-                    if ($var2 == 0.50) {
-                        $var2 = 30;
-                    } else {
-                        $var2 = 00;
-                    }
-                    $totaltimes = number_format(($var1 . '.' . $var2), 2);
-                    $totalltimes = str_replace(".", ":", $totaltimes);
-                   
-                    // $resultall = array();
-                    // $resultall['starttime'] =  $starttime;
-                    // $resultall['end'] =  $totalltimes;
-                    // $resultall['title'] = $starttime .'-'.$totalltimes;
-                    // $resultall['start'] = "2022-03-02";
-                    $resultall[] = array(
-                        'title' => $starttime.'-'.$totalltimes,
-                        'start'=>$date,
-                        'id'=>$serviceid,
-                    );
-                    // array_push($json['data'],$resultall);
+                $hoursq = intval($startime);
+                $realPartq =  $startime - $hoursq;
+                $minutesq = intval($realPartq * 60);
+                if ($minutesq == 18) {
+                    $minutesq = 5;
+                } else {
+                    $minutesq = 0;
                 }
+                $startime =  $hoursq . "." . $minutesq;
 
+                // $startime =$hours.'.'.$mins; 
+
+                $hours = intval($totaltime);
+                $realPart = $totaltime - $hours;
+                $minutes = intval($realPart * 60);
+                if ($minutes == 30) {
+                    $minutes = 5;
+                } else {
+                    $minutes = 0;
+                }
+                $totaltimes = $hours . "." . $minutes;
+                $totaltimes = number_format(($startime + $totaltimes), 2);
+                $var1 = intval($totaltimes);
+                $var2 = $totaltimes - $var1;
+                if ($var2 == 0.50) {
+                    $var2 = 30;
+                } else {
+                    $var2 = 00;
+                }
+                $totaltimes = number_format(($var1 . '.' . $var2), 2);
+                $totalltimes = str_replace(".", ":", $totaltimes);
+
+                // $resultall = array();
+                // $resultall['starttime'] =  $starttime;
+                // $resultall['end'] =  $totalltimes;
+                // $resultall['title'] = $starttime .'-'.$totalltimes;
+                // $resultall['start'] = "2022-03-02";
+                $resultall[] = array(
+                    'title' => $starttime . '-' . $totalltimes,
+                    'start' => $date,
+                    'id' => $serviceid,
+                );
+                // array_push($json['data'],$resultall);
             }
-            echo  json_encode($resultall);
-                               
-           
         }
+        echo  json_encode($resultall);
+    }
 
+    public function GetSpDatesall($parameter)
+    {
+
+        $email = $parameter;
+        $result = $this->model->ResetKey($email);
+        $userid = $result[3];
+        $result =  $this->model->GetUpcomingServiceHistoryAll($userid);
+        $json['data'] = array();
+        if (count($result)) {
+            foreach ($result as $row) {
+                $serviceid = $row['ServiceRequestId'];
+                $servicestartdate = $row['ServiceStartDate'];
+                $servicestarttime = $row['ServiceTime'];
+                $status = $row['Status'];
+                $totaltime = $row['TotalHours'];
+                list($day, $month, $year) = explode("/", $servicestartdate);
+                $date = $year . '-' . $month . '-' . $day;
+                // $date = date("Y-m-d", $dates);
+                $starttime =  date("H:i", strtotime($servicestarttime));
+
+                $startime = str_replace(":", ".", $starttime);
+
+                $hoursq = intval($startime);
+                $realPartq =  $startime - $hoursq;
+                $minutesq = intval($realPartq * 60);
+                if ($minutesq == 18) {
+                    $minutesq = 5;
+                } else {
+                    $minutesq = 0;
+                }
+                $startime =  $hoursq . "." . $minutesq;
+
+                // $startime =$hours.'.'.$mins; 
+
+                $hours = intval($totaltime);
+                $realPart = $totaltime - $hours;
+                $minutes = intval($realPart * 60);
+                if ($minutes == 30) {
+                    $minutes = 5;
+                } else {
+                    $minutes = 0;
+                }
+                $totaltimes = $hours . "." . $minutes;
+                $totaltimes = number_format(($startime + $totaltimes), 2);
+                $var1 = intval($totaltimes);
+                $var2 = $totaltimes - $var1;
+                if ($var2 == 0.50) {
+                    $var2 = 30;
+                } else {
+                    $var2 = 00;
+                }
+                $totaltimes = number_format(($var1 . '.' . $var2), 2);
+                $totalltimes = str_replace(".", ":", $totaltimes);
+
+                // $resultall = array();
+                // $resultall['starttime'] =  $starttime;
+                // $resultall['end'] =  $totalltimes;
+                // $resultall['title'] = $starttime .'-'.$totalltimes;
+                // $resultall['start'] = "2022-03-02";
+                $resultall[] = array(
+                    'title' => $starttime . '-' . $totalltimes,
+                    'start' => $date,
+                    'id' => $serviceid,
+                );
+                // array_push($json['data'],$resultall);
+            }
+        }
+        echo  json_encode($resultall);
+    }
 }
